@@ -1,0 +1,143 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "table-hl70127-to-allergy-intolerance-type",
+  "url": "http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70127-to-allergy-intolerance-type",
+  "title": "Table HL70127 to Allergy Intolerance Type Map",
+  "description": "This ConceptMap represents a mapping from the HL7 V2 Table HL70127 to the FHIR Allergy Intolerance Type Value Set.",
+  "name": "TableHL70127ToAllergyIntoleranceType",
+  "sourceUri": "http://terminology.hl7.org/ValueSet/v2-0127",
+  "version": "1.0",
+  "status": "active",
+  "experimental": true,
+  "publisher": "HL7 International, Inc",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "v2-to-fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "date": "2025-08-23",
+  "copyright": "Copyright (c) 2025, HL7 International, Inc., All Rights Reserved.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "extension": [
+        {
+          "url": "type",
+          "valueCode": "derived-from"
+        },
+        {
+          "url": "label",
+          "valueString": "Table HL70127 to Allergy Intolerance Type.fsh"
+        },
+        {
+          "url": "url",
+          "valueUri": "https://docs.google.com/spreadsheets/d/1UpQTB_IaM7hHAqz6gpmenkcPt2_BWSymicKQMtmZKN0/edit#gid=0"
+        }
+      ]
+    }
+  ],
+  "group": [
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0127",
+      "target": "http://hl7.org/fhir/allergy-intolerance-type",
+      "element": [
+        {
+          "code": "DA",
+          "display": "Drug allergy",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "allergy",
+              "display": "Allergy"
+            }
+          ]
+        },
+        {
+          "code": "FA",
+          "display": "Food allergy",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "allergy",
+              "display": "Allergy"
+            }
+          ]
+        },
+        {
+          "code": "MA",
+          "display": "Miscellaneous allergy",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "allergy",
+              "display": "Allergy"
+            }
+          ]
+        },
+        {
+          "code": "EA",
+          "display": "Environmental allergy",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "allergy",
+              "display": "Allergy"
+            }
+          ]
+        },
+        {
+          "code": "AA",
+          "display": "Animal allergy",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "allergy",
+              "display": "Allergy"
+            }
+          ]
+        },
+        {
+          "code": "PA",
+          "display": "Plant allergy",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "allergy",
+              "display": "Allergy"
+            }
+          ]
+        },
+        {
+          "code": "LA",
+          "display": "Pollen allergy",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "allergy",
+              "display": "Allergy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0127",
+      "element": [
+        {
+          "code": "MC",
+          "display": "Miscellaneous contraindication",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1947 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "datatype-ndl-to-practitionerrole",
+  "url": "http://hl7.org/fhir/uv/v2mappings/ConceptMap/datatype-ndl-to-practitionerrole",
+  "title": "Datatype NDL to PractitionerRole Map",
+  "description": "This ConceptMap represents a mapping from the HL7 V2 Datatype NDL to the FHIR PractitionerRole Resource.",
+  "name": "DatatypeNDLToPractitionerRole",
+  "version": "1.0",
+  "status": "active",
+  "experimental": true,
+  "publisher": "HL7 International, Inc",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "v2-to-fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "date": "2025-08-23",
+  "copyright": "Copyright (c) 2025, HL7 International, Inc., All Rights Reserved.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "extension": [
+        {
+          "url": "type",
+          "valueCode": "derived-from"
+        },
+        {
+          "url": "label",
+          "valueString": "Datatype NDL to PractitionerRole.fsh"
+        },
+        {
+          "url": "url",
+          "valueUri": "https://docs.google.com/spreadsheets/d/11OXFdsd0KLUaUQRmYawlszF5dcRZQ6CGJudPaBFTmPM/edit#gid=0"
+        }
+      ]
+    }
+  ],
+  "group": [
+    {
+      "element": [
+        {
+          "code": "NDL.1",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "CNN"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Name",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "practitioner(Practitioner)",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "Reference(Practitioner)"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    }
+                  ]
+                }
+              ],
+              "display": "practitioner(Practitioner)"
+            }
+          ]
+        },
+        {
+          "code": "NDL.2",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "DTM"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Start Date/time",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "period.start",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "dateTime"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    }
+                  ]
+                }
+              ],
+              "display": "period.start"
+            }
+          ]
+        },
+        {
+          "code": "NDL.3",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "DTM"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "End Date/time",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "period.end",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "dateTime"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    }
+                  ]
+                }
+              ],
+              "display": "period.end"
+            }
+          ]
+        },
+        {
+          "code": "NDL.4",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Point of Care",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[1].identifier",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "Identifier"
+                    }
+                  ]
+                }
+              ],
+              "display": "[1].identifier"
+            }
+          ]
+        },
+        {
+          "code": "NDL.4",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Point of Care",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[1].mode",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "code"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"instance\""
+                    }
+                  ]
+                }
+              ],
+              "display": "[1].mode"
+            }
+          ]
+        },
+        {
+          "code": "NDL.4",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Point of Care",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[1].physicalType.coding.code",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "code"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "/extension??-poc/"
+                    }
+                  ]
+                }
+              ],
+              "display": "[1].physicalType.coding.code"
+            }
+          ]
+        },
+        {
+          "code": "NDL.4",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Point of Care",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[1].physicalType.coding.system",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "uri"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"http://terminology.hl7.org/CodeSystem/location-physical-type\""
+                    }
+                  ]
+                }
+              ],
+              "display": "[1].physicalType.coding.system"
+            }
+          ]
+        },
+        {
+          "code": "NDL.4",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Point of Care",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[1].partOf.reference(Location[5])",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "string"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    }
+                  ]
+                }
+              ],
+              "display": "[1].partOf.reference(Location[5])"
+            }
+          ]
+        },
+        {
+          "code": "NDL.5",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Room",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[2].identifier",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "Identifier"
+                    }
+                  ]
+                }
+              ],
+              "display": "[2].identifier"
+            }
+          ]
+        },
+        {
+          "code": "NDL.5",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Room",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[2].mode",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "code"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"instance\""
+                    }
+                  ]
+                }
+              ],
+              "display": "[2].mode"
+            }
+          ]
+        },
+        {
+          "code": "NDL.5",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Room",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[2].physicalType.coding.code",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "code"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"ro\""
+                    }
+                  ]
+                }
+              ],
+              "display": "[2].physicalType.coding.code"
+            }
+          ]
+        },
+        {
+          "code": "NDL.5",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Room",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[2].physicalType.coding.system",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "uri"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"http://terminology.hl7.org/CodeSystem/location-physical-type\""
+                    }
+                  ]
+                }
+              ],
+              "display": "[2].physicalType.coding.system"
+            }
+          ]
+        },
+        {
+          "code": "NDL.5",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Room",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[2].partOf.reference(Location[1])",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "string"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    }
+                  ]
+                }
+              ],
+              "display": "[2].partOf.reference(Location[1])"
+            }
+          ]
+        },
+        {
+          "code": "NDL.6",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Bed",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[3].identifier",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "Identifier"
+                    }
+                  ]
+                }
+              ],
+              "display": "[3].identifier"
+            }
+          ]
+        },
+        {
+          "code": "NDL.6",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Bed",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[3].mode",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "code"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"instance\""
+                    }
+                  ]
+                }
+              ],
+              "display": "[3].mode"
+            }
+          ]
+        },
+        {
+          "code": "NDL.6",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Bed",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[3].physicalType.coding.code",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "code"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"bd\""
+                    }
+                  ]
+                }
+              ],
+              "display": "[3].physicalType.coding.code"
+            }
+          ]
+        },
+        {
+          "code": "NDL.6",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Bed",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[3].physicalType.coding.system",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "uri"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"http://terminology.hl7.org/CodeSystem/location-physical-type\""
+                    }
+                  ]
+                }
+              ],
+              "display": "[3].physicalType.coding.system"
+            }
+          ]
+        },
+        {
+          "code": "NDL.6",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Bed",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[3].partOf.reference(Location[2])",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "string"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    }
+                  ]
+                }
+              ],
+              "display": "[3].partOf.reference(Location[2])"
+            }
+          ]
+        },
+        {
+          "code": "NDL.7",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "HD"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Facility",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[4].identifier",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "Identifier"
+                    }
+                  ]
+                }
+              ],
+              "display": "[4].identifier"
+            }
+          ]
+        },
+        {
+          "code": "NDL.7",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "HD"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Facility",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[4].mode",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "code"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"instance\""
+                    }
+                  ]
+                }
+              ],
+              "display": "[4].mode"
+            }
+          ]
+        },
+        {
+          "code": "NDL.7",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "HD"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Facility",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[4].physicalType.coding.code",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "code"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"si\""
+                    }
+                  ]
+                }
+              ],
+              "display": "[4].physicalType.coding.code"
+            }
+          ]
+        },
+        {
+          "code": "NDL.7",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "HD"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Facility",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[4].physicalType.coding.system",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "uri"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"http://terminology.hl7.org/CodeSystem/location-physical-type\""
+                    }
+                  ]
+                }
+              ],
+              "display": "[4].physicalType.coding.system"
+            }
+          ]
+        },
+        {
+          "code": "NDL.8",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Location Status",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[1].status",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    }
+                  ]
+                }
+              ],
+              "display": "[1].status",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PL.1 AND PL.2 AND PL.3 AND PL.4 AND PL.7 AND PL.8 NOT VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "NDL.8",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Location Status",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[2].status",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    }
+                  ]
+                }
+              ],
+              "display": "[2].status",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PL.2 VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "NDL.8",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Location Status",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[3].status",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    }
+                  ]
+                }
+              ],
+              "display": "[3].status",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PL.3 VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "NDL.8",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Location Status",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[4].status",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    }
+                  ]
+                }
+              ],
+              "display": "[4].status",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PL.4 VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "NDL.8",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Location Status",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[5].status",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    }
+                  ]
+                }
+              ],
+              "display": "[5].status",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PL.7 VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "NDL.8",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Location Status",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[6].status",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    }
+                  ]
+                }
+              ],
+              "display": "[6].status",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PL.8 VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "NDL.10",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Building",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[5].identifier",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "Identifier"
+                    }
+                  ]
+                }
+              ],
+              "display": "[5].identifier"
+            }
+          ]
+        },
+        {
+          "code": "NDL.10",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Building",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[5].mode",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "code"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"instance\""
+                    }
+                  ]
+                }
+              ],
+              "display": "[5].mode"
+            }
+          ]
+        },
+        {
+          "code": "NDL.10",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Building",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[5].physicalType.coding.code",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "code"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"bu\""
+                    }
+                  ]
+                }
+              ],
+              "display": "[5].physicalType.coding.code"
+            }
+          ]
+        },
+        {
+          "code": "NDL.10",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Building",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[5].physicalType.coding.system",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "uri"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"http://terminology.hl7.org/CodeSystem/location-physical-type\""
+                    }
+                  ]
+                }
+              ],
+              "display": "[5].physicalType.coding.system"
+            }
+          ]
+        },
+        {
+          "code": "NDL.10",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Building",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[5].partOf.reference(Location[4])",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "string"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    }
+                  ]
+                }
+              ],
+              "display": "[5].partOf.reference(Location[4])"
+            }
+          ]
+        },
+        {
+          "code": "NDL.11",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Floor",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[6].identifier",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "Identifier"
+                    }
+                  ]
+                }
+              ],
+              "display": "[6].identifier"
+            }
+          ]
+        },
+        {
+          "code": "NDL.11",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Floor",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[6].mode",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "code"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"instance\""
+                    }
+                  ]
+                }
+              ],
+              "display": "[6].mode"
+            }
+          ]
+        },
+        {
+          "code": "NDL.11",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Floor",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[6].physicalType.coding.code",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "code"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"lvl\""
+                    }
+                  ]
+                }
+              ],
+              "display": "[6].physicalType.coding.code"
+            }
+          ]
+        },
+        {
+          "code": "NDL.11",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Floor",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[6].physicalType.coding.system",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "uri"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"http://terminology.hl7.org/CodeSystem/location-physical-type\""
+                    }
+                  ]
+                }
+              ],
+              "display": "[6].physicalType.coding.system"
+            }
+          ]
+        },
+        {
+          "code": "NDL.11",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "IS"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Floor",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "[6].partOf.reference(Location[1])",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "string"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    }
+                  ]
+                }
+              ],
+              "display": "[6].partOf.reference(Location[1])"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

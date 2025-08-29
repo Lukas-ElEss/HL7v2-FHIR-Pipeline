@@ -1,0 +1,193 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "TypeInfo",
+  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+  "name": "TypeInfo",
+  "status": "active",
+  "description": "Type information for conversion",
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "code": "001",
+          "system": "http://unstats.un.org/unsd/methods/m49/m49.htm"
+        }
+      ]
+    }
+  ],
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "expression": "ConceptMap.group.element",
+      "type": "element"
+    },
+    {
+      "expression": "ConceptMap.group.element.target",
+      "type": "element"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "definition": "Type information for conversion"
+      },
+      {
+        "id": "Extension.extension:type",
+        "path": "Extension.extension",
+        "sliceName": "type",
+        "short": "Data Type of the item",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:type.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:type.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "type"
+      },
+      {
+        "id": "Extension.extension:type.value[x]",
+        "path": "Extension.extension.value[x]",
+        "type": [
+          {
+            "code": "code"
+          }
+        ]
+      },
+      {
+        "id": "Extension.extension:cardinalityMin",
+        "path": "Extension.extension",
+        "sliceName": "cardinalityMin",
+        "short": "Minimum cardinality of the item",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:cardinalityMin.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:cardinalityMin.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "cardinalityMin"
+      },
+      {
+        "id": "Extension.extension:cardinalityMin.value[x]",
+        "path": "Extension.extension.value[x]",
+        "type": [
+          {
+            "code": "integer"
+          }
+        ]
+      },
+      {
+        "id": "Extension.extension:cardinalityMax",
+        "path": "Extension.extension",
+        "sliceName": "cardinalityMax",
+        "short": "Maximum cardinality of the item",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:cardinalityMax.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:cardinalityMax.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "cardinalityMax"
+      },
+      {
+        "id": "Extension.extension:cardinalityMax.value[x]",
+        "path": "Extension.extension.value[x]",
+        "type": [
+          {
+            "code": "integer"
+          }
+        ]
+      },
+      {
+        "id": "Extension.extension:assignment",
+        "path": "Extension.extension",
+        "sliceName": "assignment",
+        "short": "Assignment string value for the item",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:assignment.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:assignment.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "assignment"
+      },
+      {
+        "id": "Extension.extension:assignment.value[x]",
+        "path": "Extension.extension.value[x]",
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "id": "Extension.extension:mappedVia",
+        "path": "Extension.extension",
+        "sliceName": "mappedVia",
+        "short": "Url of the mapping artifact for the item",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:mappedVia.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:mappedVia.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "mappedVia"
+      },
+      {
+        "id": "Extension.extension:mappedVia.value[x]",
+        "path": "Extension.extension.value[x]",
+        "type": [
+          {
+            "code": "url"
+          }
+        ]
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "max": "0"
+      }
+    ]
+  }
+}

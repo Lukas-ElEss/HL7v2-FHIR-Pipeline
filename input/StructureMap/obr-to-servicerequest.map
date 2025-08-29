@@ -1,0 +1,32 @@
+map "http://hsrt-kkrt.org/fhir/StructureMap/OBR-to-ServiceRequest" = "OBRtoServiceRequest"
+
+uses "http://hsrt-kkrt.org/fhir/StructureDefinition/OBRSegment" as source
+uses "http://hl7.org/fhir/StructureDefinition/ServiceRequest" as target
+
+group OBRtoServiceRequest(source obr : OBRSegment, target sr : ServiceRequest) {
+
+  // ===== ServiceRequest.code =====
+  sr.code -> create('CodeableConcept') as cc then {
+    cc.coding -> create('Coding') as coding then {
+      obr.OBR_4_1 -> coding.code;
+      obr.OBR_4_2 -> coding.display;
+      obr.OBR_4_3 -> coding.system;
+      obr.OBR_4_7 -> coding.version;
+    };
+    obr.OBR_4_9 -> cc.text;
+  };
+
+  // ===== Request Priority =====
+  obr.OBR_5_1 as priCode -> sr.priority = translate(priCode, 'http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70485-to-request-priority', 'code');
+
+  // ===== ReasonCode =====
+  sr.reasonCode -> create('CodeableConcept') as rc then {
+    rc.coding -> create('Coding') as rcCoding then {
+      obr.OBR_31_1 -> rcCoding.code;
+      obr.OBR_31_2 -> rcCoding.display;
+      obr.OBR_31_3 -> rcCoding.system;
+      obr.OBR_31_7 -> rcCoding.version;
+    };
+    obr.OBR_31_9 -> rc.text;
+  };
+}

@@ -1,0 +1,33 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /matchboxv3
+hapi:
+  fhir:
+    fhir_version: R4
+    server_address: http://localhost:8080/matchboxv3/fhir
+    implementationguides:
+      fhir_r4_core:
+        name: hl7.fhir.r4.core
+        version: 4.0.1
+        url: classpath:/hl7.fhir.r4.core.tgz
+      fhir_extensions:
+        name: hl7.fhir.uv.extensions.r4
+        version: 5.2.0
+        url: classpath:/hl7.fhir.uv.extensions.r4#5.2.0.tgz
+      ch-emed:
+        name: ch.fhir.ig.ch-vacd
+        version: 3.0.0
+      # Offizielles HL7 v2-to-fhir IG
+      v2_to_fhir_ig:
+        name: hl7.fhir.uv.v2mappings.r4
+        version: 1.0.0
+        url: file:///config/package.r4.tgz
+matchbox:
+  fhir:
+    context:
+      onlyOneEngine: true
+      txServer: http://localhost:${server.port}/matchboxv3/fhir
+      suppressWarnInfo:
+        hl7.fhir.r4.core#4.0.1:
+          - "Constraint failed: dom-6:"

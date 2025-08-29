@@ -1,0 +1,349 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "segment-msh-transformation-to-provenance",
+  "url": "http://hl7.org/fhir/uv/v2mappings/ConceptMap/segment-msh-transformation-to-provenance",
+  "title": "Segment MSH [Transformation] to Provenance Map",
+  "description": "This ConceptMap represents a mapping from the HL7 V2 Segment MSH to the FHIR Provenance Resource.",
+  "name": "SegmentMSHTransformationToProvenance",
+  "version": "1.0",
+  "status": "active",
+  "experimental": true,
+  "publisher": "HL7 International, Inc",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "v2-to-fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "date": "2025-08-23",
+  "copyright": "Copyright (c) 2025, HL7 International, Inc., All Rights Reserved.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "extension": [
+        {
+          "url": "type",
+          "valueCode": "derived-from"
+        },
+        {
+          "url": "label",
+          "valueString": "Segment MSH[Transformation] to Provenance.fsh"
+        },
+        {
+          "url": "url",
+          "valueUri": "https://docs.google.com/spreadsheets/d/1byfzqOfOvIVdRkHv2Tto5a-a0YMYWWP0eryaZBvibIo/edit?gid=0#gid=0"
+        }
+      ]
+    }
+  ],
+  "group": [
+    {
+      "element": [
+        {
+          "code": "MSH",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "activity.coding.code",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 0
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"v2-fhir-transformation\""
+                    }
+                  ]
+                }
+              ],
+              "display": "activity.coding.code"
+            }
+          ]
+        },
+        {
+          "code": "MSH",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "activity.coding.system",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 0
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"http://hl7.org/fhir/uv/v2mappings/CodeSystem/provenance-activity-type-v2-to-fhir\""
+                    }
+                  ]
+                }
+              ],
+              "display": "activity.coding.system"
+            }
+          ]
+        },
+        {
+          "code": "MSH",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "recorded",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "/timestamp of tranformation/"
+                    }
+                  ]
+                }
+              ],
+              "display": "recorded"
+            }
+          ]
+        },
+        {
+          "code": "MSH",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "policy",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 0
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": -1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "/uri of the policy governing transformation of the v2 to FHIR/"
+                    }
+                  ]
+                }
+              ],
+              "display": "policy"
+            }
+          ]
+        },
+        {
+          "code": "MSH",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "agent[1].type.coding.code",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "string"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 0
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"assembler\""
+                    }
+                  ]
+                }
+              ],
+              "display": "agent[1].type.coding.code"
+            }
+          ]
+        },
+        {
+          "code": "MSH",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "agent[1].type.coding.system",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "url"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 0
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"http://terminology.hl7.org/CodeSystem/provenance-participant-type\""
+                    }
+                  ]
+                }
+              ],
+              "display": "agent[1].type.coding.system"
+            }
+          ]
+        },
+        {
+          "code": "MSH",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "agent[1].who(Organization|Device)",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "Reference(Organization|Device)"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "/the organization owning or device performing the transformation by the mapping tool/"
+                    }
+                  ]
+                }
+              ],
+              "display": "agent[1].who(Organization|Device)"
+            }
+          ]
+        },
+        {
+          "code": "MSH",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "entity[1].what(DocumentReference.content.attachment.url)",
+              "display": "entity[1].what(DocumentReference.content.attachment.url)",
+              "dependsOn": [
+                {
+                  "property": "Narrative-Condition",
+                  "value": "when you hold on to/persist the v2 message in a data store"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "MSH",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "entity[1].what(DocumentReference.content.attachment.data)",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "assignment",
+                      "valueString": "/v2.txt or v2.xml into base 64/"
+                    }
+                  ]
+                }
+              ],
+              "display": "entity[1].what(DocumentReference.content.attachment.data)",
+              "dependsOn": [
+                {
+                  "property": "Narrative-Condition",
+                  "value": "when you do not hold on to/persist the v2 message in a data store"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "MSH",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "entity[1].what(DocumentReference.status)",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "assignment",
+                      "valueString": "\"current\""
+                    }
+                  ]
+                }
+              ],
+              "display": "entity[1].what(DocumentReference.status)"
+            }
+          ]
+        },
+        {
+          "code": "MSH",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "entity[1].role",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "assignment",
+                      "valueString": "\"source\""
+                    }
+                  ]
+                }
+              ],
+              "display": "entity[1].role"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

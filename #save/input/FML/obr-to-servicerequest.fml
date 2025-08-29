@@ -1,0 +1,15 @@
+map "http://hsrt-kkrt.org/fhir/StructureMap/obr-to-servicerequest" = "OBRToServiceRequest"
+
+uses "http://hsrt-kkrt.org/fhir/StructureDefinition/OBRSegment" alias OBRSegment as source
+uses "http://hl7.org/fhir/StructureDefinition/ServiceRequest" alias ServiceRequest as target
+
+group OBRToServiceRequest(source obr : OBRSegment, target sr : ServiceRequest) {
+  // OBR-4 (CWE) -> ServiceRequest.code
+  obr.OBR_4 as x ->
+    sr.code = create("CodeableConcept") as cc,
+    cc.coding = create("Coding") as cd,
+    cd.system = x.system,
+    cd.code   = x.code,
+    cd.display = x.text
+    "OBR-4 to ServiceRequest.code";
+}

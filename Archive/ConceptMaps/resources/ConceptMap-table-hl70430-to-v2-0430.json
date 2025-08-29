@@ -1,0 +1,130 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "table-hl70430-to-v2-0430",
+  "url": "http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70430-to-v2-0430",
+  "title": "Table HL70430 to V2 0430 Map",
+  "description": "This ConceptMap represents a mapping from the HL7 V2 Table HL70430 to the FHIR V2 0430 Value Set.",
+  "name": "TableHL70430ToV20430",
+  "sourceUri": "http://terminology.hl7.org/ValueSet/v2-0430",
+  "targetUri": "http://terminology.hl7.org/ValueSet/v2-0430",
+  "version": "1.0",
+  "status": "active",
+  "experimental": true,
+  "publisher": "HL7 International, Inc",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "v2-to-fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "date": "2025-08-23",
+  "copyright": "Copyright (c) 2025, HL7 International, Inc., All Rights Reserved.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "extension": [
+        {
+          "url": "type",
+          "valueCode": "derived-from"
+        },
+        {
+          "url": "label",
+          "valueString": "Table HL70430 to V2 0430.fsh"
+        },
+        {
+          "url": "url",
+          "valueUri": "https://docs.google.com/spreadsheets/d/1cq-jINNYePVc6dACBzBbFzTv7ry8e6w8ZXgHmmW7WeE/edit#gid=0"
+        }
+      ]
+    }
+  ],
+  "group": [
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0430",
+      "target": "http://terminology.hl7.org/CodeSystem/v2-0430",
+      "element": [
+        {
+          "code": "A",
+          "display": "Ambulance",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "A",
+              "display": "Ambulance"
+            }
+          ]
+        },
+        {
+          "code": "C",
+          "display": "Car",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "C",
+              "display": "Car"
+            }
+          ]
+        },
+        {
+          "code": "F",
+          "display": "On foot",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "F",
+              "display": "On foot"
+            }
+          ]
+        },
+        {
+          "code": "H",
+          "display": "Helicopter",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "H",
+              "display": "Helicopter"
+            }
+          ]
+        },
+        {
+          "code": "P",
+          "display": "Public Transport",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "P",
+              "display": "Public Transport"
+            }
+          ]
+        },
+        {
+          "code": "O",
+          "display": "Other",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "O",
+              "display": "Other"
+            }
+          ]
+        },
+        {
+          "code": "U",
+          "display": "Unknown",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "U",
+              "display": "Unknown"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

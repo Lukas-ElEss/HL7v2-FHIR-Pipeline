@@ -1,0 +1,205 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "table-hl70085-to-observation-status",
+  "url": "http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70085-to-observation-status",
+  "title": "Table HL70085 to Observation Status Map",
+  "description": "This ConceptMap represents a mapping from the HL7 V2 Table HL70085 to the FHIR Observation Status Value Set.",
+  "name": "TableHL70085ToObservationStatus",
+  "sourceUri": "http://terminology.hl7.org/ValueSet/v2-0085",
+  "version": "1.0",
+  "status": "active",
+  "experimental": true,
+  "publisher": "HL7 International, Inc",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "v2-to-fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "date": "2025-08-23",
+  "copyright": "Copyright (c) 2025, HL7 International, Inc., All Rights Reserved.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "extension": [
+        {
+          "url": "type",
+          "valueCode": "derived-from"
+        },
+        {
+          "url": "label",
+          "valueString": "Table HL70085 to Observation Status.fsh"
+        },
+        {
+          "url": "url",
+          "valueUri": "https://docs.google.com/spreadsheets/d/1RsA6SEYsjfrR6TbwY1JHBetrPyRED2RDzTa1jvHRvX0/edit#gid=0"
+        }
+      ]
+    }
+  ],
+  "group": [
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0085",
+      "target": "http://hl7.org/fhir/observation-status",
+      "element": [
+        {
+          "code": "A",
+          "display": "Amended based on adjustments provided by the Placer (Physician) regarding patient demographics (such as age and/or gender or other patient specific information",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "amended",
+              "display": "Amended"
+            }
+          ]
+        },
+        {
+          "code": "C",
+          "display": "Record coming over is a correction and thus replaces a final result",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "corrected",
+              "display": "Corrected"
+            }
+          ]
+        },
+        {
+          "code": "D",
+          "display": "Deletes the OBX record",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "entered-in-error",
+              "display": "Entered in Error"
+            }
+          ]
+        },
+        {
+          "code": "F",
+          "display": "Final results",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "final",
+              "display": "Final"
+            }
+          ]
+        },
+        {
+          "code": "P",
+          "display": "Preliminary results",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "preliminary",
+              "display": "Preliminary"
+            }
+          ]
+        },
+        {
+          "code": "X",
+          "display": "Results cannot be obtained for this observation",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "cancelled"
+            }
+          ]
+        },
+        {
+          "code": "W",
+          "display": "Post original as wrong, e.g., transmitted for wrong patient",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "entered-in-error",
+              "display": "Entered in Error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0085",
+      "element": [
+        {
+          "code": "B",
+          "display": "Appended Report - Final results reviewed and further information provided for clarity without change to the original result values.",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "I",
+          "display": "Specimen in Lab; results pending",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "N",
+          "display": "Not asked; used to affirmatively document that the observation identified in the OBX was not sought when the universal service ID in OBR-4 implies that it would be sought.",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "O",
+          "display": "Order detail description only (no result)",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "R",
+          "display": "Results entered -- not verified",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "S",
+          "display": "Partial results. Deprecated. Retained only for backward compatibility as of V2.6.",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "V",
+          "display": "Verified - Final results reviewed and confirmed to be correct, no change to result value, normal range or abnormal flag",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "U",
+          "display": "Results status change to final without retransmitting results already sent as 'preliminary.' E.g., radiology changes status from preliminary to final",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

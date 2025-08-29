@@ -1,0 +1,724 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "table-hl70360-to-v2-0360",
+  "url": "http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70360-to-v2-0360",
+  "title": "Table HL70360 to V2 0360 Map",
+  "description": "This ConceptMap represents a mapping from the HL7 V2 Table HL70360 to the FHIR V2 0360 Value Set.",
+  "name": "TableHL70360ToV20360",
+  "sourceUri": "http://terminology.hl7.org/ValueSet/v2-0360",
+  "targetUri": "http://terminology.hl7.org/ValueSet/v2-0360",
+  "version": "1.0",
+  "status": "active",
+  "experimental": true,
+  "publisher": "HL7 International, Inc",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "v2-to-fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "date": "2025-08-23",
+  "copyright": "Copyright (c) 2025, HL7 International, Inc., All Rights Reserved.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "extension": [
+        {
+          "url": "type",
+          "valueCode": "derived-from"
+        },
+        {
+          "url": "label",
+          "valueString": "Table HL70360 to V2 0360.fsh"
+        },
+        {
+          "url": "url",
+          "valueUri": "https://docs.google.com/spreadsheets/d/1hwElMvBeMgqshNl5Wm_YxToPC-szr8rCF90DT6h-Kzk/edit?gid=0#gid=0"
+        }
+      ]
+    }
+  ],
+  "group": [
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0360",
+      "target": "http://terminology.hl7.org/CodeSystem/v2-0360",
+      "element": [
+        {
+          "code": "PN",
+          "display": "Advanced Practice Nurse",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "PN",
+              "display": "Advanced Practice Nurse"
+            }
+          ]
+        },
+        {
+          "code": "AAS",
+          "display": "Associate of Applied Science",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "AAS",
+              "display": "Associate of Applied Science"
+            }
+          ]
+        },
+        {
+          "code": "AA",
+          "display": "Associate of Arts",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "AA",
+              "display": "Associate of Arts"
+            }
+          ]
+        },
+        {
+          "code": "ABA",
+          "display": "Associate of Business Administration",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "ABA",
+              "display": "Associate of Business Administration"
+            }
+          ]
+        },
+        {
+          "code": "AE",
+          "display": "Associate of Engineering",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "AE",
+              "display": "Associate of Engineering"
+            }
+          ]
+        },
+        {
+          "code": "AS",
+          "display": "Associate of Science",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "AS",
+              "display": "Associate of Science"
+            }
+          ]
+        },
+        {
+          "code": "BA",
+          "display": "Bachelor of Arts",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "BA",
+              "display": "Bachelor of Arts"
+            }
+          ]
+        },
+        {
+          "code": "BBA",
+          "display": "Bachelor of Business Administration",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "BBA",
+              "display": "Bachelor of Business Administration"
+            }
+          ]
+        },
+        {
+          "code": "BE",
+          "display": "Bachelor or Engineering",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "BE",
+              "display": "Bachelor or Engineering"
+            }
+          ]
+        },
+        {
+          "code": "BFA",
+          "display": "Bachelor of Fine Arts",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "BFA",
+              "display": "Bachelor of Fine Arts"
+            }
+          ]
+        },
+        {
+          "code": "BN",
+          "display": "Bachelor of Nursing",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "BN",
+              "display": "Bachelor of Nursing"
+            }
+          ]
+        },
+        {
+          "code": "BS",
+          "display": "Bachelor of Science",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "BS",
+              "display": "Bachelor of Science"
+            }
+          ]
+        },
+        {
+          "code": "BSL",
+          "display": "Bachelor of Science - Law",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "BSL",
+              "display": "Bachelor of Science - Law"
+            }
+          ]
+        },
+        {
+          "code": "BSN",
+          "display": "Bachelor on Science - Nursing",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "BSN",
+              "display": "Bachelor on Science - Nursing"
+            }
+          ]
+        },
+        {
+          "code": "BT",
+          "display": "Bachelor of Theology",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "BT",
+              "display": "Bachelor of Theology"
+            }
+          ]
+        },
+        {
+          "code": "CER",
+          "display": "Certificate",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "CER",
+              "display": "Certificate"
+            }
+          ]
+        },
+        {
+          "code": "CANP",
+          "display": "Certified Adult Nurse Practitioner",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "CANP",
+              "display": "Certified Adult Nurse Practitioner"
+            }
+          ]
+        },
+        {
+          "code": "CMA",
+          "display": "Certified Medical Assistant",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "CMA",
+              "display": "Certified Medical Assistant"
+            }
+          ]
+        },
+        {
+          "code": "CNP",
+          "display": "Certified Nurse Practitioner",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "CNP",
+              "display": "Certified Nurse Practitioner"
+            }
+          ]
+        },
+        {
+          "code": "CNM",
+          "display": "Certified Nurse Midwife",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "CNM",
+              "display": "Certified Nurse Midwife"
+            }
+          ]
+        },
+        {
+          "code": "CRN",
+          "display": "Certified Registered Nurse",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "CRN",
+              "display": "Certified Registered Nurse"
+            }
+          ]
+        },
+        {
+          "code": "CNS",
+          "display": "Certified Nurse Specialist",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "CNS",
+              "display": "Certified Nurse Specialist"
+            }
+          ]
+        },
+        {
+          "code": "CPNP",
+          "display": "Certified Pediatric Nurse Practitioner",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "CPNP",
+              "display": "Certified Pediatric Nurse Practitioner"
+            }
+          ]
+        },
+        {
+          "code": "CTR",
+          "display": "Certified Tumor Registrar",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "CTR",
+              "display": "Certified Tumor Registrar"
+            }
+          ]
+        },
+        {
+          "code": "DIP",
+          "display": "Diploma",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "DIP",
+              "display": "Diploma"
+            }
+          ]
+        },
+        {
+          "code": "DBA",
+          "display": "Doctor of Business Administration",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "DBA",
+              "display": "Doctor of Business Administration"
+            }
+          ]
+        },
+        {
+          "code": "DED",
+          "display": "Doctor of Education",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "DED",
+              "display": "Doctor of Education"
+            }
+          ]
+        },
+        {
+          "code": "PharmD",
+          "display": "Doctor of Pharmacy",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "PharmD",
+              "display": "Doctor of Pharmacy"
+            }
+          ]
+        },
+        {
+          "code": "PHE",
+          "display": "Doctor of Engineering",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "PHE",
+              "display": "Doctor of Engineering"
+            }
+          ]
+        },
+        {
+          "code": "PHD",
+          "display": "Doctor of Philosophy",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "PHD",
+              "display": "Doctor of Philosophy"
+            }
+          ]
+        },
+        {
+          "code": "PHS",
+          "display": "Doctor of Science",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "PHS",
+              "display": "Doctor of Science"
+            }
+          ]
+        },
+        {
+          "code": "MD",
+          "display": "Doctor of Medicine",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "MD",
+              "display": "Doctor of Medicine"
+            }
+          ]
+        },
+        {
+          "code": "DO",
+          "display": "Doctor of Osteopathy",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "DO",
+              "display": "Doctor of Osteopathy"
+            }
+          ]
+        },
+        {
+          "code": "EMT",
+          "display": "Emergency Medical Technician",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "EMT",
+              "display": "Emergency Medical Technician"
+            }
+          ]
+        },
+        {
+          "code": "EMTP",
+          "display": "Emergency Medical Technician - Paramedic",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "EMTP",
+              "display": "Emergency Medical Technician - Paramedic"
+            }
+          ]
+        },
+        {
+          "code": "FPNP",
+          "display": "Family Practice Nurse Practitioner",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "FPNP",
+              "display": "Family Practice Nurse Practitioner"
+            }
+          ]
+        },
+        {
+          "code": "HS",
+          "display": "High School Graduate",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "HS",
+              "display": "High School Graduate"
+            }
+          ]
+        },
+        {
+          "code": "JD",
+          "display": "Juris Doctor",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "JD",
+              "display": "Juris Doctor"
+            }
+          ]
+        },
+        {
+          "code": "MA",
+          "display": "Master of Arts",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "MA",
+              "display": "Master of Arts"
+            }
+          ]
+        },
+        {
+          "code": "MBA",
+          "display": "Master of Business Administration",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "MBA",
+              "display": "Master of Business Administration"
+            }
+          ]
+        },
+        {
+          "code": "MCE",
+          "display": "Master of Civil Engineering",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "MCE",
+              "display": "Master of Civil Engineering"
+            }
+          ]
+        },
+        {
+          "code": "MDI",
+          "display": "Master of Divinity",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "MDI",
+              "display": "Master of Divinity"
+            }
+          ]
+        },
+        {
+          "code": "MED",
+          "display": "Master of Education",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "MED",
+              "display": "Master of Education"
+            }
+          ]
+        },
+        {
+          "code": "MEE",
+          "display": "Master of Electrical Engineering",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "MEE",
+              "display": "Master of Electrical Engineering"
+            }
+          ]
+        },
+        {
+          "code": "ME",
+          "display": "Master of Engineering",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "ME",
+              "display": "Master of Engineering"
+            }
+          ]
+        },
+        {
+          "code": "MFA",
+          "display": "Master of Fine Arts",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "MFA",
+              "display": "Master of Fine Arts"
+            }
+          ]
+        },
+        {
+          "code": "MME",
+          "display": "Master of Mechanical Engineering",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "MME",
+              "display": "Master of Mechanical Engineering"
+            }
+          ]
+        },
+        {
+          "code": "MS",
+          "display": "Master of Science",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "MS",
+              "display": "Master of Science"
+            }
+          ]
+        },
+        {
+          "code": "MSL",
+          "display": "Master of Science - Law",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "MSL",
+              "display": "Master of Science - Law"
+            }
+          ]
+        },
+        {
+          "code": "MSN",
+          "display": "Master of Science - Nursing",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "MSN",
+              "display": "Master of Science - Nursing"
+            }
+          ]
+        },
+        {
+          "code": "MTH",
+          "display": "Master of Theology",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "MTH",
+              "display": "Master of Theology"
+            }
+          ]
+        },
+        {
+          "code": "MDA",
+          "display": "Medical Assistant",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "MDA",
+              "display": "Medical Assistant"
+            }
+          ]
+        },
+        {
+          "code": "MT",
+          "display": "Medical Technician",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "MT",
+              "display": "Medical Technician"
+            }
+          ]
+        },
+        {
+          "code": "NG",
+          "display": "Non-Graduate",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "NG",
+              "display": "Non-Graduate"
+            }
+          ]
+        },
+        {
+          "code": "NP",
+          "display": "Nurse Practitioner",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "NP",
+              "display": "Nurse Practitioner"
+            }
+          ]
+        },
+        {
+          "code": "PA",
+          "display": "Physician Assistant",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "PA",
+              "display": "Physician Assistant"
+            }
+          ]
+        },
+        {
+          "code": "RMA",
+          "display": "Registered Medical Assistant",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RMA",
+              "display": "Registered Medical Assistant"
+            }
+          ]
+        },
+        {
+          "code": "RN",
+          "display": "Registered Nurse",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RN",
+              "display": "Registered Nurse"
+            }
+          ]
+        },
+        {
+          "code": "RPH",
+          "display": "Registered Pharmacist",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RPH",
+              "display": "Registered Pharmacist"
+            }
+          ]
+        },
+        {
+          "code": "SEC",
+          "display": "Secretarial Certificate",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "SEC",
+              "display": "Secretarial Certificate"
+            }
+          ]
+        },
+        {
+          "code": "TS",
+          "display": "Trade School Graduate",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "TS",
+              "display": "Trade School Graduate"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

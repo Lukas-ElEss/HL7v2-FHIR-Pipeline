@@ -1,0 +1,253 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "segment-prt-location-to-observation",
+  "url": "http://hl7.org/fhir/uv/v2mappings/ConceptMap/segment-prt-location-to-observation",
+  "title": "Segment PRT [Location] to Observation Map",
+  "description": "This ConceptMap represents a mapping from the HL7 V2 Segment PRT to the FHIR Observation Resource.",
+  "name": "SegmentPRTLocationToObservation",
+  "version": "1.0",
+  "status": "active",
+  "experimental": true,
+  "publisher": "HL7 International, Inc",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "v2-to-fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "date": "2025-08-23",
+  "copyright": "Copyright (c) 2025, HL7 International, Inc., All Rights Reserved.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "extension": [
+        {
+          "url": "type",
+          "valueCode": "derived-from"
+        },
+        {
+          "url": "label",
+          "valueString": "Segment PRT[Location] to Observation.fsh"
+        },
+        {
+          "url": "url",
+          "valueUri": "https://docs.google.com/spreadsheets/d/1gkOgbr2gquM9h-9ObweIkFs4PaljwESWO-N7iueGtOY/edit#gid=0"
+        }
+      ]
+    }
+  ],
+  "group": [
+    {
+      "element": [
+        {
+          "code": "PRT-9",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "PL"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Location",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "extension[1].url",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "uri"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"http://hl7.org/fhir/StructureDefinition/event-location\""
+                    }
+                  ]
+                }
+              ],
+              "display": "extension[1].url"
+            }
+          ]
+        },
+        {
+          "code": "PRT-9",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "PL"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Location",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "extension[1].valueReference(Location)",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "Reference"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    }
+                  ]
+                }
+              ],
+              "display": "extension[1].valueReference(Location)"
+            }
+          ]
+        },
+        {
+          "code": "PRT-14",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "XAD"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Address",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "extension[2].url",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "uri"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "assignment",
+                      "valueString": "\"http://hl7.org/fhir/StructureDefinition/event-location\""
+                    }
+                  ]
+                }
+              ],
+              "display": "extension[2].url"
+            }
+          ]
+        },
+        {
+          "code": "PRT-14",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "XAD"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Address",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "extension[2].valueReference(Location)",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "Address"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    }
+                  ]
+                }
+              ],
+              "display": "extension[2].valueReference(Location)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

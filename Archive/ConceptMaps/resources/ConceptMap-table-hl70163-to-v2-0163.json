@@ -1,0 +1,647 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "table-hl70163-to-v2-0163",
+  "url": "http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70163-to-v2-0163",
+  "title": "Table HL70163 to V2 0163 Map",
+  "description": "This ConceptMap represents a mapping from the HL7 V2 Table HL70163 to the FHIR V2 0163 Value Set.",
+  "name": "TableHL70163ToV20163",
+  "sourceUri": "http://terminology.hl7.org/ValueSet/v2-0163",
+  "targetUri": "http://terminology.hl7.org/ValueSet/v2-0163",
+  "version": "1.0",
+  "status": "active",
+  "experimental": true,
+  "publisher": "HL7 International, Inc",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "v2-to-fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "date": "2025-08-23",
+  "copyright": "Copyright (c) 2025, HL7 International, Inc., All Rights Reserved.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "extension": [
+        {
+          "url": "type",
+          "valueCode": "derived-from"
+        },
+        {
+          "url": "label",
+          "valueString": "Table HL70163 to V2 0163.fsh"
+        },
+        {
+          "url": "url",
+          "valueUri": "https://docs.google.com/spreadsheets/d/1Bk09POJ7Iqb9oozYAJJEUEnHZwnmH15kHbtCvbbpixc/edit?gid=0#gid=0"
+        }
+      ]
+    }
+  ],
+  "group": [
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0163",
+      "target": "http://terminology.hl7.org/CodeSystem/v2-0163",
+      "element": [
+        {
+          "code": "BE",
+          "display": "Bilateral Ears",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "BE",
+              "display": "Bilateral Ears"
+            }
+          ]
+        },
+        {
+          "code": "OU",
+          "display": "Bilateral Eyes",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "OU",
+              "display": "Bilateral Eyes"
+            }
+          ]
+        },
+        {
+          "code": "BN",
+          "display": "Bilateral Nares",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "BN",
+              "display": "Bilateral Nares"
+            }
+          ]
+        },
+        {
+          "code": "BU",
+          "display": "Buttock",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "BU",
+              "display": "Buttock"
+            }
+          ]
+        },
+        {
+          "code": "CT",
+          "display": "Chest Tube",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "CT",
+              "display": "Chest Tube"
+            }
+          ]
+        },
+        {
+          "code": "LA",
+          "display": "Left Arm",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LA",
+              "display": "Left Arm"
+            }
+          ]
+        },
+        {
+          "code": "LAC",
+          "display": "Left Anterior Chest",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LAC",
+              "display": "Left Anterior Chest"
+            }
+          ]
+        },
+        {
+          "code": "LACF",
+          "display": "Left Antecubital Fossa",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LACF",
+              "display": "Left Antecubital Fossa"
+            }
+          ]
+        },
+        {
+          "code": "LD",
+          "display": "Left Deltoid",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LD",
+              "display": "Left Deltoid"
+            }
+          ]
+        },
+        {
+          "code": "LE",
+          "display": "Left Ear",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LE",
+              "display": "Left Ear"
+            }
+          ]
+        },
+        {
+          "code": "LEJ",
+          "display": "Left External Jugular",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LEJ",
+              "display": "Left External Jugular"
+            }
+          ]
+        },
+        {
+          "code": "OS",
+          "display": "Left Eye",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "OS",
+              "display": "Left Eye"
+            }
+          ]
+        },
+        {
+          "code": "LF",
+          "display": "Left Foot",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LF",
+              "display": "Left Foot"
+            }
+          ]
+        },
+        {
+          "code": "LG",
+          "display": "Left Gluteus Medius",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LG",
+              "display": "Left Gluteus Medius"
+            }
+          ]
+        },
+        {
+          "code": "LH",
+          "display": "Left Hand",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LH",
+              "display": "Left Hand"
+            }
+          ]
+        },
+        {
+          "code": "LIJ",
+          "display": "Left Internal Jugular",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LIJ",
+              "display": "Left Internal Jugular"
+            }
+          ]
+        },
+        {
+          "code": "LLAQ",
+          "display": "Left Lower Abd Quadrant",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LLAQ",
+              "display": "Left Lower Abd Quadrant"
+            }
+          ]
+        },
+        {
+          "code": "LLFA",
+          "display": "Left Lower Forearm",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LLFA",
+              "display": "Left Lower Forearm"
+            }
+          ]
+        },
+        {
+          "code": "LMFA",
+          "display": "Left Mid Forearm",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LMFA",
+              "display": "Left Mid Forearm"
+            }
+          ]
+        },
+        {
+          "code": "LN",
+          "display": "Left Naris",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LN",
+              "display": "Left Naris"
+            }
+          ]
+        },
+        {
+          "code": "LPC",
+          "display": "Left Posterior Chest",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LPC",
+              "display": "Left Posterior Chest"
+            }
+          ]
+        },
+        {
+          "code": "LSC",
+          "display": "Left Subclavian",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LSC",
+              "display": "Left Subclavian"
+            }
+          ]
+        },
+        {
+          "code": "LT",
+          "display": "Left Thigh",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LT",
+              "display": "Left Thigh"
+            }
+          ]
+        },
+        {
+          "code": "LUA",
+          "display": "Left Upper Arm",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LUA",
+              "display": "Left Upper Arm"
+            }
+          ]
+        },
+        {
+          "code": "LUAQ",
+          "display": "Left Upper Abd Quadrant",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LUAQ",
+              "display": "Left Upper Abd Quadrant"
+            }
+          ]
+        },
+        {
+          "code": "LUFA",
+          "display": "Left Upper Forearm",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LUFA",
+              "display": "Left Upper Forearm"
+            }
+          ]
+        },
+        {
+          "code": "LVG",
+          "display": "Left Ventragluteal",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LVG",
+              "display": "Left Ventragluteal"
+            }
+          ]
+        },
+        {
+          "code": "LVL",
+          "display": "Left Vastus Lateralis",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LVL",
+              "display": "Left Vastus Lateralis"
+            }
+          ]
+        },
+        {
+          "code": "NB",
+          "display": "Nebulized",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "NB",
+              "display": "Nebulized"
+            }
+          ]
+        },
+        {
+          "code": "PA",
+          "display": "Perianal",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "PA",
+              "display": "Perianal"
+            }
+          ]
+        },
+        {
+          "code": "PERIN",
+          "display": "Perineal",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "PERIN",
+              "display": "Perineal"
+            }
+          ]
+        },
+        {
+          "code": "RA",
+          "display": "Right Arm",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RA",
+              "display": "Right Arm"
+            }
+          ]
+        },
+        {
+          "code": "RAC",
+          "display": "Right Anterior Chest",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RAC",
+              "display": "Right Anterior Chest"
+            }
+          ]
+        },
+        {
+          "code": "RACF",
+          "display": "Right Antecubital Fossa",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RACF",
+              "display": "Right Antecubital Fossa"
+            }
+          ]
+        },
+        {
+          "code": "RD",
+          "display": "Right Deltoid",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RD",
+              "display": "Right Deltoid"
+            }
+          ]
+        },
+        {
+          "code": "RE",
+          "display": "Right Ear",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RE",
+              "display": "Right Ear"
+            }
+          ]
+        },
+        {
+          "code": "REJ",
+          "display": "Right External Jugular",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "REJ",
+              "display": "Right External Jugular"
+            }
+          ]
+        },
+        {
+          "code": "OD",
+          "display": "Right Eye",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "OD",
+              "display": "Right Eye"
+            }
+          ]
+        },
+        {
+          "code": "RF",
+          "display": "Right Foot",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RF",
+              "display": "Right Foot"
+            }
+          ]
+        },
+        {
+          "code": "RG",
+          "display": "Right Gluteus Medius",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RG",
+              "display": "Right Gluteus Medius"
+            }
+          ]
+        },
+        {
+          "code": "RH",
+          "display": "Right Hand",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RH",
+              "display": "Right Hand"
+            }
+          ]
+        },
+        {
+          "code": "RIJ",
+          "display": "Right Internal Jugular",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RIJ",
+              "display": "Right Internal Jugular"
+            }
+          ]
+        },
+        {
+          "code": "RLAQ",
+          "display": "Rt Lower Abd Quadrant",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RLAQ",
+              "display": "Rt Lower Abd Quadrant"
+            }
+          ]
+        },
+        {
+          "code": "RLFA",
+          "display": "Right Lower Forearm",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RLFA",
+              "display": "Right Lower Forearm"
+            }
+          ]
+        },
+        {
+          "code": "RMFA",
+          "display": "Right Mid Forearm",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RMFA",
+              "display": "Right Mid Forearm"
+            }
+          ]
+        },
+        {
+          "code": "RN",
+          "display": "Right Naris",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RN",
+              "display": "Right Naris"
+            }
+          ]
+        },
+        {
+          "code": "RPC",
+          "display": "Right Posterior Chest",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RPC",
+              "display": "Right Posterior Chest"
+            }
+          ]
+        },
+        {
+          "code": "RSC",
+          "display": "Right Subclavian",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RSC",
+              "display": "Right Subclavian"
+            }
+          ]
+        },
+        {
+          "code": "RT",
+          "display": "Right Thigh",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RT",
+              "display": "Right Thigh"
+            }
+          ]
+        },
+        {
+          "code": "RUA",
+          "display": "Right Upper Arm",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RUA",
+              "display": "Right Upper Arm"
+            }
+          ]
+        },
+        {
+          "code": "RUAQ",
+          "display": "Right Upper Abd Quadrant",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RUAQ",
+              "display": "Right Upper Abd Quadrant"
+            }
+          ]
+        },
+        {
+          "code": "RUFA",
+          "display": "Right Upper Forearm",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RUFA",
+              "display": "Right Upper Forearm"
+            }
+          ]
+        },
+        {
+          "code": "RVL",
+          "display": "Right Vastus Lateralis",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RVL",
+              "display": "Right Vastus Lateralis"
+            }
+          ]
+        },
+        {
+          "code": "RVG",
+          "display": "Right Ventragluteal",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "RVG",
+              "display": "Right Ventragluteal"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

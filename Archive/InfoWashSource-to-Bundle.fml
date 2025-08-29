@@ -1,0 +1,181 @@
+map "http://ahdbservices.it/fhir/StructureMap/InfoWashSource-to-Bundle" = "InfoWashSourceToBundle"
+
+uses "http://example.org/fhir/StructureDefinition/InfoWashSource" alias InfoWashSource as source
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
+uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as produced
+uses "http://hl7.org/fhir/StructureDefinition/Condition" alias Condition as produced
+uses "http://hl7.org/fhir/StructureDefinition/ServiceRequest" alias ServiceRequest as produced
+uses "http://hl7.org/fhir/StructureDefinition/Provenance" alias Provenance as produced
+
+// ConceptMaps (bitte mit euren kanonischen URLs ersetzen)
+conceptmap "AdministrativeSex" = "http://example.org/fhir/ConceptMap/AdministrativeSex"
+
+group InfoWashSourceToBundle(source s : InfoWashSource, target b : Bundle) {
+  // Bundle.transaction
+  b.type = 'transaction' "set-type";
+
+  // ---------- Patient ----------
+  b.entry as ePat, uuid() as uPat then {
+    ePat.fullUrl = append('urn:uuid:', uPat) as patRef "fullUrl-patient";
+    ePat.resource = create('Patient') as pat then {
+      MakePatient(s, pat);
+    };
+    ePat.request as rq then {
+      rq.method = 'POST';
+      rq.url = 'Patient';
+      rq.ifNoneExist = append('identifier=', s.PID_3_id);
+    };
+  } "make-patient";
+
+  // ---------- Condition ----------
+  b.entry as eCond, uuid() as uCond then {
+    eCond.fullUrl = append('urn:uuid:', uCond) as condRef "fullUrl-condition";
+    eCond.resource = create('Condition') as cond then {
+      MakeCondition(s, cond);
+      // subject → Patient
+      cond.subject as subj then { subj.reference = patRef; };
+    };
+    eCond.request as rq then {
+      rq.method = 'POST';
+      rq.url = 'Condition';
+    };
+  } "make-condition";
+
+  // ---------- ServiceRequest ----------
+  b.entry as eSrv, uuid() as uSrv then {
+    eSrv.fullUrl = append('urn:uuid:', uSrv) as srvRef "fullUrl-servicerequest";
+    eSrv.resource = create('ServiceRequest') as srv then {
+      MakeServiceRequest(s, srv);
+      // subject → Patient
+      srv.subject as subj then { subj.reference = patRef; };
+    };
+    eSrv.request as rq then {
+      rq.method = 'POST';
+      rq.url = 'ServiceRequest';
+    };
+  } "make-servicerequest";
+
+  // ---------- Provenance ----------
+  b.entry as eProv, uuid() as uProv then {
+    eProv.fullUrl = append('urn:uuid:', uProv) "fullUrl-provenance";
+    eProv.resource = create('Provenance') as prov then {
+      MakeProvenance(s, patRef, condRef, srvRef, prov);
+    };
+    eProv.request as rq then {
+      rq.method = 'POST';
+      rq.url = 'Provenance';
+    };
+  } "make-provenance";
+}
+
+/* ===================== Hilfsgruppen ===================== */
+
+group MakePatient(source s : InfoWashSource, target p : Patient) {
+  // Identifier (Value)
+  p.identifier as idt then {
+    idt.value = s.PID_3_id;
+
+    // Identifier.system: simple OID handling aus PID-3.4 / PID-3.6
+    s.PID_3_4_universalId as au then {
+      idt.system = append('urn:oid:', au);
+    } else s.PID_3_6_universalId as fu then {
+      idt.system = append('urn:oid:', fu);
+    };
+  };
+
+  // Name
+  p.name as nm then {
+    nm.family = s.PID_5_1_family;
+    nm.given as g then g = s.PID_5_2_given;
+  };
+
+  // Geburtsdatum
+  p.birthDate = s.PID_7;
+
+  // Gender via ConceptMap AdministrativeSex
+  s.PID_8_code as sx then {
+    p.gender = translate(sx, '#AdministrativeSex') "map-gender";
+  } else {
+    p.gender = 'unknown' "gender-fallback";
+  };
+}
+
+group MakeCondition(source s : InfoWashSource, target c : Condition) {
+  c.code as cc then {
+    cc.text = s.DG1_3_text;
+    cc.coding as cd then {
+      cd.code   = s.DG1_3_code;
+      cd.system = s.DG1_3_system;
+    };
+  };
+}
+
+group MakeServiceRequest(source s : InfoWashSource, target r : ServiceRequest) {
+  // intent: NW -> plan (Fallback plan)
+  s.ORC_1 as oc1 then {
+    r.intent = 'plan';
+  } else {
+    r.intent = 'plan';
+  };
+
+  // status: prototypisch active (ORC.5 später per ConceptMap erweiterbar)
+  r.status = 'active';
+
+  // code aus OBR-4
+  r.code as sc then {
+    sc.text = s.OBR_4_text;
+    sc.coding as cd then {
+      cd.code   = s.OBR_4_code;
+      cd.system = s.OBR_4_system;
+    };
+  };
+
+  // Timing aus TQ1-7/8
+  r.occurrenceTiming as ot then {
+    ot.repeat as rep then {
+      rep.boundsPeriod as bp then {
+        bp.start = s.TQ1_7;
+        bp.end   = s.TQ1_8;
+      };
+    };
+  };
+
+  // authoredOn aus ORC-9
+  r.authoredOn = s.ORC_9;
+}
+
+group MakeProvenance(
+  source s : InfoWashSource,
+  source patRef : string,
+  source condRef : string,
+  source srvRef : string,
+  target p : Provenance
+) {
+  p.recorded = now();
+
+  // Agent (who = Device, kommt von externem Create; hier als fullUrl)
+  p.agent as ag then {
+    ag.type as t then {
+      t.coding as c then {
+        c.system = 'http://terminology.hl7.org/CodeSystem/provenance-participant-type';
+        c.code   = 'assembler';
+      };
+    };
+    ag.who as w then {
+      w.reference = s.DEVICE_fullUrl;
+    };
+  };
+
+  // Quelle: RAW v2 message
+  p.entity as ent then {
+    ent.role = 'source';
+    ent.what as wh then {
+      wh.display = s.RAW_message;
+    };
+  };
+
+  // Targets
+  p.target as tp then { tp.reference = patRef; };
+  p.target as tc then { tc.reference = condRef; };
+  p.target as ts then { ts.reference = srvRef; };
+}

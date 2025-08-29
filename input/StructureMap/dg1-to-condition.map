@@ -1,0 +1,18 @@
+map "http://hsrt-kkrt.org/fhir/StructureMap/DG1-to-Condition" = "DG1toCondition"
+
+uses "http://hsrt-kkrt.org/fhir/StructureDefinition/DG1Segment" as source
+uses "http://hl7.org/fhir/StructureDefinition/Condition" as target
+
+group DG1toCondition(source dg1 : DG1Segment, target condition : Condition) {
+
+  // ===== Condition.code als CodeableConcept =====
+  condition.code -> create('CodeableConcept') as cc then {
+    cc.coding -> create('Coding') as coding then {
+      dg1.DG1_3_1 -> coding.code;
+      dg1.DG1_3_2 -> coding.display;
+      dg1.DG1_3_3 -> coding.system;
+      dg1.DG1_3_7 -> coding.version;
+    };
+    dg1.DG1_3_9 -> cc.text;
+  };
+}

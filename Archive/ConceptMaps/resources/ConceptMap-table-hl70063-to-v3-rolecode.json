@@ -1,0 +1,416 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "table-hl70063-to-v3-rolecode",
+  "url": "http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70063-to-v3-rolecode",
+  "title": "Table HL70063 to V3 RoleCode Map",
+  "description": "This ConceptMap represents a mapping from the HL7 V2 Table HL70063 to the FHIR V3 RoleCode Value Set.",
+  "name": "TableHL70063ToV3RoleCode",
+  "sourceUri": "http://terminology.hl7.org/ValueSet/v2-0063",
+  "version": "1.0",
+  "status": "active",
+  "experimental": true,
+  "publisher": "HL7 International, Inc",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "v2-to-fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "date": "2025-08-23",
+  "copyright": "Copyright (c) 2025, HL7 International, Inc., All Rights Reserved.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "extension": [
+        {
+          "url": "type",
+          "valueCode": "derived-from"
+        },
+        {
+          "url": "label",
+          "valueString": "Table HL70063 to V3 RoleCode.fsh"
+        },
+        {
+          "url": "url",
+          "valueUri": "https://docs.google.com/spreadsheets/d/1BDbtJ9kKKpDXIG8GAaRyqpb_iUKBaaU4b0bcxHo0KoI/edit#gid=0"
+        }
+      ]
+    }
+  ],
+  "group": [
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0063",
+      "target": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+      "element": [
+        {
+          "code": "SEL",
+          "display": "Self",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "ONESELF",
+              "display": "self"
+            }
+          ]
+        },
+        {
+          "code": "SPO",
+          "display": "Spouse",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "SPS",
+              "display": "spouse"
+            }
+          ]
+        },
+        {
+          "code": "DOM",
+          "display": "Life partner",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "SIGOTHR",
+              "display": "significant other"
+            }
+          ]
+        },
+        {
+          "code": "CHD",
+          "display": "Child",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "CHILD",
+              "display": "child"
+            }
+          ]
+        },
+        {
+          "code": "GCH",
+          "display": "Grandchild",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "GRNDCHILD",
+              "display": "grandchild"
+            }
+          ]
+        },
+        {
+          "code": "NCH",
+          "display": "Natural child",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "NCHILD",
+              "display": "natural child"
+            }
+          ]
+        },
+        {
+          "code": "SCH",
+          "display": "Stepchild",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "STPCHLD",
+              "display": "step child"
+            }
+          ]
+        },
+        {
+          "code": "FCH",
+          "display": "Foster child",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "CHLDFOST",
+              "display": "foster child"
+            }
+          ]
+        },
+        {
+          "code": "PAR",
+          "display": "Parent",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "PRN",
+              "display": "parent"
+            }
+          ]
+        },
+        {
+          "code": "MTH",
+          "display": "Mother",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "MTH",
+              "display": "mother"
+            }
+          ]
+        },
+        {
+          "code": "FTH",
+          "display": "Father",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "FTH",
+              "display": "father"
+            }
+          ]
+        },
+        {
+          "code": "GRP",
+          "display": "Grandparent",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "GRPRN",
+              "display": "grandparent"
+            }
+          ]
+        },
+        {
+          "code": "EXF",
+          "display": "Extended family",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "EXT",
+              "display": "extended family member"
+            }
+          ]
+        },
+        {
+          "code": "SIB",
+          "display": "Sibling",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "SIB",
+              "display": "sibling"
+            }
+          ]
+        },
+        {
+          "code": "BRO",
+          "display": "Brother",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "BRO",
+              "display": "brother"
+            }
+          ]
+        },
+        {
+          "code": "SIS",
+          "display": "Sister",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "SIS",
+              "display": "sister"
+            }
+          ]
+        },
+        {
+          "code": "FND",
+          "display": "Friend",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "FRND",
+              "display": "unrelated friend"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0063",
+      "target": "http://terminology.hl7.org/CodeSystem/v2-0063",
+      "element": [
+        {
+          "code": "DEP",
+          "display": "Handicapped dependent",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "DEP",
+              "display": "Handicapped dependent"
+            }
+          ]
+        },
+        {
+          "code": "WRD",
+          "display": "Ward of court",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "WRD",
+              "display": "Ward of court"
+            }
+          ]
+        },
+        {
+          "code": "CGV",
+          "display": "Care giver",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "CGV",
+              "display": "Care giver"
+            }
+          ]
+        },
+        {
+          "code": "GRD",
+          "display": "Guardian",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "GRD",
+              "display": "Guardian"
+            }
+          ]
+        },
+        {
+          "code": "OAD",
+          "display": "Other adult",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "OAD",
+              "display": "Other adult"
+            }
+          ]
+        },
+        {
+          "code": "EME",
+          "display": "Employee",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "EME",
+              "display": "Employee"
+            }
+          ]
+        },
+        {
+          "code": "ASC",
+          "display": "Associate",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "ASC",
+              "display": "Associate"
+            }
+          ]
+        },
+        {
+          "code": "OWN",
+          "display": "Owner",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "OWN",
+              "display": "Owner"
+            }
+          ]
+        },
+        {
+          "code": "TRA",
+          "display": "Trainer",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "TRA",
+              "display": "Trainer"
+            }
+          ]
+        },
+        {
+          "code": "MGR",
+          "display": "Manager",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "MGR",
+              "display": "Manager"
+            }
+          ]
+        },
+        {
+          "code": "NON",
+          "display": "None",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "NON",
+              "display": "None"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0063",
+      "target": "http://terminology.hl7.org/CodeSystem/v2-0131",
+      "element": [
+        {
+          "code": "EMR",
+          "display": "Employer",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "E",
+              "display": "Employer"
+            }
+          ]
+        },
+        {
+          "code": "EMC",
+          "display": "Emergency contact",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "C",
+              "display": "Emergency Contact"
+            }
+          ]
+        },
+        {
+          "code": "UNK",
+          "display": "Unknown",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "U",
+              "display": "Unknown"
+            }
+          ]
+        },
+        {
+          "code": "OTH",
+          "display": "Other",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "O",
+              "display": "Other"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

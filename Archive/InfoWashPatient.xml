@@ -1,0 +1,79 @@
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="InfoWashPatient"/>
+  <url value="http://example.org/fhir/StructureDefinition/InfoWashPatient"/>
+  <version value="1.0.0"/>
+  <name value="InfoWashPatient"/>
+  <title value="InfoWash Patient (minimal)"/>
+  <status value="draft"/><experimental value="true"/>
+  <date value="2025-08-22"/>
+  <fhirVersion value="4.0.1"/>
+  <kind value="resource"/><abstract value="false"/>
+  <type value="Patient"/>
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+  <derivation value="constraint"/>
+
+  <differential>
+    <element>
+      <id value="Patient"/>
+      <path value="Patient"/>
+      <short value="InfoWash-Patient (minimal)"/>
+    </element>
+
+    <!-- Identifier (PID-3) -->
+    <element>
+      <id value="Patient.identifier"/>
+      <path value="Patient.identifier"/>
+      <min value="1"/><max value="*"/>
+    </element>
+    <element>
+      <id value="Patient.identifier.system"/>
+      <path value="Patient.identifier.system"/>
+      <min value="0"/><max value="1"/>
+      <type><code value="uri"/></type>
+    </element>
+    <element>
+      <id value="Patient.identifier.value"/>
+      <path value="Patient.identifier.value"/>
+      <min value="1"/><max value="1"/>
+      <type><code value="string"/></type>
+    </element>
+
+    <!-- Name (PID-5.x) -->
+    <element>
+      <id value="Patient.name"/>
+      <path value="Patient.name"/>
+      <min value="1"/><max value="*"/>
+    </element>
+    <element>
+      <id value="Patient.name.family"/>
+      <path value="Patient.name.family"/>
+      <min value="1"/><max value="1"/>
+      <type><code value="string"/></type>
+    </element>
+    <element>
+      <id value="Patient.name.given"/>
+      <path value="Patient.name.given"/>
+      <min value="1"/><max value="*"/>
+      <type><code value="string"/></type>
+    </element>
+
+    <!-- BirthDate (PID-7) -->
+    <element>
+      <id value="Patient.birthDate"/>
+      <path value="Patient.birthDate"/>
+      <min value="0"/><max value="1"/>
+      <type><code value="date"/></type>
+    </element>
+
+    <!-- Gender (PID-8 -> AdministrativeGender, preferred binding) -->
+    <element>
+      <id value="Patient.gender"/>
+      <path value="Patient.gender"/>
+      <min value="0"/><max value="1"/>
+      <binding>
+        <strength value="preferred"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/administrative-gender"/>
+      </binding>
+    </element>
+  </differential>
+</StructureDefinition>

@@ -1,0 +1,69 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "TQ1Segment",
+  "url": "http://hsrt-kkrt.org/fhir/StructureDefinition/TQ1Segment",
+  "name": "TQ1Segment",
+  "status": "draft",
+  "fhirVersion": "4.0.1",
+  "kind": "logical",
+  "abstract": true,
+  "type": "TQ1Segment",
+  "snapshot": {
+    "element": [
+      {
+        "id": "TQ1Segment",
+        "path": "TQ1Segment",
+        "short": "Timing/Quantity Segment",
+        "definition": "HL7 V2 TQ1 Segment containing minimal timing information.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "TQ1Segment",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "TQ1Segment"
+          }
+        ]
+      },
+      {
+        "id": "TQ1Segment.TQ1_7",
+        "path": "TQ1Segment.TQ1_7",
+        "short": "TQ1-7 DTM",
+        "definition": "Start of timing bounds (dateTime)",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "TQ1Segment.TQ1_7",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ]
+      },
+      {
+        "id": "TQ1Segment.TQ1_8",
+        "path": "TQ1Segment.TQ1_8",
+        "short": "TQ1-8 DTM",
+        "definition": "End of timing bounds (dateTime)",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "TQ1Segment.TQ1_8",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ]
+      }
+    ]
+  }
+}

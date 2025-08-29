@@ -1,0 +1,141 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "table-hl70003-to-encounter-status",
+  "url": "http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70003-to-encounter-status",
+  "title": "Table HL70003 to Encounter Status Map",
+  "description": "This ConceptMap represents a mapping from the HL7 V2 Table HL70003 to the FHIR Encounter Status Value Set.",
+  "name": "TableHL70003ToEncounterStatus",
+  "sourceUri": "http://terminology.hl7.org/ValueSet/v2-0003",
+  "targetUri": "http://hl7.org/fhir/ValueSet/encounter-status",
+  "version": "1.0",
+  "status": "active",
+  "experimental": true,
+  "publisher": "HL7 International, Inc",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "v2-to-fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "date": "2025-08-23",
+  "copyright": "Copyright (c) 2025, HL7 International, Inc., All Rights Reserved.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "extension": [
+        {
+          "url": "type",
+          "valueCode": "derived-from"
+        },
+        {
+          "url": "label",
+          "valueString": "Table HL70003 to Encounter Status.fsh"
+        },
+        {
+          "url": "url",
+          "valueUri": "https://docs.google.com/spreadsheets/d/1WbXyGSjeff_jxywyFy2WQwbwb_Q308ywdcnHQmbZRGY/edit#gid=0"
+        }
+      ]
+    }
+  ],
+  "group": [
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0003",
+      "target": "http://hl7.org/fhir/encounter-status",
+      "element": [
+        {
+          "code": "A01",
+          "display": "ADT/ACK - Admit/visit notification",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "in-progress",
+              "display": "In Progress"
+            }
+          ]
+        },
+        {
+          "code": "A02",
+          "display": "ADT/ACK - Transfer a patient",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "in-progress",
+              "display": "In Progress"
+            }
+          ]
+        },
+        {
+          "code": "A03",
+          "display": "ADT/ACK - Discharge/end visit",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "finished",
+              "display": "Finished"
+            }
+          ]
+        },
+        {
+          "code": "A04",
+          "display": "ADT/ACK - Register a patient",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "planned",
+              "display": "Planned"
+            }
+          ]
+        },
+        {
+          "code": "A05",
+          "display": "ADT/ACK - Pre-admit a patient",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "planned",
+              "display": "Planned"
+            }
+          ]
+        },
+        {
+          "code": "A08",
+          "display": "ADT/ACK - Update patient information",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "unknown",
+              "display": "Unknown"
+            }
+          ]
+        },
+        {
+          "code": "A11",
+          "display": "ADT/ACK - Cancel admit/visit notification",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "cancelled",
+              "display": "Cancelled"
+            }
+          ]
+        },
+        {
+          "code": "A13",
+          "display": "ADT/ACK - Cancel discharge/end visit",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "in-progress",
+              "display": "In Progress"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

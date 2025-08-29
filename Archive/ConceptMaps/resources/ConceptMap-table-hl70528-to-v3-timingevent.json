@@ -1,0 +1,201 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "table-hl70528-to-v3-timingevent",
+  "url": "http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70528-to-v3-timingevent",
+  "title": "Table HL70528 to V3 TimingEvent Map",
+  "description": "This ConceptMap represents a mapping from the HL7 V2 Table HL70528 to the FHIR V3 TimingEvent Value Set.",
+  "name": "TableHL70528ToV3TimingEvent",
+  "sourceUri": "http://terminology.hl7.org/ValueSet/v2-0528",
+  "version": "1.0",
+  "status": "active",
+  "experimental": true,
+  "publisher": "HL7 International, Inc",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "v2-to-fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "date": "2025-08-23",
+  "copyright": "Copyright (c) 2025, HL7 International, Inc., All Rights Reserved.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "extension": [
+        {
+          "url": "type",
+          "valueCode": "derived-from"
+        },
+        {
+          "url": "label",
+          "valueString": "Table HL70528 to V3 TimingEvent.fsh"
+        },
+        {
+          "url": "url",
+          "valueUri": "https://docs.google.com/spreadsheets/d/17o6vrrfJcGXA4EBuYcVhZs98dAJe5VS_TZ0LJYmVoTU/edit#gid=0"
+        }
+      ]
+    }
+  ],
+  "group": [
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0528",
+      "target": "http://terminology.hl7.org/CodeSystem/v3-TimingEvent",
+      "element": [
+        {
+          "code": "HS",
+          "display": "the hour of sleep (e.g., H18-22)",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "HS",
+              "display": "HS"
+            }
+          ]
+        },
+        {
+          "code": "AC",
+          "display": "before meal (from lat. ante cibus)",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "AC",
+              "display": "AC"
+            }
+          ]
+        },
+        {
+          "code": "PC",
+          "display": "after meal (from lat. post cibus)",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "PC",
+              "display": "PC"
+            }
+          ]
+        },
+        {
+          "code": "ACM",
+          "display": "before breakfast (from lat. ante cibus matutinus)",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "ACM",
+              "display": "ACM"
+            }
+          ]
+        },
+        {
+          "code": "ACD",
+          "display": "before lunch (from lat. ante cibus diurnus)",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "ACD",
+              "display": "ACD"
+            }
+          ]
+        },
+        {
+          "code": "ACV",
+          "display": "before dinner (from lat. ante cibus vespertinus)",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "ACV",
+              "display": "ACV"
+            }
+          ]
+        },
+        {
+          "code": "PCM",
+          "display": "after breakfast (from lat. post cibus matutinus)",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "PCM",
+              "display": "PCM"
+            }
+          ]
+        },
+        {
+          "code": "PCD",
+          "display": "after lunch (from lat. post cibus diurnus)",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "PCD",
+              "display": "PCD"
+            }
+          ]
+        },
+        {
+          "code": "PCV",
+          "display": "after dinner (from lat. post cibus vespertinus)",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "PCV",
+              "display": "PCV"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0528",
+      "target": "http://terminology.hl7.org/CodeSystem/v2-0528",
+      "element": [
+        {
+          "code": "IC",
+          "display": "between meals (from lat. inter cibus)",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "IC",
+              "display": "between meals (from lat. inter cibus)"
+            }
+          ]
+        },
+        {
+          "code": "ICM",
+          "display": "between breakfast and lunch",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "ICM",
+              "display": "between breakfast and lunch"
+            }
+          ]
+        },
+        {
+          "code": "ICD",
+          "display": "between lunch and dinner",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "ICD",
+              "display": "between lunch and dinner"
+            }
+          ]
+        },
+        {
+          "code": "ICV",
+          "display": "between dinner and the hour of sleep",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "ICV",
+              "display": "between dinner and the hour of sleep"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

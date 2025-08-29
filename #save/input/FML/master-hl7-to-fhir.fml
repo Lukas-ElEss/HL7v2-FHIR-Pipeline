@@ -1,0 +1,111 @@
+map "http://hsrt-kkrt.org/fhir/StructureMap/master-hl7-to-fhir" = "MasterHL7toFHIR"
+
+uses "http://hl7.org/fhir/StructureDefinition/Bundle"     alias Bundle     as target
+uses "http://hl7.org/fhir/StructureDefinition/Patient"    alias Patient    as produced
+uses "http://hl7.org/fhir/StructureDefinition/Condition"   alias Condition  as produced
+uses "http://hl7.org/fhir/StructureDefinition/ServiceRequest" alias ServiceRequest as produced
+uses "http://hl7.org/fhir/StructureDefinition/Provenance" alias Provenance as produced
+uses "http://hl7.org/fhir/StructureDefinition/Device" alias Device as produced
+
+uses "http://hsrt-kkrt.org/fhir/StructureDefinition/PIDSegment" alias PIDSegment as source
+uses "http://hsrt-kkrt.org/fhir/StructureDefinition/DG1Segment" alias DG1Segment as source
+uses "http://hsrt-kkrt.org/fhir/StructureDefinition/OBRSegment" alias OBRSegment as source
+uses "http://hsrt-kkrt.org/fhir/StructureDefinition/ORCSegment" alias ORCSegment as source
+uses "http://hsrt-kkrt.org/fhir/StructureDefinition/TQ1Segment" alias TQ1Segment as source
+uses "http://hsrt-kkrt.org/fhir/StructureDefinition/DeviceResource" alias DeviceResource as source
+
+imports "http://hsrt-kkrt.org/fhir/StructureMap/pid-to-patient"
+imports "http://hsrt-kkrt.org/fhir/StructureMap/dg1-to-condition"
+imports "http://hsrt-kkrt.org/fhir/StructureMap/obr-to-servicerequest"
+imports "http://hsrt-kkrt.org/fhir/StructureMap/orc-to-servicerequest"
+imports "http://hsrt-kkrt.org/fhir/StructureMap/tq1-to-servicerequest"
+
+group BuildBundle(
+  source pid : PIDSegment,
+  source dg1 : DG1Segment,
+  source obr : OBRSegment,
+  source orc : ORCSegment,
+  source tq1 : TQ1Segment,
+  source dev : DeviceResource,
+  target bundle : Bundle
+) {
+  pid -> bundle.type = 'transaction' "Bundle type transaction";
+
+  // UUIDs für alle Ressourcen
+  pid -> uuid() as p_id "Gen Patient UUID";
+  dg1 -> uuid() as c_id "Gen Condition UUID";
+  obr -> uuid() as sr_id "Gen ServiceRequest UUID";
+  pid -> uuid() as prov_id "Gen Provenance UUID";
+  dev -> uuid() as d_id "Gen Device UUID";
+
+  // Patient
+  pid ->
+    bundle.entry as e1,
+    e1.fullUrl = append('urn:uuid:', p_id),
+    e1.resource = create("Patient") as pat,
+    pat.id = p_id,
+    e1.request as r1,
+    r1.method = 'POST', r1.url = 'Patient'
+    then PIDToPatient(pid, pat)
+    "Create & map Patient";
+
+  // Condition
+  dg1 ->
+    bundle.entry as e2,
+    e2.fullUrl = append('urn:uuid:', c_id),
+    e2.resource = create("Condition") as cond,
+    cond.id = c_id,
+    cond.subject = create("Reference") as c_ref, c_ref.reference = append('urn:uuid:', p_id),
+    e2.request as r2,
+    r2.method = 'POST', r2.url = 'Condition'
+    then DG1ToCondition(dg1, cond)
+    "Create & map Condition";
+
+  // ServiceRequest
+  obr ->
+    bundle.entry as e3,
+    e3.fullUrl = append('urn:uuid:', sr_id),
+    e3.resource = create("ServiceRequest") as sr,
+    sr.id = sr_id,
+    sr.subject = create("Reference") as sr_ref, sr_ref.reference = append('urn:uuid:', p_id),
+    sr.reasonReference = create("Reference") as sr_reason, sr_reason.reference = append('urn:uuid:', c_id),
+    e3.request as r3,
+    r3.method = 'POST', r3.url = 'ServiceRequest'
+    then OBRToServiceRequest(obr, sr), ORCToServiceRequest(orc, sr), TQ1ToServiceRequest(tq1, sr)
+    "Create & map ServiceRequest";
+
+  // Device (Pipeline)
+  dev ->
+    bundle.entry as e5,
+    e5.fullUrl = append('urn:uuid:', d_id),
+    e5.resource = create("Device") as device,
+    device.id = d_id,
+    device.deviceName = create("Device.deviceName") as dn,
+    dn.name = 'v2-to-fhir-pipeline',
+    dn.type = 'model-name',
+    e5.request as r5,
+    r5.method = 'POST', r5.url = 'Device'
+    "Create Device";
+
+  // Provenance (targets: Patient, Condition, ServiceRequest; agent.who -> Device; raw message as entity.detail)
+  dev ->
+    bundle.entry as e4,
+    e4.fullUrl = append('urn:uuid:', prov_id),
+    e4.resource = create("Provenance") as prov,
+    prov.id = prov_id,
+    // targets
+    prov.target = create("Reference") as pr1, pr1.reference = append('urn:uuid:', p_id),
+    prov.target = create("Reference") as pr2, pr2.reference = append('urn:uuid:', c_id),
+    prov.target = create("Reference") as pr3, pr3.reference = append('urn:uuid:', sr_id),
+    // agent -> Device
+    prov.agent as ag,
+    ag.who = create("Reference") as who, who.reference = append('urn:uuid:', d_id),
+    // entity for raw HL7
+    prov.entity = create("Provenance.entity") as ent,
+    ent.what = create("Attachment") as att,
+    att.contentType = 'text/plain',
+    att.data = dev.rawMessage,
+    e4.request as r4,
+    r4.method = 'POST', r4.url = 'Provenance'
+    "Create Provenance";
+}

@@ -1,0 +1,275 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "segment-ais-to-appointment",
+  "url": "http://hl7.org/fhir/uv/v2mappings/ConceptMap/segment-ais-to-appointment",
+  "title": "Segment AIS to Appointment Map",
+  "description": "This ConceptMap represents a mapping from the HL7 V2 Segment AIS to the FHIR Appointment Resource.",
+  "name": "SegmentAISToAppointment",
+  "version": "1.0",
+  "status": "active",
+  "experimental": true,
+  "publisher": "HL7 International, Inc",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "v2-to-fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "date": "2025-08-23",
+  "copyright": "Copyright (c) 2025, HL7 International, Inc., All Rights Reserved.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "extension": [
+        {
+          "url": "type",
+          "valueCode": "derived-from"
+        },
+        {
+          "url": "label",
+          "valueString": "Segment AIS to Appointment.fsh"
+        },
+        {
+          "url": "url",
+          "valueUri": "https://docs.google.com/spreadsheets/d/1qGp1oMhMswerW464M4HV4B9dfeCm49b0UHXCRu4NruA/edit#gid=0"
+        }
+      ]
+    }
+  ],
+  "group": [
+    {
+      "element": [
+        {
+          "code": "AIS-3",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "CWE"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Universal Service Identifier",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "serviceType",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "CodeableConcept"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 0
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": -1
+                    }
+                  ]
+                }
+              ],
+              "display": "serviceType"
+            }
+          ]
+        },
+        {
+          "code": "AIS-4",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "DTM"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Start Date/Time",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant.period.start",
+              "display": "participant.period.start"
+            }
+          ]
+        },
+        {
+          "code": "AIS-5",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "NM"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Start Date/Time Offset",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant.period.start",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "assignment",
+                      "valueString": "/.start + AIS-5 according to AIS-6 units/"
+                    }
+                  ]
+                }
+              ],
+              "display": "participant.period.start",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF AIS-4 NOT VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "AIS-7",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "NM"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Duration",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant.period.end",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "assignment",
+                      "valueString": "Appointment.participant.period.start + AIS-7"
+                    }
+                  ]
+                }
+              ],
+              "display": "participant.period.end",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF AIS-4 IS VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "AIS-10",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "CWE"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Filler Status Code",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "status",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "CodeableConcept"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 0
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": 1
+                    },
+                    {
+                      "url": "mappedVia",
+                      "valueUrl": "ConceptMap/table-hl70278-to-appointmentstatus"
+                    }
+                  ]
+                }
+              ],
+              "display": "status"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

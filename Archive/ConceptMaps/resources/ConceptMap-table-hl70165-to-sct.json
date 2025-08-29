@@ -1,0 +1,202 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "table-hl70165-to-sct",
+  "url": "http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70165-to-sct",
+  "title": "Table HL70165 to Sct Map",
+  "description": "This ConceptMap represents a mapping from the HL7 V2 Table HL70165 to the FHIR Sct Value Set.",
+  "name": "TableHL70165ToSct",
+  "sourceUri": "http://terminology.hl7.org/ValueSet/v2-0165",
+  "version": "1.0",
+  "status": "active",
+  "experimental": true,
+  "publisher": "HL7 International, Inc",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "v2-to-fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "date": "2025-08-23",
+  "copyright": "Copyright (c) 2025, HL7 International, Inc., All Rights Reserved.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "extension": [
+        {
+          "url": "type",
+          "valueCode": "derived-from"
+        },
+        {
+          "url": "label",
+          "valueString": "Table HL70165 to Sct.fsh"
+        },
+        {
+          "url": "url",
+          "valueUri": "https://docs.google.com/spreadsheets/d/1hCWNjv3S_VkWTC5U7QFbWJIvF-3sm1Vlj12rFkMcPGc/edit#gid=0"
+        }
+      ]
+    }
+  ],
+  "group": [
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0165",
+      "target": "http://snomed.info/sct",
+      "element": [
+        {
+          "code": "CH",
+          "display": "Chew",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "419747000",
+              "display": "Chew"
+            }
+          ]
+        },
+        {
+          "code": "DI",
+          "display": "Dissolve",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "421682005",
+              "display": "Dissolve"
+            }
+          ]
+        },
+        {
+          "code": "IS",
+          "display": "Insert",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "421257003",
+              "display": "Insert"
+            }
+          ]
+        },
+        {
+          "code": "SH",
+          "display": "Shampoo",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "420606003",
+              "display": "Shampoo"
+            }
+          ]
+        },
+        {
+          "code": "WA",
+          "display": "Wash",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "422152000",
+              "display": "Wash"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0165",
+      "element": [
+        {
+          "code": "DU",
+          "display": "Dust",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "IF",
+          "display": "Infiltrate",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "IR",
+          "display": "Irrigate",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "IVPB",
+          "display": "IV Piggyback",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "IVP",
+          "display": "IV Push",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "NB",
+          "display": "Nebulized",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "PT",
+          "display": "Paint",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "PF",
+          "display": "Perfuse",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "SO",
+          "display": "Soak",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "WI",
+          "display": "Wipe",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

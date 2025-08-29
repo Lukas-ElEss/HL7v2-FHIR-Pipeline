@@ -1,0 +1,63 @@
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="InfoWashCondition"/>
+  <url value="http://example.org/fhir/StructureDefinition/InfoWashCondition"/>
+  <version value="1.0.0"/>
+  <name value="InfoWashCondition"/>
+  <title value="InfoWash Condition (minimal)"/>
+  <status value="draft"/><experimental value="true"/>
+  <date value="2025-08-22"/>
+  <fhirVersion value="4.0.1"/>
+  <kind value="resource"/><abstract value="false"/>
+  <type value="Condition"/>
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Condition"/>
+  <derivation value="constraint"/>
+
+  <differential>
+    <element>
+      <id value="Condition"/>
+      <path value="Condition"/>
+      <short value="Diagnose aus DG1-3 (CWE)"/>
+    </element>
+
+    <!-- subject → Patient -->
+    <element>
+      <id value="Condition.subject"/>
+      <path value="Condition.subject"/>
+      <min value="1"/><max value="1"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://example.org/fhir/StructureDefinition/InfoWashPatient"/>
+      </type>
+    </element>
+
+    <!-- code (DG1-3 Code + Text) -->
+    <element>
+      <id value="Condition.code"/>
+      <path value="Condition.code"/>
+      <min value="1"/><max value="1"/>
+    </element>
+    <element>
+      <id value="Condition.code.coding"/>
+      <path value="Condition.code.coding"/>
+      <min value="1"/><max value="*"/>
+    </element>
+    <element>
+      <id value="Condition.code.coding.system"/>
+      <path value="Condition.code.coding.system"/>
+      <min value="0"/><max value="1"/>
+      <type><code value="uri"/></type>
+    </element>
+    <element>
+      <id value="Condition.code.coding.code"/>
+      <path value="Condition.code.coding.code"/>
+      <min value="1"/><max value="1"/>
+      <type><code value="code"/></type>
+    </element>
+    <element>
+      <id value="Condition.code.coding.display"/>
+      <path value="Condition.code.coding.display"/>
+      <min value="0"/><max value="1"/>
+      <type><code value="string"/></type>
+    </element>
+  </differential>
+</StructureDefinition>

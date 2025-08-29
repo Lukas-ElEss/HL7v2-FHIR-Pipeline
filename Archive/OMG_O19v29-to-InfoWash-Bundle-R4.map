@@ -1,0 +1,81 @@
+map "http://example.org/maps/OMG_O19v29-to-InfoWash-Bundle" = "1.0.0"
+
+uses "http://example.org/fhir/StructureDefinition/OMG_O19_v29_Min_Source" alias Src as source
+uses "http://example.org/fhir/StructureDefinition/InfoWashPatient" alias P as produced
+uses "http://example.org/fhir/StructureDefinition/InfoWashCondition" alias C as produced
+uses "http://example.org/fhir/StructureDefinition/InfoWashServiceRequest" alias S as produced
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias B as target
+
+// Hilfsgruppen zur Ressourcenerzeugung (identisch zu deiner bisherigen Map-Logik)
+
+group MakePatient(source s : Src) : P {
+  p : P then {
+    p.identifier.value = s.PID_3_id.first();
+    p.name.family      = s.PID_5_1_family;
+    p.name.given       = s.PID_5_2_given;
+    p.birthDate        = s.PID_7;
+    // v2 PID-8 → FHIR AdministrativeGender (ConceptMap-URL bitte ersetzen)
+    p.gender           = translate(s.PID_8_code, 'http://example.org/fhir/ConceptMap/v2-0001-to-administrative-gender', 'code');
+  };
+}
+
+group MakeCondition(source s : Src, target p : P) : C {
+  c : C then {
+    c.subject = create('Reference') as r then {
+      r.reference = 'urn:uuid:' + id(p);
+    };
+    // DG1-3 (CWE): system optional
+    c.code.coding.code    = s.DG1_3_code;
+    c.code.coding.display = s.DG1_3_text;
+    c.code.coding.system  = s.DG1_3_system; // falls vorhanden; wenn leer, weglassen
+  };
+}
+
+group MakeServiceRequest(source s : Src, target p : P) : S {
+  sr : S then {
+    sr.subject = create('Reference') as r then {
+      r.reference = 'urn:uuid:' + id(p);
+    };
+    // OBR-4 (CWE)
+    sr.code.coding.code    = s.OBR_4_code;
+    sr.code.coding.display = s.OBR_4_text;
+    sr.code.coding.system  = s.OBR_4_system; // optional
+    // Timing: primär TQ1
+    sr.occurrencePeriod.start = s.TQ1_7;
+    sr.occurrencePeriod.end   = s.TQ1_8;
+    // Update-/Eventzeit
+    sr.authoredOn = s.ORC_9;
+  };
+}
+
+// Hauptgruppe: erzeugt ein Bundle (transaction) mit 3 Entries
+group ToBundle(source s : Src, target b : B) {
+  b.type = 'transaction';
+
+  // Patient
+  p = MakePatient(s) as pat;
+  b.entry as e1 then {
+    e1.fullUrl = 'urn:uuid:' + id(pat);
+    e1.resource = pat;
+    e1.request.method = 'POST';
+    e1.request.url    = 'Patient';
+  };
+
+  // Condition
+  c = MakeCondition(s, pat) as cond;
+  b.entry as e2 then {
+    e2.fullUrl = 'urn:uuid:' + id(cond);
+    e2.resource = cond;
+    e2.request.method = 'POST';
+    e2.request.url    = 'Condition';
+  };
+
+  // ServiceRequest
+  sr = MakeServiceRequest(s, pat) as sreq;
+  b.entry as e3 then {
+    e3.fullUrl = 'urn:uuid:' + id(sreq);
+    e3.resource = sreq;
+    e3.request.method = 'POST';
+    e3.request.url    = 'ServiceRequest';
+  };
+}

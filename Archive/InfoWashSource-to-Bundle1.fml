@@ -1,0 +1,181 @@
+map "http://hsrt-kkrt.org/fhir/StructureMap/InfoWashSource-to-Bundle"
+
+// ============== StructureDefinitions ==============
+uses "http://hsrt-kkrt.org/fhir/StructureDefinition/InfoWashSource" alias InfoWashSource as source
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
+uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as produced
+uses "http://hl7.org/fhir/StructureDefinition/Condition" alias Condition as produced
+uses "http://hl7.org/fhir/StructureDefinition/ServiceRequest" alias ServiceRequest as produced
+uses "http://hl7.org/fhir/StructureDefinition/Provenance" alias Provenance as produced
+uses "http://hl7.org/fhir/StructureDefinition/Encounter" alias Encounter as produced
+uses "http://hl7.org/fhir/StructureDefinition/Organization" alias Organization as produced
+uses "http://hl7.org/fhir/StructureDefinition/Practitioner" alias Practitioner as produced
+uses "http://hl7.org/fhir/StructureDefinition/PractitionerRole" alias PractitionerRole as produced
+// Hinweis: keine "uses ... as typeInfo/relatedArtifact" — das ist im Header nicht erlaubt.
+
+// ============== ConceptMaps (nur Beispiele — fehlende bitte ergänzen) ==============
+conceptmap "DatatypeDTMToDateTime" = "http://hl7.org/fhir/uv/v2mappings/ConceptMap/DatatypeDTMToDateTime"
+conceptmap "DatatypeCWEToCodeableConcept" = "http://hl7.org/fhir/uv/v2mappings/ConceptMap/DatatypeCWEToCodeableConcept"
+conceptmap "DatatypeXPNToHumanName" = "http://hl7.org/fhir/uv/v2mappings/ConceptMap/DatatypeXPNToHumanName"
+conceptmap "DatatypeHDToIdentifier" = "http://hl7.org/fhir/uv/v2mappings/ConceptMap/DatatypeHDToIdentifier"
+conceptmap "DatatypeXTNToContactPoint" = "http://hl7.org/fhir/uv/v2mappings/ConceptMap/DatatypeXTNToContactPoint"
+conceptmap "DatatypeCQToQuantity" = "http://hl7.org/fhir/uv/v2mappings/ConceptMap/DatatypeCQToQuantity"
+conceptmap "DatatypeTQToTiming" = "http://hl7.org/fhir/uv/v2mappings/ConceptMap/DatatypeTQToTiming"
+
+conceptmap "TableHL70001ToAdministrativeGender" = "http://hl7.org/fhir/uv/v2mappings/ConceptMap/TableHL70001ToAdministrativeGender"
+conceptmap "TableHL70002ToV3MaritalStatus" = "http://hl7.org/fhir/uv/v2mappings/ConceptMap/TableHL70002ToV3MaritalStatus"
+conceptmap "TableHL70004ToEncounterStatus" = "http://hl7.org/fhir/uv/v2mappings/ConceptMap/TableHL70004ToEncounterStatus"
+conceptmap "TableHL70062ToV3ActReason" = "http://hl7.org/fhir/uv/v2mappings/ConceptMap/TableHL70062ToV3ActReason"
+conceptmap "TableHL70069ToServiceType" = "http://hl7.org/fhir/uv/v2mappings/ConceptMap/TableHL70069ToServiceType"
+conceptmap "TableHL70119ToRequestStatus" = "http://hl7.org/fhir/uv/v2mappings/ConceptMap/TableHL70119ToRequestStatus"
+// ggf. ergänzen: TableHL70190ToAddressUse, TableHL70217ToV3ActPriority, TableHL70004ToV3ActCode,
+// DatatypeXCNToPractitioner, DatatypeHDToLocation etc.
+
+// ============== Top-Gruppe: konsistent 'source' und 'target' verwenden ==============
+group InfoWashSourceToBundleIG(source source : InfoWashSource, target target : Bundle) {
+  target.type = 'transaction' "set-bundle-type";
+
+  // Patient
+  target.entry as ePat, uuid() as uPat then {
+    ePat.fullUrl = append('urn:uuid:', uPat) as patRef "set-patient-fullurl";
+    ePat.resource = create('Patient') as pat then {
+      MakePatientIG(source, pat);
+    };
+    ePat.request as rq then {
+      rq.method = 'POST';
+      rq.url = 'Patient';
+      rq.ifNoneExist = append('identifier=', source.PID_3_id);
+    };
+  } "create-patient-entry";
+
+  // Encounter
+  target.entry as eEnc, uuid() as uEnc then {
+    eEnc.fullUrl = append('urn:uuid:', uEnc) as encRef "set-encounter-fullurl";
+    eEnc.resource = create('Encounter') as enc then {
+      MakeEncounterIG(source, enc, patRef);
+    };
+    eEnc.request as rq then {
+      rq.method = 'POST';
+      rq.url = 'Encounter';
+    };
+  } "create-encounter-entry";
+
+  // Condition
+  target.entry as eCond, uuid() as uCond then {
+    eCond.fullUrl = append('urn:uuid:', uCond) as condRef "set-condition-fullurl";
+    eCond.resource = create('Condition') as cond then {
+      MakeConditionIG(source, cond, patRef, encRef);
+    };
+    eCond.request as rq then {
+      rq.method = 'POST';
+      rq.url = 'Condition';
+    };
+  } "create-condition-entry";
+
+  // ServiceRequest
+  target.entry as eSrv, uuid() as uSrv then {
+    eSrv.fullUrl = append('urn:uuid:', uSrv) as srvRef "set-servicerequest-fullurl";
+    eSrv.resource = create('ServiceRequest') as srv then {
+      MakeServiceRequestIG(source, srv, patRef, encRef);
+    };
+    eSrv.request as rq then {
+      rq.method = 'POST';
+      rq.url = 'ServiceRequest';
+    };
+  } "create-servicerequest-entry";
+
+  // Provenance
+  target.entry as eProv, uuid() as uProv then {
+    eProv.fullUrl = append('urn:uuid:', uProv) "set-provenance-fullurl";
+    eProv.resource = create('Provenance') as prov then {
+      MakeProvenanceIG(source, patRef, encRef, condRef, srvRef, prov);
+    };
+    eProv.request as rq then {
+      rq.method = 'POST';
+      rq.url = 'Provenance';
+    };
+  } "create-provenance-entry";
+}
+
+// ============== Untergruppen: konsistent 'source' und 'target' verwenden ==============
+group MakePatientIG(source source : InfoWashSource, target target : Patient) {
+  target.identifier as idt then {
+    idt.value = source.PID_3_id;
+    source.PID_3_4_universalId as au then {
+      idt.system = translate(au, '#DatatypeHDToIdentifier');
+    } else source.PID_3_6_universalId as fu then {
+      idt.system = translate(fu, '#DatatypeHDToIdentifier');
+    };
+  }
+
+  source.PID_5_1_family as family then {
+    target.name as nm then {
+      nm.family = family;
+      source.PID_5_2_given as given then {
+        nm.given as g then g = given;
+      };
+      // nm.use = translate(source.PID_5_7, '#TableHL70200ToNameUse'); // ConceptMap zuerst deklarieren
+    };
+  }
+
+  source.PID_7 as birthDate then {
+    target.birthDate = translate(birthDate, '#DatatypeDTMToDateTime');
+  }
+
+  source.PID_8_code as genderCode then {
+    target.gender = translate(genderCode, '#TableHL70001ToAdministrativeGender');
+  } else {
+    target.gender = 'unknown';
+  }
+}
+
+group MakeEncounterIG(source source : InfoWashSource, target target : Encounter, source patRef : string) {
+  target.subject.reference = patRef;
+  source.PV1_2_patientClass as patientClass then {
+    target.status = translate(patientClass, '#TableHL70004ToEncounterStatus');
+  }
+  target.period = create('Period') as p then {
+    p.start = translate(source.PV1_44_admitDateTime, '#DatatypeDTMToDateTime');
+    p.end   = translate(source.PV1_45_dischargeDateTime, '#DatatypeDTMToDateTime');
+  };
+}
+
+group MakeConditionIG(source source : InfoWashSource, target target : Condition, source patRef : string, source encRef : string) {
+  target.subject.reference = patRef;
+  target.encounter.reference = encRef;
+  source.DG1_3_code as code then {
+    target.code = create('CodeableConcept') as cc then {
+      cc.text = source.DG1_3_text;
+      cc.coding as cd then {
+        cd.code = code;
+        cd.system = translate(source.DG1_3_system, '#DatatypeHDToIdentifier');
+      };
+    };
+  };
+}
+
+group MakeServiceRequestIG(source source : InfoWashSource, target target : ServiceRequest, source patRef : string, source encRef : string) {
+  target.subject.reference = patRef;
+  target.encounter.reference = encRef;
+  source.OBR_4_code as procedureCode then {
+    target.code = create('CodeableConcept') as cc then {
+      cc.text = source.OBR_4_text;
+      cc.coding as cd then {
+        cd.code = procedureCode;
+        cd.system = translate(source.OBR_4_text, '#DatatypeHDToIdentifier');
+      };
+    };
+  };
+  source.ORC_9_dateTimeOfTransaction as authoredOn then {
+    target.authoredOn = translate(authoredOn, '#DatatypeDTMToDateTime');
+  };
+}
+
+group MakeProvenanceIG(source source : InfoWashSource, source patRef : string, source encRef : string, source condRef : string, source srvRef : string, target target : Provenance) {
+  target.recorded = now();
+  target.target as tp then { tp.reference = patRef; };
+  target.target as te then { tp.reference = encRef; };
+  target.target as tc then { tp.reference = condRef; };
+  target.target as ts then { tp.reference = srvRef; };
+}
+

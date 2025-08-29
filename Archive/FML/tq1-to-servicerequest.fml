@@ -1,0 +1,16 @@
+map "http://hsrt-kkrt.org/fhir/StructureMap/tq1-to-servicerequest" = "TQ1ToServiceRequest"
+
+uses "http://hsrt-kkrt.org/fhir/StructureDefinition/TQ1Segment" as source
+uses "http://hl7.org/fhir/StructureDefinition/ServiceRequest" as target
+
+group TQ1ToServiceRequest(source src : TQ1Segment, target tgt : ServiceRequest) {
+  // TQ1-7: Start date/time -> ServiceRequest.occurrenceTiming.repeat.boundsPeriod.start
+  src.TQ1_7 as start, src.TQ1_8 as end -> tgt.occurrenceTiming = create('Timing') as timing then {
+    timing.repeat = create('TimingRepeat') as repeat then {
+      repeat.boundsPeriod = create('Period') as bounds then {
+        bounds.start = start;
+        bounds.end = end;
+      }
+    }
+  }
+}

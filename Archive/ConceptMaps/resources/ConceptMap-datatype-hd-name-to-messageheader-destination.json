@@ -1,0 +1,90 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "datatype-hd-name-to-messageheader-destination",
+  "url": "http://hl7.org/fhir/uv/v2mappings/ConceptMap/datatype-hd-name-to-messageheader-destination",
+  "title": "Datatype HD [name] to MessageHeader.destination Map",
+  "description": "This ConceptMap represents a mapping from the HL7 V2 Datatype HD to the FHIR MessageHeader.destination Data Type.",
+  "name": "DatatypeHDNameToMessageHeaderDestination",
+  "version": "1.0",
+  "status": "active",
+  "experimental": true,
+  "publisher": "HL7 International, Inc",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "v2-to-fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "date": "2025-08-23",
+  "copyright": "Copyright (c) 2025, HL7 International, Inc., All Rights Reserved.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "extension": [
+        {
+          "url": "type",
+          "valueCode": "derived-from"
+        },
+        {
+          "url": "label",
+          "valueString": "Datatype HD[name] to MessageHeader.destination.fsh"
+        },
+        {
+          "url": "url",
+          "valueUri": "https://docs.google.com/spreadsheets/d/1MZ2k1XgrAcvf4KCxSx_2bKwrdtOZHQDvKgCmXwrDUqY/edit#gid=0"
+        }
+      ]
+    }
+  ],
+  "group": [
+    {
+      "element": [
+        {
+          "code": "HD.2",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "ST"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 0
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Universal ID",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "name",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "string"
+                    }
+                  ]
+                }
+              ],
+              "display": "name"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://hsrt-kkrt.org/fhir/StructureDefinition/PIDSegment",
+  "name": "PIDSegment",
+  "status": "draft",
+  "fhirVersion": "4.0.1",
+  "kind": "logical",
+  "abstract": false,
+  "type": "PIDSegment",
+  "snapshot": {
+    "element": [
+      {
+        "id": "PIDSegment",
+        "path": "PIDSegment",
+        "short": "Patient Identification Segment",
+        "definition": "HL7 V2 PID Segment containing minimal patient identification information.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "PIDSegment",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "PIDSegment"
+          }
+        ]
+      },
+      {
+        "id": "PIDSegment.PID_3_id",
+        "path": "PIDSegment.PID_3_id",
+        "short": "PID-3 CX.1 (ID Number)",
+        "definition": "Patient Identifier (value)",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "PIDSegment.PID_3_id",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "id": "PIDSegment.PID_3_4_namespaceId",
+        "path": "PIDSegment.PID_3_4_namespaceId",
+        "short": "PID-3.4 HD.1 namespaceId",
+        "definition": "Assigning Authority namespaceId",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "PIDSegment.PID_3_4_namespaceId",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "id": "PIDSegment.PID_3_4_universalId",
+        "path": "PIDSegment.PID_3_4_universalId",
+        "short": "PID-3.4 HD.2 universalId",
+        "definition": "Assigning Authority universalId (OID/UUID/URI)",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "PIDSegment.PID_3_4_universalId",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "uri"
+          }
+        ]
+      },
+      {
+        "id": "PIDSegment.PID_3_4_universalIdType",
+        "path": "PIDSegment.PID_3_4_universalIdType",
+        "short": "PID-3.4 HD.3 universalIdType",
+        "definition": "Assigning Authority universalIdType (e.g. ISO/UUID)",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "PIDSegment.PID_3_4_universalIdType",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ]
+      },
+      {
+        "id": "PIDSegment.PID_3_6_namespaceId",
+        "path": "PIDSegment.PID_3_6_namespaceId",
+        "short": "PID-3.6 HD.1 namespaceId",
+        "definition": "Assigning Facility namespaceId",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "PIDSegment.PID_3_6_namespaceId",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "id": "PIDSegment.PID_3_6_universalId",
+        "path": "PIDSegment.PID_3_6_universalId",
+        "short": "PID-3.6 HD.2 universalId",
+        "definition": "Assigning Facility universalId (OID/UUID/URI)",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "PIDSegment.PID_3_6_universalId",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "uri"
+          }
+        ]
+      },
+      {
+        "id": "PIDSegment.PID_3_6_universalIdType",
+        "path": "PIDSegment.PID_3_6_universalIdType",
+        "short": "PID-3.6 HD.3 universalIdType",
+        "definition": "Assigning Facility universalIdType (e.g. ISO/UUID)",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "PIDSegment.PID_3_6_universalIdType",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ]
+      },
+      {
+        "id": "PIDSegment.PID_5_1_family",
+        "path": "PIDSegment.PID_5_1_family",
+        "short": "PID-5 XPN.1 Family",
+        "definition": "Patient family name",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "PIDSegment.PID_5_1_family",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "id": "PIDSegment.PID_5_2_given",
+        "path": "PIDSegment.PID_5_2_given",
+        "short": "PID-5 XPN.2 Given",
+        "definition": "Patient given name",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "PIDSegment.PID_5_2_given",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "id": "PIDSegment.PID_7",
+        "path": "PIDSegment.PID_7",
+        "short": "PID-7 DTM",
+        "definition": "Birth date/time (DTM)",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "PIDSegment.PID_7",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "date"
+          }
+        ]
+      },
+      {
+        "id": "PIDSegment.PID_8_code",
+        "path": "PIDSegment.PID_8_code",
+        "short": "PID-8 Administrative Sex (CWE.1/.2 simplified)",
+        "definition": "Administrative Sex code/text (simplified)",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "PIDSegment.PID_8_code",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ]
+      }
+    ]
+  }
+}

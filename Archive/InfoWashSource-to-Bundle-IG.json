@@ -1,0 +1,221 @@
+{
+  "resourceType": "StructureMap",
+  "url": "http://hsrt-kkrt.org/fhir/StructureMap/InfoWashSource-to-Bundle-IG",
+  "name": "InfoWashSourceToBundleIG",
+  "title": "FML to FHIR StructureMap: InfoWashSourceToBundleIG",
+  "status": "active",
+  "experimental": true,
+  "date": "2025-08-23",
+  "publisher": "hsrt-kkrt.org",
+  "description": "StructureMap generated from FML: InfoWashSourceToBundleIG",
+  "fhirVersion": "4.0.1",
+  "kind": "logical",
+  "abstract": false,
+  "type": "StructureMap",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/StructureMap",
+  "derivation": "specialization",
+  "import": [
+    {
+      "uri": "http://hsrt-kkrt.org/fhir/StructureDefinition/InfoWashSource",
+      "alias": "InfoWashSource"
+    },
+    {
+      "uri": "http://hl7.org/fhir/StructureDefinition/Bundle",
+      "alias": "Bundle"
+    },
+    {
+      "uri": "http://hl7.org/fhir/StructureDefinition/Patient",
+      "alias": "Patient"
+    },
+    {
+      "uri": "http://hl7.org/fhir/StructureDefinition/Condition",
+      "alias": "Condition"
+    },
+    {
+      "uri": "http://hl7.org/fhir/StructureDefinition/ServiceRequest",
+      "alias": "ServiceRequest"
+    },
+    {
+      "uri": "http://hl7.org/fhir/StructureDefinition/Provenance",
+      "alias": "Provenance"
+    },
+    {
+      "uri": "http://hl7.org/fhir/StructureDefinition/Encounter",
+      "alias": "Encounter"
+    },
+    {
+      "uri": "http://hl7.org/fhir/StructureDefinition/Organization",
+      "alias": "Organization"
+    },
+    {
+      "uri": "http://hl7.org/fhir/StructureDefinition/Practitioner",
+      "alias": "Practitioner"
+    },
+    {
+      "uri": "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+      "alias": "PractitionerRole"
+    },
+    {
+      "uri": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+      "alias": "TypeInfo"
+    },
+    {
+      "uri": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "alias": "RelatedArtifact"
+    }
+  ],
+  "group": [
+    {
+      "name": "InfoWashSourceToBundleIG",
+      "typeMode": "types",
+      "documentation": "Group: InfoWashSourceToBundleIG",
+      "input": [
+        {
+          "name": "source",
+          "type": "InfoWashSource",
+          "mode": "source"
+        }
+      ],
+      "output": [
+        {
+          "name": "target",
+          "type": "Bundle",
+          "mode": "target"
+        }
+      ],
+      "rule": [
+        {
+          "name": "rule_0",
+          "source": [
+            {
+              "context": "source",
+              "element": "InfoWashSource"
+            }
+          ],
+          "target": [
+            {
+              "context": "target",
+              "element": "Bundle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MakePatientIG",
+      "typeMode": "types",
+      "documentation": "Group: MakePatientIG",
+      "input": [
+        {
+          "name": "source",
+          "type": "InfoWashSource",
+          "mode": "source"
+        }
+      ],
+      "output": [
+        {
+          "name": "target",
+          "type": "Bundle",
+          "mode": "target"
+        }
+      ],
+      "rule": []
+    },
+    {
+      "name": "MakeEncounterIG",
+      "typeMode": "types",
+      "documentation": "Group: MakeEncounterIG",
+      "input": [
+        {
+          "name": "source",
+          "type": "InfoWashSource",
+          "mode": "source"
+        }
+      ],
+      "output": [
+        {
+          "name": "target",
+          "type": "Bundle",
+          "mode": "target"
+        }
+      ],
+      "rule": []
+    },
+    {
+      "name": "MakeConditionIG",
+      "typeMode": "types",
+      "documentation": "Group: MakeConditionIG",
+      "input": [
+        {
+          "name": "source",
+          "type": "InfoWashSource",
+          "mode": "source"
+        }
+      ],
+      "output": [
+        {
+          "name": "target",
+          "type": "Bundle",
+          "mode": "target"
+        }
+      ],
+      "rule": []
+    },
+    {
+      "name": "MakeServiceRequestIG",
+      "typeMode": "types",
+      "documentation": "Group: MakeServiceRequestIG",
+      "input": [
+        {
+          "name": "source",
+          "type": "InfoWashSource",
+          "mode": "source"
+        }
+      ],
+      "output": [
+        {
+          "name": "target",
+          "type": "Bundle",
+          "mode": "target"
+        }
+      ],
+      "rule": []
+    },
+    {
+      "name": "MakeProvenanceIG",
+      "typeMode": "types",
+      "documentation": "Group: MakeProvenanceIG",
+      "input": [
+        {
+          "name": "source",
+          "type": "InfoWashSource",
+          "mode": "source"
+        }
+      ],
+      "output": [
+        {
+          "name": "target",
+          "type": "Bundle",
+          "mode": "target"
+        }
+      ],
+      "rule": [
+        {
+          "name": "rule_0",
+          "source": [
+            {
+              "context": "source",
+              "element": "InfoWashSource"
+            }
+          ],
+          "target": [
+            {
+              "context": "target",
+              "element": "Bundle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

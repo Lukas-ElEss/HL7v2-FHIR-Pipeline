@@ -1,0 +1,17 @@
+{
+  "matchbox": {
+    "server_url": "http://localhost:8080/matchboxv3/fhir",
+    "context_path": "/matchboxv3",
+    "port": 8080
+  },
+  "device": {
+    "default_name": "v2-to-fhir-pipeline",
+    "resource_type": "Device",
+    "name_type": "model-name"
+  },
+  "output": {
+    "save_device_url": true,
+    "device_url_file": "device_url.txt",
+    "log_level": "DEBUG"
+  }
+}

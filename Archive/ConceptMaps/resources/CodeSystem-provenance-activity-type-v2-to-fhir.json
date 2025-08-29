@@ -1,0 +1,20 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "ProvenanceActivityTypeV2ToFHIRCS",
+  "id": "provenance-activity-type-v2-to-fhir",
+  "title": "Provenance Activity Type CodeSystem - V2 To FHIR",
+  "description": "Provenance Activity Type codes for V2 To FHIR transformation.",
+  "url": "http://hl7.org/fhir/uv/v2mappings/CodeSystem/provenance-activity-type-v2-to-fhir",
+  "concept": [
+    {
+      "code": "v2-fhir-transformation",
+      "display": "V2 To FHIR Transformation",
+      "definition": "Process to transform an instance from V2 To FHIR."
+    }
+  ],
+  "experimental": false,
+  "caseSensitive": false,
+  "count": 1
+}

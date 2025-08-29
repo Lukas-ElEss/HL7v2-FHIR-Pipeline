@@ -1,0 +1,178 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://hsrt-kkrt.org/fhir/StructureDefinition/Device",
+  "name": "Device",
+  "status": "draft",
+  "fhirVersion": "4.0.1",
+  "kind": "logical",
+  "abstract": false,
+  "type": "Device",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Device",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      {
+        "id": "Device",
+        "path": "Device",
+        "short": "Device logical model for v2-to-fhir-pipeline",
+        "definition": "Device resource representing the v2-to-fhir-pipeline system",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Device",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Device"
+          }
+        ]
+      },
+      {
+        "id": "Device.id",
+        "path": "Device.id",
+        "short": "Logical id of this artifact",
+        "definition": "The logical id of the resource",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Device.id",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "id"
+          }
+        ]
+      },
+      {
+        "id": "Device.identifier",
+        "path": "Device.identifier",
+        "short": "Instance identifier",
+        "definition": "Unique instance identifiers assigned to a device by manufacturers other organizations or owners",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Device.identifier",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Identifier"
+          }
+        ]
+      },
+      {
+        "id": "Device.identifier.system",
+        "path": "Device.identifier.system",
+        "short": "The namespace for the identifier value",
+        "definition": "Establishes the namespace for the value",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Device.identifier.system",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "uri"
+          }
+        ]
+      },
+      {
+        "id": "Device.identifier.value",
+        "path": "Device.identifier.value",
+        "short": "The value that is unique",
+        "definition": "The value that is unique within the namespace",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Device.identifier.value",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "id": "Device.deviceName",
+        "path": "Device.deviceName",
+        "short": "The name of the device",
+        "definition": "The name of the device",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Device.deviceName",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "DeviceName"
+          }
+        ]
+      },
+      {
+        "id": "Device.deviceName.name",
+        "path": "Device.deviceName.name",
+        "short": "The name of the device",
+        "definition": "The name of the device",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Device.deviceName.name",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "id": "Device.deviceName.type",
+        "path": "Device.deviceName.type",
+        "short": "The type of device name",
+        "definition": "The type of device name",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Device.deviceName.type",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ]
+      },
+      {
+        "id": "Device.status",
+        "path": "Device.status",
+        "short": "active | inactive | entered-in-error | unknown",
+        "definition": "The current status of the device",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "Device.status",
+          "min": 1,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ]
+      }
+    ]
+  }
+}

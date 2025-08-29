@@ -1,0 +1,33 @@
+# FHIR Server Configuration
+# Configuration file for FHIR server connections and credentials
+
+# Linux for Health FHIR Server Configuration
+linuxforhealth:
+  fhir:
+    server_url: "https://localhost:9443/fhir-server/api/v4"
+    credentials:
+      username: "fhiruser"
+      password: "change-password"
+    timeout: 30  # seconds
+    ssl_verify: false  # Disable SSL verification for localhost
+    headers:
+      content_type: "application/fhir+json"
+      accept: "application/fhir+json"
+
+# Matchbox Server Configuration
+matchbox:
+  server_url: "http://localhost:8080/matchboxv3/fhir"
+  context_path: "/matchboxv3"
+  port: 8080
+
+# Device Registration Settings
+device:
+  default_name: "v2-to-fhir-pipeline"
+  resource_type: "Device"
+  name_type: "model-name"
+
+# Output Settings
+output:
+  save_device_url: true
+  device_url_file: "device_url.txt"
+  log_level: "DEBUG"

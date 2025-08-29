@@ -1,0 +1,172 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "table-hl70278-to-appointmentstatus",
+  "url": "http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70278-to-appointmentstatus",
+  "title": "Table HL70278 to Appointmentstatus Map",
+  "description": "This ConceptMap represents a mapping from the HL7 V2 Table HL70278 to the FHIR Appointmentstatus Value Set.",
+  "name": "TableHL70278ToAppointmentstatus",
+  "sourceUri": "http://terminology.hl7.org/ValueSet/v2-0278",
+  "version": "1.0",
+  "status": "active",
+  "experimental": true,
+  "publisher": "HL7 International, Inc",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "v2-to-fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "date": "2025-08-23",
+  "copyright": "Copyright (c) 2025, HL7 International, Inc., All Rights Reserved.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "extension": [
+        {
+          "url": "type",
+          "valueCode": "derived-from"
+        },
+        {
+          "url": "label",
+          "valueString": "Table HL70278 to Appointmentstatus.fsh"
+        },
+        {
+          "url": "url",
+          "valueUri": "https://docs.google.com/spreadsheets/d/1JSunQweA2Ab70tLNJUR8gZTYDq3ToDJv0mXS1cwJmd4/edit#gid=0"
+        }
+      ]
+    }
+  ],
+  "group": [
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0278",
+      "target": "http://hl7.org/fhir/appointmentstatus",
+      "element": [
+        {
+          "code": "Pending",
+          "display": "Pending",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "pending",
+              "display": "Pending"
+            }
+          ]
+        },
+        {
+          "code": "Waitlist",
+          "display": "Waitlist",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "waitlist",
+              "display": "Waitlisted"
+            }
+          ]
+        },
+        {
+          "code": "Booked",
+          "display": "Booked",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "booked",
+              "display": "Booked"
+            }
+          ]
+        },
+        {
+          "code": "Started",
+          "display": "Started",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "checked-in",
+              "display": "Checked In"
+            }
+          ]
+        },
+        {
+          "code": "Complete",
+          "display": "Complete",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "fulfilled",
+              "display": "Fulfilled"
+            }
+          ]
+        },
+        {
+          "code": "Cancelled",
+          "display": "Cancelled",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "cancelled",
+              "display": "Cancelled"
+            }
+          ]
+        },
+        {
+          "code": "Deleted",
+          "display": "Deleted",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "entered-in-error",
+              "display": "Entered In Error"
+            }
+          ]
+        },
+        {
+          "code": "Noshow",
+          "display": "Noshow",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "noshow",
+              "display": "No Show"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0278",
+      "element": [
+        {
+          "code": "Discontinued",
+          "display": "Discontinued",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "Blocked",
+          "display": "Blocked",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "Overbook",
+          "display": "Overbook",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

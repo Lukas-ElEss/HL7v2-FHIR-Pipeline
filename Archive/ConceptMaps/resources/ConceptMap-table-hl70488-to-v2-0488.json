@@ -1,0 +1,520 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "table-hl70488-to-v2-0488",
+  "url": "http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70488-to-v2-0488",
+  "title": "Table HL70488 to V2 0488 Map",
+  "description": "This ConceptMap represents a mapping from the HL7 V2 Table HL70488 to the FHIR V2 0488 Value Set.",
+  "name": "TableHL70488ToV20488",
+  "sourceUri": "http://terminology.hl7.org/ValueSet/v2-0488",
+  "version": "1.0",
+  "status": "active",
+  "experimental": true,
+  "publisher": "HL7 International, Inc",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "v2-to-fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "date": "2025-08-23",
+  "copyright": "Copyright (c) 2025, HL7 International, Inc., All Rights Reserved.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "extension": [
+        {
+          "url": "type",
+          "valueCode": "derived-from"
+        },
+        {
+          "url": "label",
+          "valueString": "Table HL70488 to V2 0488.fsh"
+        },
+        {
+          "url": "url",
+          "valueUri": "https://docs.google.com/spreadsheets/d/16PWKqbE5NVvIKHTcyOCwXDUe6VkfE6rZn-bPF2bIPP4/edit#gid=0"
+        }
+      ]
+    }
+  ],
+  "group": [
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0488",
+      "target": "http://terminology.hl7.org/CodeSystem/v2-0488",
+      "element": [
+        {
+          "code": "FNA",
+          "display": "Aspiration, Fine Needle",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "FNA",
+              "display": "Aspiration, Fine Needle"
+            }
+          ]
+        },
+        {
+          "code": "PNA",
+          "display": "Arterial puncture",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "PNA",
+              "display": "Arterial puncture"
+            }
+          ]
+        },
+        {
+          "code": "BCAE",
+          "display": "Blood Culture, Aerobic Bottle",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "BCAE",
+              "display": "Blood Culture, Aerobic Bottle"
+            }
+          ]
+        },
+        {
+          "code": "BCAN",
+          "display": "Blood Culture, Anaerobic Bottle",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "BCAN",
+              "display": "Blood Culture, Anaerobic Bottle"
+            }
+          ]
+        },
+        {
+          "code": "BCPD",
+          "display": "Blood Culture, Pediatric Bottle",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "BCPD",
+              "display": "Blood Culture, Pediatric Bottle"
+            }
+          ]
+        },
+        {
+          "code": "CAP",
+          "display": "Capillary Specimen",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "CAP",
+              "display": "Capillary Specimen"
+            }
+          ]
+        },
+        {
+          "code": "CATH",
+          "display": "Catheterized",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "CATH",
+              "display": "Catheterized"
+            }
+          ]
+        },
+        {
+          "code": "EPLA",
+          "display": "Environmental, Plate",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "EPLA",
+              "display": "Environmental, Plate"
+            }
+          ]
+        },
+        {
+          "code": "ESWA",
+          "display": "Environmental, Swab",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "ESWA",
+              "display": "Environmental, Swab"
+            }
+          ]
+        },
+        {
+          "code": "LNA",
+          "display": "Line, Arterial",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LNA",
+              "display": "Line, Arterial"
+            }
+          ]
+        },
+        {
+          "code": "CVP",
+          "display": "Line, CVP",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "CVP",
+              "display": "Line, CVP"
+            }
+          ]
+        },
+        {
+          "code": "LNV",
+          "display": "Line, Venous",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "LNV",
+              "display": "Line, Venous"
+            }
+          ]
+        },
+        {
+          "code": "MARTL",
+          "display": "Martin-Lewis Agar",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "MARTL",
+              "display": "Martin-Lewis Agar"
+            }
+          ]
+        },
+        {
+          "code": "ML11",
+          "display": "Mod. Martin-Lewis Agar",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "ML11",
+              "display": "Mod. Martin-Lewis Agar"
+            }
+          ]
+        },
+        {
+          "code": "PACE",
+          "display": "Pace, Gen-Probe",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "PACE",
+              "display": "Pace, Gen-Probe"
+            }
+          ]
+        },
+        {
+          "code": "PIN",
+          "display": "Pinworm Prep",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "PIN",
+              "display": "Pinworm Prep"
+            }
+          ]
+        },
+        {
+          "code": "KOFFP",
+          "display": "Plate, Cough",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "KOFFP",
+              "display": "Plate, Cough"
+            }
+          ]
+        },
+        {
+          "code": "MLP",
+          "display": "Plate, Martin-Lewis",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "MLP",
+              "display": "Plate, Martin-Lewis"
+            }
+          ]
+        },
+        {
+          "code": "NYP",
+          "display": "Plate, New York City",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "NYP",
+              "display": "Plate, New York City"
+            }
+          ]
+        },
+        {
+          "code": "TMP",
+          "display": "Plate, Thayer-Martin",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "TMP",
+              "display": "Plate, Thayer-Martin"
+            }
+          ]
+        },
+        {
+          "code": "ANP",
+          "display": "Plates, Anaerobic",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "ANP",
+              "display": "Plates, Anaerobic"
+            }
+          ]
+        },
+        {
+          "code": "BAP",
+          "display": "Plates, Blood Agar",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "BAP",
+              "display": "Plates, Blood Agar"
+            }
+          ]
+        },
+        {
+          "code": "PRIME",
+          "display": "Pump Prime",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "PRIME",
+              "display": "Pump Prime"
+            }
+          ]
+        },
+        {
+          "code": "PUMP",
+          "display": "Pump Specimen",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "PUMP",
+              "display": "Pump Specimen"
+            }
+          ]
+        },
+        {
+          "code": "QC5",
+          "display": "Quality Control For Micro",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "QC5",
+              "display": "Quality Control For Micro"
+            }
+          ]
+        },
+        {
+          "code": "SCLP",
+          "display": "Scalp, Fetal Vein",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "SCLP",
+              "display": "Scalp, Fetal Vein"
+            }
+          ]
+        },
+        {
+          "code": "SHA",
+          "display": "Shaving",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "SHA",
+              "display": "Shaving"
+            }
+          ]
+        },
+        {
+          "code": "SWA",
+          "display": "Swab",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "SWA",
+              "display": "Swab"
+            }
+          ]
+        },
+        {
+          "code": "SWD",
+          "display": "Swab, Dacron tipped",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "SWD",
+              "display": "Swab, Dacron tipped"
+            }
+          ]
+        },
+        {
+          "code": "WOOD",
+          "display": "Swab, Wooden Shaft",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "WOOD",
+              "display": "Swab, Wooden Shaft"
+            }
+          ]
+        },
+        {
+          "code": "TMOT",
+          "display": "Transport Media,",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "TMOT",
+              "display": "Transport Media,"
+            }
+          ]
+        },
+        {
+          "code": "TMAN",
+          "display": "Transport Media, Anaerobic",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "TMAN",
+              "display": "Transport Media, Anaerobic"
+            }
+          ]
+        },
+        {
+          "code": "TMCH",
+          "display": "Transport Media, Chalamydia",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "TMCH",
+              "display": "Transport Media, Chalamydia"
+            }
+          ]
+        },
+        {
+          "code": "TMM4",
+          "display": "Transport Media, M4",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "TMM4",
+              "display": "Transport Media, M4"
+            }
+          ]
+        },
+        {
+          "code": "TMMY",
+          "display": "Transport Media, Mycoplasma",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "TMMY",
+              "display": "Transport Media, Mycoplasma"
+            }
+          ]
+        },
+        {
+          "code": "TMPV",
+          "display": "Transport Media, PVA",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "TMPV",
+              "display": "Transport Media, PVA"
+            }
+          ]
+        },
+        {
+          "code": "TMSC",
+          "display": "Transport Media, Stool Culture",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "TMSC",
+              "display": "Transport Media, Stool Culture"
+            }
+          ]
+        },
+        {
+          "code": "TMUP",
+          "display": "Transport Media, Ureaplasma",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "TMUP",
+              "display": "Transport Media, Ureaplasma"
+            }
+          ]
+        },
+        {
+          "code": "TMVI",
+          "display": "Transport Media, Viral",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "TMVI",
+              "display": "Transport Media, Viral"
+            }
+          ]
+        },
+        {
+          "code": "VENIP",
+          "display": "Venipuncture",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "VENIP",
+              "display": "Venipuncture"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0488",
+      "target": "http://snomed.info/sct",
+      "element": [
+        {
+          "code": "BIO",
+          "display": "Biopsy",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "129314006",
+              "display": "Biopsy - action"
+            }
+          ]
+        },
+        {
+          "code": "SCRAPS",
+          "display": "Scrapings",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "129323009",
+              "display": "Scraping - action"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

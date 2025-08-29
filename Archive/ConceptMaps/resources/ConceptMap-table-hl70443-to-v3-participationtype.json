@@ -1,0 +1,282 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "table-hl70443-to-v3-participationtype",
+  "url": "http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70443-to-v3-participationtype",
+  "title": "Table HL70443 to V3 ParticipationType Map",
+  "description": "This ConceptMap represents a mapping from the HL7 V2 Table HL70443 to the FHIR V3 ParticipationType Value Set.",
+  "name": "TableHL70443ToV3ParticipationType",
+  "sourceUri": "http://terminology.hl7.org/ValueSet/v2-0443",
+  "version": "1.0",
+  "status": "active",
+  "experimental": true,
+  "publisher": "HL7 International, Inc",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "v2-to-fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "date": "2025-08-23",
+  "copyright": "Copyright (c) 2025, HL7 International, Inc., All Rights Reserved.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "extension": [
+        {
+          "url": "type",
+          "valueCode": "derived-from"
+        },
+        {
+          "url": "label",
+          "valueString": "Table HL70443 to V3 ParticipationType.fsh"
+        },
+        {
+          "url": "url",
+          "valueUri": "https://docs.google.com/spreadsheets/d/1Mw2am81E0fuDQ-kNrCEc-LwgZ6PlxHNauOBzZ8y5qUM/edit#gid=0"
+        }
+      ]
+    }
+  ],
+  "group": [
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0443",
+      "target": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+      "element": [
+        {
+          "code": "AD",
+          "display": "Admitting",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "ADM",
+              "display": "admitter"
+            }
+          ]
+        },
+        {
+          "code": "AT",
+          "display": "Attending",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "ATND",
+              "display": "attender"
+            }
+          ]
+        },
+        {
+          "code": "CP",
+          "display": "Consulting Provider",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "CON",
+              "display": "consultant"
+            }
+          ]
+        },
+        {
+          "code": "RP",
+          "display": "Referring Provider",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "REF",
+              "display": "referrer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0443",
+      "element": [
+        {
+          "code": "AP",
+          "display": "Administering Provider",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "CLP",
+          "display": "Collecting Provider",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "DP",
+          "display": "Dispensing Provider",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "EP",
+          "display": "Entering Provider",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "FHCP",
+          "display": "Family Health Care Professional",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "IP",
+          "display": "Initiating Provider (as in action by)",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "MDIR",
+          "display": "Medical Director",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "OP",
+          "display": "Ordering Provider",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "PH",
+          "display": "Pharmacist",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "RO",
+          "display": "Responsible Observer",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "RT",
+          "display": "Referred to Provider",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "TR",
+          "display": "Transcriptionist",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "AI",
+          "display": "Assistant/Alternate Interpreter",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "TN",
+          "display": "Technician",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "VP",
+          "display": "Verifying Provider",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "VPS",
+          "display": "Verifying Pharmaceutical Supplier",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        },
+        {
+          "code": "VTS",
+          "display": "Verifying Treatment Supplier",
+          "target": [
+            {
+              "equivalence": "unmatched"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v2-0443",
+      "target": "http://snomed.info/sct",
+      "element": [
+        {
+          "code": "PP",
+          "display": "Primary Care Provider",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "446050000",
+              "display": "PCP - Primary care physician"
+            }
+          ]
+        },
+        {
+          "code": "PI",
+          "display": "Primary Interpreter",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "40570005",
+              "display": "Interpreter"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

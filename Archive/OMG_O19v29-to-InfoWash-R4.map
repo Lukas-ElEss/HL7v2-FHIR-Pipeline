@@ -1,0 +1,39 @@
+map "http://example.org/maps/OMG_O19v29-to-InfoWash-R4" = "1.0.0"
+
+uses "http://example.org/fhir/StructureDefinition/OMG_O19_v29_Min_Source" alias Src as source
+uses "http://example.org/fhir/StructureDefinition/InfoWashPatient" alias P as target
+uses "http://example.org/fhir/StructureDefinition/InfoWashCondition" alias C as target
+uses "http://example.org/fhir/StructureDefinition/InfoWashServiceRequest" alias S as target
+
+group Main(source s : Src, target p : P, target c : C, target sr : S) {
+  // --- Patient ---
+  p.identifier.value = s.PID_3_id.first();
+  p.name.family      = s.PID_5_1_family;
+  p.name.given       = s.PID_5_2_given;
+  p.birthDate        = s.PID_7;
+  p.gender           = translate(s.PID_8_code, 'http://example.org/fhir/ConceptMap/v2-0001-to-administrative-gender', 'code');
+
+  // --- Condition ---
+  c.subject = create('Reference') as refP then {
+    refP.reference = 'Patient/' + id(p);
+  };
+  c.code.coding.system  = s.DG1_3_system;   // optional, falls aus CWE.3 verfügbar – sonst weglassen
+  c.code.coding.code    = s.DG1_3_code;
+  c.code.coding.display = s.DG1_3_text;
+
+  // --- ServiceRequest ---
+  sr.subject = create('Reference') as refP2 then {
+    refP2.reference = 'Patient/' + id(p);
+  };
+  sr.code.coding.system  = s.OBR_4_system;  // optional aus CWE.3
+  sr.code.coding.code    = s.OBR_4_code;
+  sr.code.coding.display = s.OBR_4_text;
+
+  // Timing primär TQ1
+  sr.occurrencePeriod.start = s.TQ1_7;
+  sr.occurrencePeriod.end   = s.TQ1_8;
+
+  // Dauer (optional als Extension oder nur im UI; hier weggelassen)
+  // Updates/Events
+  sr.authoredOn = s.ORC_9;
+}

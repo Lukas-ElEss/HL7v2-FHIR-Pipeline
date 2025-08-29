@@ -1,0 +1,31 @@
+map "http://hsrt-kkrt.org/fhir/StructureMap/pid-to-patient" = "PIDToPatient"
+
+uses "http://hsrt-kkrt.org/fhir/StructureDefinition/PIDSegment" alias PIDSegment as source
+uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as target
+
+group PIDToPatient(source pid : PIDSegment, target pat : Patient) {
+  // PID-3 -> identifier (PI)
+  pid.PID_3 as cx ->
+    pat.identifier as id,
+    id.value  = cx.id,
+    id.system = cx.assigningAuthority.universalId,
+    id.type = create("CodeableConcept") as t,
+    t.coding = create("Coding") as tc,
+    tc.system = 'http://terminology.hl7.org/CodeSystem/v2-0203',
+    tc.code   = 'PI',
+    tc.display = 'Patient internal identifier'
+    "PID-3 to identifier";
+
+  // PID-5 -> name
+  pid.PID_5 as x ->
+    pat.name = create("HumanName") as n,
+    n.family = x.family,
+    n.given  = x.given
+    "PID-5 to name";
+
+  // PID-7 -> birthDate
+  pid.PID_7 as d -> pat.birthDate = d "PID-7 to birthDate";
+
+  // PID-8 -> gender (ConceptMap 'AdministrativeSex')
+  pid.PID_8 as g -> pat.gender = translate(g, 'AdministrativeSex') "PID-8 to gender";
+}

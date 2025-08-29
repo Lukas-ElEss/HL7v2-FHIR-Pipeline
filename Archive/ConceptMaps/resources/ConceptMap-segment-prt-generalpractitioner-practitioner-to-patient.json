@@ -1,0 +1,98 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "segment-prt-generalpractitioner-practitioner-to-patient",
+  "url": "http://hl7.org/fhir/uv/v2mappings/ConceptMap/segment-prt-generalpractitioner-practitioner-to-patient",
+  "title": "Segment PRT [GeneralPractitioner-Practitioner] to Patient Map",
+  "description": "This ConceptMap represents a mapping from the HL7 V2 Segment PRT to the FHIR Patient Resource.",
+  "name": "SegmentPRTGeneralPractitionerPractitionerToPatient",
+  "version": "1.0",
+  "status": "active",
+  "experimental": true,
+  "publisher": "HL7 International, Inc",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "v2-to-fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "date": "2025-08-23",
+  "copyright": "Copyright (c) 2025, HL7 International, Inc., All Rights Reserved.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "extension": [
+        {
+          "url": "type",
+          "valueCode": "derived-from"
+        },
+        {
+          "url": "label",
+          "valueString": "Segment PRT[GeneralPractitioner-Practitioner] to Patient.fsh"
+        },
+        {
+          "url": "url",
+          "valueUri": "https://docs.google.com/spreadsheets/d/1bdaAckuDNz3OVL9VjJn79gk0BlxzpsA7zpTrcd8eBTs/edit#gid=0"
+        }
+      ]
+    }
+  ],
+  "group": [
+    {
+      "element": [
+        {
+          "code": "PRT-5",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "XCN"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Person",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "generalPractitioner(Practitioner)",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "Reference"
+                    },
+                    {
+                      "url": "cardinalityMin",
+                      "valueInteger": 0
+                    },
+                    {
+                      "url": "cardinalityMax",
+                      "valueInteger": -1
+                    }
+                  ]
+                }
+              ],
+              "display": "generalPractitioner(Practitioner)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

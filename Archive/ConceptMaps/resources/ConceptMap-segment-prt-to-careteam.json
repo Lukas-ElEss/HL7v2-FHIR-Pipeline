@@ -1,0 +1,746 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "segment-prt-to-careteam",
+  "url": "http://hl7.org/fhir/uv/v2mappings/ConceptMap/segment-prt-to-careteam",
+  "title": "Segment PRT to CareTeam Map",
+  "description": "This ConceptMap represents a mapping from the HL7 V2 Segment PRT to the FHIR CareTeam Resource.",
+  "name": "SegmentPRTToCareTeam",
+  "version": "1.0",
+  "status": "active",
+  "experimental": true,
+  "publisher": "HL7 International, Inc",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "v2-to-fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ],
+  "date": "2025-08-23",
+  "copyright": "Copyright (c) 2025, HL7 International, Inc., All Rights Reserved.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/RelatedArtifact",
+      "extension": [
+        {
+          "url": "type",
+          "valueCode": "derived-from"
+        },
+        {
+          "url": "label",
+          "valueString": "Segment PRT to CareTeam.fsh"
+        },
+        {
+          "url": "url",
+          "valueUri": "https://docs.google.com/spreadsheets/d/1TcwjfyUSD-659jlIoZIne7O0JoxHPo6yhd4aaBGVrtE/edit#gid=0"
+        }
+      ]
+    }
+  ],
+  "group": [
+    {
+      "element": [
+        {
+          "code": "PRT-4",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "CWE"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Role of Participation",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant.role",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "CodeableConcept"
+                    },
+                    {
+                      "url": "mappedVia",
+                      "valueUrl": "ConceptMap/table-hl70912-to-practitioner-role"
+                    }
+                  ]
+                }
+              ],
+              "display": "participant.role"
+            }
+          ]
+        },
+        {
+          "code": "PRT-5",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "XCN"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Person",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant[1].member(Practitioner)",
+              "display": "participant[1].member(Practitioner)",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PRT-6 IS NOT VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "PRT-5",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "XCN"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Person",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant[2].member(RelatedPerson)",
+              "display": "participant[2].member(RelatedPerson)",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PRT-6 IS NOT VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "PRT-5",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "XCN"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Person",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant[3].member(PractitionerRole)",
+              "display": "participant[3].member(PractitionerRole)",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PRT-6 IS VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "PRT-6",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "CWE"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Person Provider Type",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant[3].member(PractitionerRole)",
+              "display": "participant[3].member(PractitionerRole)"
+            }
+          ]
+        },
+        {
+          "code": "PRT-8",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "XON"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Organization",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant.member(Organization)",
+              "display": "participant.member(Organization)",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PRT-5 AND PRT-6 AREA NOT VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "PRT-8",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "XON"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Organization",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant.onBehalfOf(Organization)",
+              "display": "participant.onBehalfOf(Organization)",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PRT-5 OR PRT-6 IS VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "PRT-11",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "DTM"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "Begin Date/Time (arrival time)",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant.coveragePeriod.start",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "dateTime"
+                    }
+                  ]
+                }
+              ],
+              "display": "participant.coveragePeriod.start"
+            }
+          ]
+        },
+        {
+          "code": "PRT-12",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "DTM"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": 1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ],
+          "display": "End Date/Time (departure time)",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant.coveragePeriod.end",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+                  "extension": [
+                    {
+                      "url": "type",
+                      "valueCode": "dateTime"
+                    }
+                  ]
+                }
+              ],
+              "display": "participant.coveragePeriod.end"
+            }
+          ]
+        },
+        {
+          "code": "PRT-14",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "XAD"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Address",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant[1].member(Practitioner.address)",
+              "display": "participant[1].member(Practitioner.address)",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PRT-6 IS NOT VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "PRT-14",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "XAD"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Address",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant[2].member(RelatedPerson.address)",
+              "display": "participant[2].member(RelatedPerson.address)",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PRT-6 IS NOT VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "PRT-14",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "XAD"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Address",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant[3].member(PractitionerRole.address)",
+              "display": "participant[3].member(PractitionerRole.address)",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PRT-6 IS VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "PRT-14",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "XAD"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Address",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant.member(Organization.address)",
+              "display": "participant.member(Organization.address)",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PRT-5 AND PRT-6 AREA NOT VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "PRT-14",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "XAD"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Address",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant.onBehalfOf(Organization.address)",
+              "display": "participant.onBehalfOf(Organization.address)",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PRT-5 OR PRT-6 IS VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "PRT-15",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "XTN"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Telecommunication Address",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant[1].member(Practitioner.telecom)",
+              "display": "participant[1].member(Practitioner.telecom)",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PRT-6 IS NOT VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "PRT-15",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "XTN"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Telecommunication Address",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant[2].member(RelatedPerson.telecom)",
+              "display": "participant[2].member(RelatedPerson.telecom)",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PRT-6 IS NOT VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "PRT-15",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "XTN"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Telecommunication Address",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant[3].member(PractitionerRole.telecom)",
+              "display": "participant[3].member(PractitionerRole.telecom)",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PRT-6 IS VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "PRT-15",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "XTN"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Telecommunication Address",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant.member(Organization.telecom)",
+              "display": "participant.member(Organization.telecom)",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PRT-5 AND PRT-6 AREA NOT VALUED"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "PRT-15",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/TypeInfo",
+              "extension": [
+                {
+                  "url": "type",
+                  "valueCode": "XTN"
+                },
+                {
+                  "url": "cardinalityMin",
+                  "valueInteger": -1
+                },
+                {
+                  "url": "cardinalityMax",
+                  "valueInteger": -1
+                }
+              ]
+            }
+          ],
+          "display": "Telecommunication Address",
+          "target": [
+            {
+              "equivalence": "equivalent",
+              "code": "participant.onBehalfOf(Organization.telecom)",
+              "display": "participant.onBehalfOf(Organization.telecom)",
+              "dependsOn": [
+                {
+                  "property": "Computable-ANTLR",
+                  "value": "IF PRT-5 OR PRT-6 IS VALUED"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
