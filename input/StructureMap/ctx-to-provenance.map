@@ -3,7 +3,7 @@ map "http://hsrt-kkrt.org/fhir/StructureMap/CTX-to-Provenance" = "CTXtoProvenanc
 uses "http://hsrt-kkrt.org/fhir/StructureDefinition/InfoWashSource" as source
 uses "http://hl7.org/fhir/StructureDefinition/Provenance" as target
 
-group CTXtoProvenance(source src : InfoWashSource, target prov : Provenance) {
+group CTXtoProvenance(source ctx : CTXSegment, target prov : Provenance) {
 
   // Agent: wer hat die Nachricht geschickt -> CTX_DEVICE_id
   prov.agent as ag then {

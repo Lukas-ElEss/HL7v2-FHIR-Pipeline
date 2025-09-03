@@ -9,9 +9,9 @@ uses "http://hl7.org/fhir/StructureDefinition/Provenance" alias Provenance as ta
 
 imports "http://hsrt-kkrt.org/fhir/StructureMap/PID-to-Patient"
 imports "http://hsrt-kkrt.org/fhir/StructureMap/DG1-to-Condition"
-// imports "http://hsrt-kkrt.org/fhir/StructureMap/ORC-to-ServiceRequest"
-// imports "http://hsrt-kkrt.org/fhir/StructureMap/OBR-to-ServiceRequest"
-// imports "http://hsrt-kkrt.org/fhir/StructureMap/TQ1-to-ServiceRequest"
+imports "http://hsrt-kkrt.org/fhir/StructureMap/ORC-to-ServiceRequest"
+imports "http://hsrt-kkrt.org/fhir/StructureMap/OBR-to-ServiceRequest"
+imports "http://hsrt-kkrt.org/fhir/StructureMap/TQ1-to-ServiceRequest"
 // imports "http://hsrt-kkrt.org/fhir/StructureMap/CTX-to-Provenance"
 
 
@@ -22,32 +22,40 @@ imports "http://hsrt-kkrt.org/fhir/StructureMap/DG1-to-Condition"
 group IWS2Bundle(source src : InfoWashSource, target bundle : Bundle) {
 
   // Bundle initialisieren
-  src -> bundle.type = 'transaction' "bundle-type";
+  src -> bundle.type = 'transaction' then {
 
   // -----------------
   // Patient (PID)
   // -----------------
-  src.PIDSegment as pid -> bundle.entry as entry, 
-                            entry.resource = create('Patient') as pat,
+  src.PIDSegment as pid -> bundle.entry as pEntry, 
+                            pEntry.resource = create('Patient') as pat,
                             pat.id = uuid() as patientID,
-                            entry.fullUrl = ('urn:uuid:' + %patientID),
-                            entry.request as preq,
+                            pEntry.fullUrl = ('urn:uuid:' + %patientID) as patFull,
+                            pEntry.request as preq,
                             preq.method = 'POST',
                             preq.url = 'Patient'
                             then PIDtoPatient(pid, pat) "patient";
 
 
-  //   pid -> pat.id = uuid() as patientID "id";
-  //   src -> ePat.fullUrl = append('urn:uuid:', patientID) "fullUrl";
-  //   ePat.request as preq then {
-  //     src -> preq.method = 'POST' "method";
-  //     src -> preq.url = 'Patient' "url";
-  //   } "request";
-  // } "patient";
 
   // // -----------------
   // // Condition (DG1)
   // // -----------------
+
+  src.DG1Segment as dg1 -> bundle.entry as cEntry,
+                            cEntry.resource = create('Condition') as cond,
+                            cond.id = uuid() as conditionID,
+                            cEntry.fullUrl = ('urn:uuid:' + %conditionID) as condFull,
+                            cond.subject = create('Reference') as cSubRef,
+                            cSubRef.reference = ('urn:uuid:' + %patientID),
+                            cEntry.request as creq,
+                            creq.method = 'POST',
+                            creq.url = 'Condition'
+                            then DG1toCondition(dg1, cond) "condition";
+
+
+
+
   // src.DG1Segment as dg1 -> bundle.entry as eCond then {
   //   eCond.resource -> create('Condition') as cond then DG1toCondition(dg1, cond);
   //   dg1 -> cond.id = uuid() as conditionID "id";
@@ -66,6 +74,22 @@ group IWS2Bundle(source src : InfoWashSource, target bundle : Bundle) {
   // // -----------------
   // // ServiceRequest (via Hilfsgruppe)
   // // -----------------
+/*
+  src.ORCSegment as orc, src.OBRSegment as obr, src.TQ1Segment as tq1 -> bundle.entry as sEntry,
+                            sEntry.resource = create('ServiceRequest') as sr,
+                            sr.id = uuid() as servicerequestID,
+                            sEntry.fullUrl = ('urn:uuid:' + %servicerequestID),
+                            sEntry.request as sreq,
+                            sreq.method = 'POST',
+                            sreq.url = 'ServiceRequest'
+                            then ORCtoServiceRequest(orc, sr), then OBRtoServiceRequest(obr,sr), then TQ1toServiceRequest(tq1,sr) "servicerequest";
+*/
+
+
+
+
+
+
   // src -> bundle.entry as eSR then {
   //     eSR.resource -> create('ServiceRequest') as sr then 
   //         ServiceRequestCombined(src, sr) "combine-subgroups";
@@ -113,6 +137,7 @@ group IWS2Bundle(source src : InfoWashSource, target bundle : Bundle) {
   //     src -> pvreq.url = 'Provenance' "url";
   //   } "request";
   // } "provenance";
+  }"bundle";
 }
 
 /* ---------------------------

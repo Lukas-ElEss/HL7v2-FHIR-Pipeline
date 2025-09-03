@@ -5,12 +5,9 @@ uses "http://hl7.org/fhir/StructureDefinition/ServiceRequest" alias ServiceReque
 
 group ORCtoServiceRequest(source orc : ORCSegment, target sr : ServiceRequest) {
 
-  // Intent stets "order" - Quelle (orc) links vom Pfeil
-  orc.ORC_1 -> sr.intent;
-
-  // Status direkt aus ORC_5
-  orc.ORC_5 -> sr.status;
-
+  orc.ORC_1 as ORC_1 -> sr.intent = ORC_1;
+  orc.ORC_5 as ORC_5 -> sr.status = ORC_5;
+  
   // authoredOn nur setzen, wenn ORC_1 == 'NW' -> beide Quellen angeben, Bedingung in Klammern
   orc.ORC_1 as ordCode, orc.ORC_9 as ts where (ordCode = 'NW') -> sr.authoredOn = ts "SetAuthoredOn";
 }

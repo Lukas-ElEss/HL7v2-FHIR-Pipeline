@@ -5,14 +5,20 @@ uses "http://hl7.org/fhir/StructureDefinition/Patient" as target
 
 group PIDtoPatient(source pid : PIDSegment, target patient : Patient) {
 
-    pid.PID_3_1 as PID_3_1 -> patient.identifier as id, id.value = PID_3_1 "PID_3_1";
+    pid -> patient.identifier = create('Identifier') as id then {
+      pid.PID_3_1 as PID_3_1 -> id.value;
+      pid.PID_3_4_1 as PID_3_4_1 -> id.system;
+    }"identifier";
+    
 
-    pid.PID_5_1_1 as PID_5_1_1 -> patient.name = create('HumanName') as nm then {
-      PID_5_1_1 -> nm.family = PID_5_1_1 "PID_5_1_1";
+    pid -> patient.name = create('HumanName') as nm then {
+      pid.PID_5_1_1 as PID_5_1_1 -> nm.family = PID_5_1_1 "PID_5_1_1";
       pid.PID_5_2 as PID_5_2 -> nm.given = PID_5_2 "PID_5_2";
-    } "group";
+    } "name";
 
     pid.PID_7 as PID_7 -> patient.birthDate = PID_7 "PID_7";
+
+    pid.PID_8_1 as PID_8_1 -> patient.gender = translate(PID_8_1, 'http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70001-to-administrative-gender', 'code');
 
   // ===== Identifier =====
   // patient.identifier -> create('Identifier') as id then {
