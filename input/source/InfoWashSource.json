@@ -11,8 +11,7 @@
     "DG1Segment": {
     "DG1_3_1": "M17.9",
     "DG1_3_2": "Gonarthrose",
-    "DG1_3_3": "ICD-10-GM",
-    "DG1_3_9": "Gonarthrose"
+    "DG1_3_3": "ICD-10-GM"
     },
     "OBRSegment": {
     "OBR_4_1": "5-987",
@@ -26,10 +25,5 @@
     "TQ1Segment": {
     "TQ1_7": "2025-09-08T08:00:00",
     "TQ1_8": "2025-09-08T12:00:00"
-    },
-    "CTXSegment": {
-    "CTX_DEVICE_id": "Device/v2-to-fhir-pipeline",
-    "CTX_RAW_message": "MSH|^~\\&|...",
-    "CTX_role": "source"
     }
   }
