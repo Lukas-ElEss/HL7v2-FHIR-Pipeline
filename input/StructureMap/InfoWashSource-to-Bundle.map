@@ -7,7 +7,7 @@ uses "http://hl7.org/fhir/StructureDefinition/Condition" alias Condition as targ
 uses "http://hl7.org/fhir/StructureDefinition/ServiceRequest" alias ServiceRequest as target
 uses "http://hl7.org/fhir/StructureDefinition/Provenance" alias Provenance as target
 
-imports "http://hsrt-kkrt.org/fhir/StructureMap/PID-to-Patient"
+imports "http://hsrt-kkrt.org/fhir/StructureMap/PIDtoPatient"
 imports "http://hsrt-kkrt.org/fhir/StructureMap/DG1-to-Condition"
 imports "http://hsrt-kkrt.org/fhir/StructureMap/ORC-to-ServiceRequest"
 imports "http://hsrt-kkrt.org/fhir/StructureMap/OBR-to-ServiceRequest"
@@ -24,35 +24,36 @@ group IWS2Bundle(source src : InfoWashSource, target bundle : Bundle) {
   // Bundle initialisieren
   src -> bundle.type = 'transaction' then {
 
-  // -----------------
-  // Patient (PID)
-  // -----------------
-  src.PIDSegment as pid -> bundle.entry as pEntry, 
-                            pEntry.resource = create('Patient') as pat,
-                            pat.id = uuid() as patientID,
-                            pEntry.fullUrl = ('urn:uuid:' + %patientID) as patFull,
-                            pEntry.request as preq,
-                            preq.method = 'POST',
-                            preq.url = 'Patient'
-                            then PIDtoPatient(pid, pat) "patient";
+  
+  src -> bundle.entry as pEntry, 
+                        pEntry.resource = create('Patient') as pat,
+                        pat.id = uuid() as patientID,
+                        pEntry.fullUrl = ('urn:uuid:' + %patientID) as patFull,
+                        pEntry.request as preq,
+                        preq.method = 'POST',
+                        preq.url = 'Patient'
+                        then {
+                          // -----------------
+                          // Patient (PID)
+                          // -----------------                          
+                            src.PIDSegment as pid then PIDtoPatient(pid, pat) "patient";
 
+                          // // -----------------
+                          // // Condition (DG1)
+                          // // -----------------
 
+                          src.DG1Segment as dg1 -> bundle.entry as cEntry,
+                                                    cEntry.resource = create('Condition') as cond,
+                                                    cond.id = uuid() as conditionID,
+                                                    cEntry.fullUrl = ('urn:uuid:' + %conditionID) as condFull,
+                                                    cond.subject = create('Reference') as cSubRef,
+                                                    cSubRef.reference = patFull,
+                                                    cEntry.request as creq,
+                                                    creq.method = 'POST',
+                                                    creq.url = 'Condition'
+                                                    then DG1toCondition(dg1, cond) "condition";
 
-  // // -----------------
-  // // Condition (DG1)
-  // // -----------------
-
-  src.DG1Segment as dg1 -> bundle.entry as cEntry,
-                            cEntry.resource = create('Condition') as cond,
-                            cond.id = uuid() as conditionID,
-                            cEntry.fullUrl = ('urn:uuid:' + %conditionID) as condFull,
-                            cond.subject = create('Reference') as cSubRef,
-                            cSubRef.reference = ('urn:uuid:' + %patientID),
-                            cEntry.request as creq,
-                            creq.method = 'POST',
-                            creq.url = 'Condition'
-                            then DG1toCondition(dg1, cond) "condition";
-
+                        } "HL7v2";
 
 
 

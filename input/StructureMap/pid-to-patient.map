@@ -1,9 +1,9 @@
-map "http://hsrt-kkrt.org/fhir/StructureMap/PID-to-Patient" = "PIDtoPatient"
+map "http://hsrt-kkrt.org/fhir/StructureMap/PIDtoPatient" = "PIDtoPatient"
 
 // uses "http://hsrt-kkrt.org/fhir/StructureDefinition/PIDSegment" as source -> the logical model defines it as BackboneElement
 uses "http://hl7.org/fhir/StructureDefinition/Patient" as target
 
-group PIDtoPatient(source pid : PIDSegment, target patient : Patient) {
+group PIDtoPatient(source pid, target patient : Patient) {
 
     pid -> patient.identifier = create('Identifier') as id then {
       pid.PID_3_1 as PID_3_1 -> id.value;
@@ -18,7 +18,7 @@ group PIDtoPatient(source pid : PIDSegment, target patient : Patient) {
 
     pid.PID_7 as PID_7 -> patient.birthDate = PID_7 "PID_7";
 
-    pid.PID_8_1 as PID_8_1 -> patient.gender = translate(PID_8_1, 'http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70001-to-administrative-gender', 'code');
+// ConeceptMaps needs to be defined    pid.PID_8_1 as PID_8_1 -> patient.gender = translate(PID_8_1, 'http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70001-to-administrative-gender', 'code');
 
   // ===== Identifier =====
   // patient.identifier -> create('Identifier') as id then {
