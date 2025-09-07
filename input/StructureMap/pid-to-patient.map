@@ -1,52 +1,47 @@
 map "http://hsrt-kkrt.org/fhir/StructureMap/PID-to-Patient" = "PIDtoPatient"
 
-// uses "http://hsrt-kkrt.org/fhir/StructureDefinition/PIDSegment" as source -> the logical model defines it as BackboneElement
-uses "http://hl7.org/fhir/StructureDefinition/Patient" as target
+uses "http://hsrt-kkrt.org/fhir/StructureDefinition/PIDSegment" alias PIDSegment as source
+uses "http://hl7.org/fhir/StructureDefinition/Patient"         alias Patient     as target
+
+// Optional: Wenn dein Server die Map nicht kennt, kannst du sie inline definieren.
+// conceptmap "cm-hl70001-to-adm-gender" { ... }  // weggelassen, wenn serverseitig vorhanden
 
 group PIDtoPatient(source pid : PIDSegment, target patient : Patient) {
 
-    pid -> patient.identifier = create('Identifier') as id then {
-      pid.PID_3_1 as PID_3_1 -> id.value;
-      pid.PID_3_4_1 as PID_3_4_1 -> id.system;
-    }"identifier";
-    
+  // Identifier (PID-3)
+  pid -> patient.identifier = create('Identifier') as id then {
+    // Wert
+    pid.PID_3_1 as v -> id.value = v "PID_3_1";
 
-    pid -> patient.name = create('HumanName') as nm then {
-      pid.PID_5_1_1 as PID_5_1_1 -> nm.family = PID_5_1_1 "PID_5_1_1";
-      pid.PID_5_2 as PID_5_2 -> nm.given = PID_5_2 "PID_5_2";
-    } "name";
+    // System aus Assigning Authority (CX.4 = HD)
+    // Bevorzugt: Universal ID (PID_3_4_2) + Type ISO (PID_3_4_3)
+    pid.PID_3_4_2 as uid, pid.PID_3_4_3 as utype where (utype = 'ISO') -> id.system = append('urn:oid:', uid) "PID_3_4_ISO";
 
-    pid.PID_7 as PID_7 -> patient.birthDate = PID_7 "PID_7";
+    // Fallback: Nur Namespace ID (PID_3_4_1) vorhanden → wahlweise lokaler Namespace als URI
+    pid.PID_3_4_1 as ns where pid.PID_3_4_2.exists().not() -> id.assigner as asg then {
+      ns -> asg.display "fallback";
+    } "PID_3_4_1_fallback";
 
-    pid.PID_8_1 as PID_8_1 -> patient.gender = translate(PID_8_1, 'http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70001-to-administrative-gender', 'code');
+    // Identifier.type = MR (Medical Record Number)
+    pid -> id.type as t, t.coding as c then {
+      c.system = 'http://terminology.hl7.org/CodeSystem/v2-0203';
+      c.code   = 'MR';
+    } "identifierTypeMR";
+  } "identifier";
 
-  // ===== Identifier =====
-  // patient.identifier -> create('Identifier') as id then {
-  //   pid.PID_3_1 -> id.value;
-  //   pid.PID_3_4_1 -> id.system;
+  // Name (PID-5)
+  pid -> patient.name = create('HumanName') as nm then {
+    pid.PID_5_1_1 as fam -> nm.family = fam "PID_5_1_1";
+    pid.PID_5_2   as giv -> nm.given = giv "PID_5_2";
+  } "name";
 
-  //   // Identifier.type als CodeableConcept + Coding
-  //   id.type -> create('CodeableConcept') as idType then {
-  //     idType.coding -> create('Coding') as idCoding then {
-  //       pid.PID_3_5 as idCode -> idCoding.code = translate(idCode, 'http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70203-to-v2-0203', 'code');
-  //     };
-  //   };
-  // };
+  // Geburtsdatum (PID-7)
+  pid.PID_7 as dob -> patient.birthDate = dob "PID_7";
 
-  // // ===== HumanName =====
-  // patient.name -> create('HumanName') as nm then {
-  //   pid.PID_5_1_1 -> nm.family;
-  //   pid.PID_5_2 -> nm.given;
-  //   pid.PID_5_3 -> nm.given;
-  //   pid.PID_5_5 -> nm.prefix;
-  //   pid.PID_5_4 -> nm.suffix;
-  //   pid.PID_5_6 -> nm.suffix;
-  //   pid.PID_5_7 as nmCode -> nm.use = translate(nmCode, 'http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70200-to-name-use', 'code');
-  // };
-
-  // // ===== Geburtsdatum =====
-  // pid.PID_7 -> patient.birthDate;
-
-  // // ===== Geschlecht =====
-  // pid.PID_8_1 as gCode -> patient.gender = translate(gCode, 'http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70001-to-administrative-gender', 'code');
+  // Geschlecht (PID-8.1) → ConceptMap muss erreichbar sein
+  pid.PID_8_1 as sex -> patient.gender = translate(
+    sex,
+    'http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70001-to-administrative-gender',
+    'code'
+  ) "PID_8_1";
 }

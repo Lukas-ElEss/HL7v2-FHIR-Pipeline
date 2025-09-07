@@ -49,11 +49,6 @@ class InfoWashSourceData:
             "PIDSegment": {
                 "PID_3_1": self.PID_3_1,
                 "PID_3_4_1": self.PID_3_4_1,
-                "PID_3_4_2": self.PID_3_4_2,
-                "PID_3_4_3": self.PID_3_4_3,
-                "PID_3_6_1": self.PID_3_6_1,
-                "PID_3_6_2": self.PID_3_6_2,
-                "PID_3_6_3": self.PID_3_6_3,
                 "PID_5_1_1": self.PID_5_1_1,
                 "PID_5_2": self.PID_5_2,
                 "PID_7": self.PID_7,
@@ -87,10 +82,12 @@ class InfoWashSourceData:
                 "ORC_9": self.ORC_9
             },
             
-            # Context fields
-            "CTX_DEVICE_id": self.DEVICE_id,
-            "CTX_RAW_message": self.RAW_message,
-            "CTX_role": "source"
+            # CTX segment - flat structure (matching InfoWashSource.json format)
+            "CTXSegment": {
+                "CTX_DEVICE_id": self.DEVICE_id,
+                "CTX_RAW_message": self.RAW_message,
+                "CTX_role": "source"
+            }
         }
         
         return fhir_data

@@ -56,14 +56,7 @@ Content-Type: application/fhir+json
 
 < ./source/InfoWashSource.json
 
-### Upload the StructureMap
 
-### Convert Textual representation of a FHIR Mapping Language to StructureMap resource
-POST {{host}}/StructureMap HTTP/1.1
-Accept: application/fhir+json
-Content-Type: text/fhir-mapping
-
-< ./StructureMap/InfoWashSource-to-Bundle.map
 
 ### Convert Textual representation of a FHIR Mapping Language to StructureMap resource
 POST {{host}}/StructureMap HTTP/1.1
@@ -111,8 +104,17 @@ Content-Type: text/fhir-mapping
 ### TODO wold need to to the other maps too, but just be fine for the first ones
 
 
+### Upload the StructureMap
+
+### Convert Textual representation of a FHIR Mapping Language to StructureMap resource
+POST {{host}}/StructureMap HTTP/1.1
+Accept: application/fhir+json
+Content-Type: text/fhir-mapping
+
+< ./StructureMap/InfoWashSource-to-Bundle.map
+
 ### transform the provided source file 
-POST {{host}}/StructureMap/$transform?source=http://hsrt-kkrt.org/fhir/StructureMap/InfoWashSource-to-Bundle HTTP/1.1
+POST {{host}}/StructureMap/$transform?source=http://hsrt-kkrt.org/fhir/StructureMap/InfoWashSource-to-Bundle2 HTTP/1.1
 Accept: application/fhir+json
 Content-Type: application/fhir+json
 

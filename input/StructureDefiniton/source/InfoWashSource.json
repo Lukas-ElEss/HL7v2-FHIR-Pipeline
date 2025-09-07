@@ -278,8 +278,20 @@
         ]
       },
       {
-        "id": "InfoWashSource.CTX_DEVICE_id",
-        "path": "InfoWashSource.CTX_DEVICE_id",
+        "id": "InfoWashSource.CTXSegment",
+        "path": "InfoWashSource.CTXSegment",
+        "short": "CTXSegment Segment",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ]
+      },
+      {
+        "id": "InfoWashSource.CTXSegment.CTX_DEVICE_id",
+        "path": "InfoWashSource.CTXSegment.CTX_DEVICE_id",
         "short": "CTX_DEVICE_id",
         "min": 0,
         "max": "1",
@@ -290,8 +302,8 @@
         ]
       },
       {
-        "id": "InfoWashSource.CTX_RAW_message",
-        "path": "InfoWashSource.CTX_RAW_message",
+        "id": "InfoWashSource.CTXSegment.CTX_RAW_message",
+        "path": "InfoWashSource.CTXSegment.CTX_RAW_message",
         "short": "CTX_RAW_message",
         "min": 0,
         "max": "1",
@@ -302,8 +314,8 @@
         ]
       },
       {
-        "id": "InfoWashSource.CTX_role",
-        "path": "InfoWashSource.CTX_role",
+        "id": "InfoWashSource.CTXSegment.CTX_role",
+        "path": "InfoWashSource.CTXSegment.CTX_role",
         "short": "CTX_role",
         "min": 0,
         "max": "1",
@@ -582,8 +594,20 @@
         ]
       },
       {
-        "id": "InfoWashSource.CTX_DEVICE_id",
-        "path": "InfoWashSource.CTX_DEVICE_id",
+        "id": "InfoWashSource.CTXSegment",
+        "path": "InfoWashSource.CTXSegment",
+        "short": "CTXSegment Segment",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ]
+      },
+      {
+        "id": "InfoWashSource.CTXSegment.CTX_DEVICE_id",
+        "path": "InfoWashSource.CTXSegment.CTX_DEVICE_id",
         "short": "CTX_DEVICE_id",
         "min": 0,
         "max": "1",
@@ -594,8 +618,8 @@
         ]
       },
       {
-        "id": "InfoWashSource.CTX_RAW_message",
-        "path": "InfoWashSource.CTX_RAW_message",
+        "id": "InfoWashSource.CTXSegment.CTX_RAW_message",
+        "path": "InfoWashSource.CTXSegment.CTX_RAW_message",
         "short": "CTX_RAW_message",
         "min": 0,
         "max": "1",
@@ -606,8 +630,8 @@
         ]
       },
       {
-        "id": "InfoWashSource.CTX_role",
-        "path": "InfoWashSource.CTX_role",
+        "id": "InfoWashSource.CTXSegment.CTX_role",
+        "path": "InfoWashSource.CTXSegment.CTX_role",
         "short": "CTX_role",
         "min": 0,
         "max": "1",
