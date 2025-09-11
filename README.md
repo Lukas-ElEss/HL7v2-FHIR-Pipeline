@@ -1,43 +1,103 @@
-# HL7v2 to FHIR Pipeline
+# HL7 v2 to FHIR R4 Pipeline
 
-Eine umfassende Pipeline zur Transformation von HL7 v2 Nachrichten in FHIR R4 Ressourcen mit Unterstützung für verschiedene HL7 Segmente und Datentypen.
+Eine vollständige Pipeline zur Transformation von HL7 v2 OMG_O19 Nachrichten in FHIR R4 Ressourcen mit automatischer Bundle-Erstellung, Deduplication und InfoWash-Integration.
 
 ## Übersicht
 
-Dieses Projekt implementiert eine robuste Pipeline zur Konvertierung von HL7 v2 Nachrichten in FHIR R4 Ressourcen. Es unterstützt eine breite Palette von HL7 Segmenten, Datentypen und Nachrichtentypen und bietet eine flexible Konfiguration für verschiedene FHIR-Server.
+Diese Pipeline implementiert eine komplette Transformation von HL7 v2 OMG_O19 Nachrichten über eine spezialisierte InfoWashSource-Struktur zu FHIR R4 Transaction Bundles. Sie unterstützt kontinuierliche Verarbeitung, automatische Deduplication und spezialisierte FHIR-Suchen für InfoWash.
 
-## Features
+## Architektur
 
-### HL7 v2 Unterstützung
-- **Nachrichtentypen**: ADT, MDM, OML, ORM, ORU, SIU, VXU
-- **Segmente**: MSH, PID, DG1, OBR, ORC, TQ1, PV1, NK1, NTE, PR1, SCH, SFT, SPM
-- **Datentypen**: CE, CF, CNE, CNN, CQ, CWE, CX, DLN, DR, DTM, ED, EI, FN, FT, HD, ID, IS, MSG, NA, NDL, NM, NR, OG, PL, PLN, PT, RI, RP, RPT, SAD, SN, SPS, ST, TQ, TS, XAD, XCN, XON, XPN, XTN
+```
+HL7 v2 OMG_O19 → InfoWashSource → FHIR Bundle → Deduplication → FHIR Server
+     ↓              ↓               ↓             ↓              ↓
+  Parser      Structure Map    Transaction    Duplicate      Linux for Health
+             Transformation      Bundle        Detection         FHIR Server
+```
 
-### FHIR R4 Transformation
-- **Ressourcen**: Patient, Condition, ServiceRequest, Encounter, Device, Organization, Practitioner, Observation, DiagnosticReport, MedicationRequest, Immunization, DocumentReference, Provenance
-- **Strukturdefinitionen**: Custom InfoWashSource für HL7 v2 Mapping
-- **Concept Maps**: Umfassende Mapping-Regeln für HL7 v2 zu FHIR R4
+## Hauptkomponenten
 
-### Pipeline-Komponenten
-- **HL7 Parser**: Robuste Parsing-Logik für HL7 v2 Nachrichten
-- **FHIR Client**: Vollständige FHIR R4 Client-Implementierung
-- **Matchbox Integration**: Unterstützung für Matchbox FHIR-Server
-- **Device Registration**: Automatische Device-Ressourcen-Registrierung
-- **Configuration Management**: Zentrale Konfiguration für verschiedene Umgebungen
+### 1. **HL7 Parser** (`hl7_parser.py`)
+- **InfoWashSourceData**: Dataclass mit allen HL7 v2 Segmentfeldern
+- **HL7Parser**: Extrahiert PID, DG1, OBR, TQ1, ORC, PV1 Segmente
+- **Unterstützte Felder**: 50+ spezifische HL7 v2 Felder nach InfoWashSource-Struktur
+
+### 2. **FHIR Mapper** (`fhir_mapper.py`)
+- **FHIRMapper**: Orchestriert komplette Transformation
+- **Matchbox Integration**: Verwendet Matchbox für Structure Map Transformation
+- **Pipeline**: HL7 → InfoWashSource → FHIR Bundle → Deduplication → Server
+
+### 3. **FHIR Client** (`fhir_client.py`)
+- **FHIRClient**: Linux for Health FHIR Server Integration
+- **FHIRResponse**: Strukturierte Response-Objekte
+- **Transaction Support**: Bundle-Übertragung mit korrekten Endpoints
+
+### 4. **Deduplication Engine** (`fhir_deduplicator.py`)
+- **FHIRDeduplicationClient**: Intelligente Duplikat-Erkennung
+- **Provenance-basiert**: Sucht nach existierenden Provenance-Ressourcen
+- **Resource-Merging**: Kombiniert Duplikate intelligent
+
+### 5. **Pipeline Server** (`pipeline_server.py`)
+- **PipelineServer**: Kontinuierliche HL7-Nachrichten-Verarbeitung
+- **MLLP/TCP Server**: Port 2100 für Orchestra-Integration
+- **Async Processing**: Asynchrone Nachrichtenverarbeitung
+- **Graceful Shutdown**: Signal-Handling für sauberes Herunterfahren
+
+### 6. **Matchbox Client** (`matchbox_client.py`)
+- **MatchboxClient**: Integration mit Matchbox FHIR Server
+- **File Upload**: Upload von StructureDefinitions, StructureMaps, IG
+- **Transformation**: FHIR Structure Map Ausführung
+
+### 7. **HL7 Simulator** (`hl7_simulator.py`)
+- **OMG_O19_Generator**: Generiert realistische HL7 v2 Test-Nachrichten
+- **Dummy Data**: Konfigurierbare Test-Daten
+
+### 8. **Test & Validation Tools**
+- **testapp.py**: Komplette Pipeline-Tests mit MLLP-Integration
+- **check_bundles.py**: Bundle-Validierung und Server-Überprüfung
+- **infowash_search.py**: Spezialisierte FHIR-Suche für InfoWash
+- **delete_all_resources.py**: Server-Bereinigung
+
+### 9. **Device Management** (`register_device.py`)
+- **Dual Registration**: Registriert Device auf Linux for Health und Matchbox
+- **Common Identifier**: Gleiche Device-ID auf beiden Servern
+- **Health Checks**: Verbindungstests vor Registrierung
+
+### 10. **File Management** (`upload_files.py`)
+- **Batch Upload**: Upload aller Projekt-Dateien zu Matchbox
+- **Progress Tracking**: Upload-Fortschritt und Fehlerbehandlung
 
 ## Projektstruktur
 
 ```
 v2-to-fhir-pipeline/
+├── scripts/                     # Python-Pipeline-Skripte
+│   ├── fhir_mapper.py          # Hauptpipeline-Orchestrator
+│   ├── hl7_parser.py           # HL7 v2 Parser mit InfoWashSourceData
+│   ├── fhir_client.py          # FHIR Server Client
+│   ├── fhir_deduplicator.py    # Deduplication Engine
+│   ├── pipeline_server.py      # MLLP/TCP Server (Port 2100)
+│   ├── matchbox_client.py      # Matchbox Server Integration
+│   ├── hl7_simulator.py        # OMG_O19 Message Generator
+│   ├── testapp.py              # Pipeline Test mit MLLP
+│   ├── check_bundles.py        # Bundle-Validierung
+│   ├── infowash_search.py      # InfoWash FHIR-Suche
+│   ├── register_device.py      # Dual Device Registration
+│   ├── upload_files.py         # File Upload Utility
+│   ├── delete_all_resources.py # Server-Bereinigung
+│   └── config.py               # Konfigurationsmanagement
 ├── input/
-│   ├── StructureDefinition/     # FHIR Strukturdefinitionen
-│   ├── StructureMap/            # HL7 zu FHIR Mapping-Regeln
-│   ├── FML/                     # FML Mapping-Dateien
-│   └── v2-to-fhir-IG/          # FHIR Implementation Guide
-├── scripts/                     # Python-Skripte für die Pipeline
-├── config/                      # Konfigurationsdateien
-├── Archive/                     # Archivierte Ressourcen und Concept Maps
-└── #save/                       # Gespeicherte Mapping-Dateien
+│   ├── StructureMap/
+│   │   └── InfoWashSource-to-Bundle.map  # FHIR Structure Map
+│   ├── StructureDefiniton/source/
+│   │   └── InfoWashSource.json          # InfoWashSource Strukturdefinition
+│   └── v2-to-fhir-IG/                   # FHIR Implementation Guide
+│       ├── full-ig.zip
+│       └── package.r4.tgz
+└── config/
+    ├── fhir_config.yaml        # FHIR Server Konfiguration
+    └── application.yaml        # Matchbox Server Konfiguration
+
 ```
 
 ## Installation
@@ -45,175 +105,230 @@ v2-to-fhir-pipeline/
 ### Voraussetzungen
 - Python 3.8+
 - Java 8+ (für Matchbox Engine)
-- Zugriff auf einen FHIR R4 Server
+- Linux for Health FHIR Server (Port 9443)
+- Matchbox FHIR Server (Port 8080)
 
-### Abhängigkeiten installieren
+### Setup
 ```bash
+# Repository klonen
+git clone <repository-url>
+cd v2-to-fhir-pipeline
+
+# Dependencies installieren
 cd scripts
 pip install -r requirements.txt
+
+# Device auf beiden Servern registrieren
+python register_device.py "v2-to-fhir-pipeline"
+
+# Dateien zu Matchbox hochladen
+python upload_files.py
 ```
 
 ## Konfiguration
 
-### FHIR Server konfigurieren
-Bearbeiten Sie `config/fhir_config.yaml` mit Ihren Server-Details:
-
+### FHIR Server (`config/fhir_config.yaml`)
 ```yaml
 linuxforhealth:
   fhir:
-    server_url: "http://your-fhir-server:port/fhir"
+    server_url: "https://localhost:9443/fhir-server/api/v4"
     credentials:
-      username: "your-username"
-      password: "your-password"
+      username: "fhiruser"
+      password: "change-password"
+    ssl_verify: false
     timeout: 30
 
 matchbox:
   server_url: "http://localhost:8080/matchboxv3/fhir"
   port: 8080
-```
 
-### Umgebungsspezifische Konfiguration
-- `config/fhir_config-dev.yaml` - Entwicklungsumgebung
-- `config/fhir_config-prod.yaml` - Produktionsumgebung
+device:
+  default_name: "v2-to-fhir-pipeline"
+  resource_type: "Device"
+  name_type: "model-name"
+
+output:
+  save_device_url: true
+  device_url_file: "device_url.txt"
+  log_level: "DEBUG"
+```
 
 ## Verwendung
 
-### 1. Device registrieren
+### 1. Vollständige Pipeline testen
 ```bash
 cd scripts
-python register_device.py "v2-to-fhir-pipeline"
+python testapp.py
 ```
 
-### 2. HL7 Nachricht parsen
+### 2. Kontinuierlicher MLLP-Server
+```bash
+cd scripts
+python pipeline_server.py
+# Server läuft auf Port 2100
+```
+
+### 3. Bundle-Validierung
+```bash
+cd scripts
+python check_bundles.py
+```
+
+### 4. InfoWash-Suche
+```bash
+cd scripts
+python infowash_search.py
+```
+
+### 5. HL7-Nachrichten generieren
+```bash
+cd scripts
+python hl7_simulator.py
+```
+
+### 6. Programmatische Verwendung
 ```python
-from hl7_parser import parse_hl7_string
-from config import get_config
+from fhir_mapper import FHIRMapper
 
-# HL7 Nachricht parsen
-data = parse_hl7_string(hl7_message)
+mapper = FHIRMapper()
+result = mapper.complete_transformation_pipeline(hl7_message)
 
-# Device URL setzen
-config = get_config()
-data.set_device_url("http://server/fhir/Device/device-id")
-
-# Zu JSON konvertieren
-json_output = data.to_json()
+if result["success"]:
+    print(f"Bundle ID: {result['bundle_id']}")
+    print(f"Resources: {result['resource_count']}")
 ```
 
-### 3. FHIR Ressourcen erstellen
-```python
-from fhir_client import FHIRClient
+## InfoWash FHIR-Suche
 
-client = FHIRClient()
-response = client.create_resource("Patient", patient_data)
+Die Pipeline unterstützt spezialisierte FHIR-Suchen für InfoWash-Anwendungen:
 
-if response.success:
-    print(f"Patient erstellt: {response.resource_id}")
-else:
-    print(f"Fehler: {response.error_message}")
+```bash
+# Suche nach Provenances mit ServiceRequest an einem bestimmten Datum
+GET /Provenance?target:ServiceRequest.occurrence=2025-09-24&_include=Provenance:target&_count=200
+
+# Suche mit Datumsbereich
+GET /Provenance?target:ServiceRequest.occurrence=ge2025-09-24&target:ServiceRequest.occurrence=lt2025-09-25&_include=Provenance:target&_count=200
 ```
+
+## Transformation Pipeline
+
+### 1. HL7 v2 Parsing
+- **Input**: Raw HL7 v2 OMG_O19 Nachricht
+- **Output**: InfoWashSource JSON-Struktur
+- **Parser**: `hl7_parser.py` mit `InfoWashSourceData`
+
+### 2. FHIR Transformation
+- **Input**: InfoWashSource JSON
+- **Output**: FHIR Transaction Bundle
+- **Mapper**: `fhir_mapper.py` mit Matchbox Structure Map
+
+### 3. Deduplication
+- **Input**: FHIR Bundle
+- **Output**: Dedupliziertes Bundle
+- **Engine**: `fhir_deduplicator.py` mit Provenance-basierter Suche
+
+### 4. Server-Integration
+- **Input**: FHIR Bundle
+- **Output**: Server-Response mit Ressourcen-IDs
+- **Client**: `fhir_client.py` mit Transaction-Support
+
+## InfoWashSource Struktur
+
+Die Pipeline verwendet eine spezialisierte InfoWashSource-Struktur mit 50+ HL7 v2 Feldern:
+
+### PID-Segment Felder
+- `PID_3_1`: Patient Identifier
+- `PID_5_1_1`: Family Name
+- `PID_5_2`: Given Name
+- `PID_7`: Birth Date
+- `PID_8_1`: Administrative Sex
+- `PID_3_4_*`: Assigning Authority (HD components)
+- `PID_3_6_*`: Assigning Facility (HD components)
+
+### DG1-Segment Felder
+- `DG1_3_1`: Diagnosis Code
+- `DG1_3_2`: Diagnosis Text
+- `DG1_3_3`: Diagnosis Coding System
+
+### OBR-Segment Felder
+- `OBR_4_1`: Service Code
+- `OBR_4_2`: Service Text
+- `OBR_4_3`: Service Coding System
+
+### TQ1-Segment Felder
+- `TQ1_7`: Start Date/Time
+- `TQ1_8`: End Date/Time
+
+### ORC-Segment Felder
+- `ORC_1`: Order Control
+- `ORC_5`: Order Status
+- `ORC_9`: Order Date/Time
+
+### PV1-Segment Felder
+- `PV1_2_*`: Patient Class
+- `PV1_4_*`: Assigned Patient Location
+- `PV1_10_*`: Admitting Doctor
 
 ## Mapping-Regeln
 
-### PID Segment → Patient
-- `PID.3` → Patient.identifier
-- `PID.5` → Patient.name
-- `PID.7` → Patient.birthDate
-- `PID.8` → Patient.gender
+### InfoWashSource → FHIR Bundle
+- **Patient**: Aus PID-Segment mit Identifikatoren
+- **Condition**: Aus DG1-Segment mit Diagnose-Codes
+- **ServiceRequest**: Aus OBR-Segment mit TQ1-Timing
+- **Encounter**: Aus PV1-Segment mit Aufnahme-Informationen
+- **Provenance**: Vollständige Nachverfolgung mit Original-HL7
 
-### DG1 Segment → Condition
-- `DG1.3` → Condition.code
-- `DG1.4` → Condition.onsetDateTime
-- `DG1.6` → Condition.severity
+### Timing-Mapping
+- **TQ1.7/TQ1.8** → ServiceRequest.occurrencePeriod
+- **ORC.9** → ServiceRequest.authoredOn
+- **PV1.44/PV1.45** → Encounter.period
 
-### OBR Segment → ServiceRequest
-- `OBR.4` → ServiceRequest.code
-- `OBR.7` → ServiceRequest.quantity
-- `OBR.16` → ServiceRequest.requester
+## Testing
+
+```bash
+# Vollständige Pipeline mit MLLP
+python testapp.py
+
+# Bundle-Validierung
+python check_bundles.py
+
+# InfoWash-Suche
+python infowash_search.py
+
+# HL7-Simulator
+python hl7_simulator.py
+
+# Server bereinigen
+python delete_all_resources.py
+```
 
 ## FHIR Server
 
 ### Unterstützte Server
-- **Linux for Health FHIR**: Standard FHIR R4 Server
-- **Matchbox**: FHIR R4 Server mit HL7 v2 Unterstützung
-- **HAPI FHIR**: Open Source FHIR Server
+- **Linux for Health FHIR**: `https://localhost:9443/fhir-server/api/v4`
+- **Matchbox**: `http://localhost:8080/matchboxv3/fhir`
 
-### Server-Konfiguration
-```yaml
-# Linux for Health
-server_url: "http://10.0.2.2:5555/fhir"
+### Authentifizierung
+- **Username**: `fhiruser`
+- **Password**: `change-password`
+- **SSL**: Deaktiviert für localhost
 
-# Matchbox
-server_url: "http://localhost:8080/matchboxv3/fhir"
-```
-
-## Testing
-
-### FHIR Client testen
-```bash
-cd scripts
-python fhir_client.py
-```
-
-### Konfiguration testen
-```bash
-cd scripts
-python config.py
-```
-
-### Device-Registrierung testen
-```bash
-cd scripts
-python register_device.py "test-device"
-```
+### MLLP Server
+- **Port**: 2100
+- **Protokoll**: MLLP/TCP
+- **Integration**: Orchestra-kompatibel
 
 ## Entwicklung
 
-### Projekt aufsetzen
-```bash
-# Repository klonen
-git clone https://github.com/Lukas-ElEss/HL7v2-FHIR-Pipeline.git
-cd HL7v2-FHIR-Pipeline
+### Neue Mapping-Regeln
+1. Structure Map in `input/StructureMap/InfoWashSource-to-Bundle.map` erweitern
+2. InfoWashSource-Struktur in `input/StructureDefiniton/source/InfoWashSource.json` anpassen
+3. Parser-Felder in `hl7_parser.py` hinzufügen
+4. Tests in `testapp.py` erweitern
 
-# Dependencies installieren
-pip install -r scripts/requirements.txt
+### Debugging
+- Logs: `DEBUG` Level in `config/fhir_config.yaml`
+- Bundle-Validierung: `check_bundles.py`
+- Server-Status: `infowash_search.py`
+- MLLP-Tests: `testapp.py`
 
-# Konfiguration anpassen
-cp config/fhir_config.yaml config/fhir_config-dev.yaml
-# Bearbeiten Sie die dev-Konfiguration
-```
-
-### Neue Mapping-Regeln hinzufügen
-1. Strukturdefinition in `input/StructureDefinition/` erstellen
-2. Mapping-Regeln in `input/StructureMap/` definieren
-3. Concept Maps in `Archive/ConceptMaps/resources/` hinzufügen
-4. Tests schreiben und ausführen
-
-## Lizenz
-
-Dieses Projekt ist unter der MIT-Lizenz lizenziert.
-
-## Beitragen
-
-1. Fork des Repositories
-2. Feature-Branch erstellen (`git checkout -b feature/AmazingFeature`)
-3. Änderungen committen (`git commit -m 'Add some AmazingFeature'`)
-4. Branch pushen (`git push origin feature/AmazingFeature`)
-5. Pull Request öffnen
-
-## Support
-
-Bei Fragen oder Problemen:
-- GitHub Issues öffnen
-- Dokumentation in `scripts/README.md` konsultieren
-- FHIR Server-Logs überprüfen
-
-## Changelog
-
-### Version 1.0.0
-- Initiale Implementierung der HL7 v2 zu FHIR R4 Pipeline
-- Unterstützung für alle gängigen HL7 Segmente
-- Umfassende Concept Maps und Mapping-Regeln
-- Robuste FHIR Client-Implementierung
-- Automatische Device-Registrierung
-- Zentrale Konfigurationsverwaltung

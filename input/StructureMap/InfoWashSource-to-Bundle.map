@@ -16,73 +16,103 @@ group IWS2Bundle(source src : InfoWashSource, target bundle : Bundle) {
   src -> bundle.id = uuid() "bundleid";
   src -> bundle.type = 'transaction' "bundletype";
 
-  // Sequenzieller Aufruf: PID → Patient → DG1 → Condition → ServiceRequest → Provenance
+  // Sequenzieller Aufruf: PID -> Patient -> DG1 -> Condition -> ServiceRequest -> Provenance
   src then PIDtoPatient(src, bundle) "patient";
 }
 
 // ========================== Sequenzielle Gruppen ==========================
 
-// ----- PID → Patient (Startet die Sequenz) -----
+// ----- PID -> Patient (Startet die Sequenz) -----
 group PIDtoPatient(source src : InfoWashSource, target bundle : Bundle) {
   // Patient erstellen
   src.PIDSegment as pid
     -> bundle.entry as ePat,
        ePat.resource = create('Patient') as patient,
        patient.id = uuid() as patUuid,
-       ePat.fullUrl = append('urn:uuid:', patUuid) as patFull
+       ePat.fullUrl = append('urn:uuid:', patUuid) as patFull,
+       ePat.request as patReq,
+       patReq.method = 'POST' as patMethod,
+       patReq.url = 'Patient' as patUrl
     then { 
       pid then PIDtoPatientFields(pid, patient) "patient-fields";
-      // Nächste Gruppe aufrufen: DG1 → Condition
+      // Nächste Gruppe aufrufen: DG1 -> Condition
       src then DG1toCondition(src, bundle, patient) "condition";
     } "patient-entry";
 }
 
-// ----- DG1 → Condition (Nach Patient) -----
+// ----- DG1 -> Condition (Nach Patient) -----
 group DG1toCondition(source src : InfoWashSource, target bundle : Bundle, target patient : Patient) {
   // Condition erstellen
   src.DG1Segment as dg1
     -> bundle.entry as eCond,
        eCond.resource = create('Condition') as condition,
        condition.id = uuid() as condUuid,
-       eCond.fullUrl = append('urn:uuid:', condUuid) as condFull
+       eCond.fullUrl = append('urn:uuid:', condUuid) as condFull,
+       eCond.request as condReq,
+       condReq.method = 'POST' as condMethod,
+       condReq.url = 'Condition' as condUrl
     then { 
       dg1 then DG1toConditionFields(dg1, condition, patient) "condition-fields";
       // Nächste Gruppe aufrufen: ServiceRequest
-      src then ServiceRequestProcessing(src, bundle, patient, condition) "servicerequest";
+      src then EncounterProcessing(src, bundle, patient, condition) "servicerequest";
     } "condition-entry";
 }
 
-// ----- ServiceRequest Processing (Nach Condition) -----
-group ServiceRequestProcessing(source src : InfoWashSource, target bundle : Bundle, target patient : Patient, target condition : Condition) {
+// ----- Encounter Processing (Nach Condition) -----
+group EncounterProcessing(source src : InfoWashSource, target bundle : Bundle, target patient : Patient, target condition : Condition) {
+  // Encounter erstellen
+  src.PV1Segment as pv1
+    -> bundle.entry as eEnc,
+       eEnc.resource = create('Encounter') as encounter,
+       encounter.id = uuid() as encUuid,
+       eEnc.fullUrl = append('urn:uuid:', encUuid) as encFull,
+       eEnc.request as encReq,
+       encReq.method = 'POST' as encMethod,
+       encReq.url = 'Encounter' as encUrl
+  then {
+    pv1 then PV1toEncounterFields(pv1, encounter, patient, condition) "encounter-fields";
+    // Nächste Gruppe aufrufen: ServiceRequest
+    src then ServiceRequestProcessing(src, bundle, patient, condition, encounter) "servicerequest";
+  } "encounter-entry";
+}
+
+// ----- ServiceRequest Processing (Nach Encounter) -----
+group ServiceRequestProcessing(source src : InfoWashSource, target bundle : Bundle, target patient : Patient, target condition : Condition, target encounter : Encounter) {
   // ServiceRequest erstellen
   src -> bundle.entry as eSR,
        eSR.resource = create('ServiceRequest') as sr,
        sr.id = uuid() as srUuid,
-       eSR.fullUrl = append('urn:uuid:', srUuid) as srFull
+       eSR.fullUrl = append('urn:uuid:', srUuid) as srFull,
+       eSR.request as srReq,
+       srReq.method = 'POST' as srMethod,
+       srReq.url = 'ServiceRequest' as srUrl
   then {
     // ServiceRequest befüllen
     src then ServiceRequestFields(src, sr, patient, condition) "servicerequest-fields";
     // Nächste Gruppe aufrufen: Provenance
-    src then ProvenanceProcessing(src, bundle, patient, condition, sr) "provenance";
+    src then ProvenanceProcessing(src, bundle, patient, condition, encounter, sr) "provenance";
   } "servicerequest-entry";
 }
 
 // ----- Provenance Processing (Letzte Gruppe) -----
-group ProvenanceProcessing(source src : InfoWashSource, target bundle : Bundle, target patient : Patient, target condition : Condition, target sr : ServiceRequest) {
+group ProvenanceProcessing(source src : InfoWashSource, target bundle : Bundle, target patient : Patient, target condition : Condition, target encounter : Encounter, target sr : ServiceRequest) {
   // Provenance erstellen
   src.CTXSegment as ctx
     -> bundle.entry as eProv,
        eProv.resource = create('Provenance') as prov,
        prov.id = uuid() as provUuid,
-       eProv.fullUrl = append('urn:uuid:', provUuid)
+       eProv.fullUrl = append('urn:uuid:', provUuid),
+       eProv.request as provReq,
+       provReq.method = 'POST' as provMethod,
+       provReq.url = 'Provenance' as provUrl
   then {
-    src then ProvenanceFields(src, prov, patient, condition, sr) "provenance-fields";
+    src then ProvenanceFields(src, prov, patient, condition, encounter, sr) "provenance-fields";
   } "provenance-entry";
 }
 
 // ========================== Feld-Befüllungs-Gruppen ==========================
 
-// ----- PID → Patient Fields -----
+// ----- PID -> Patient Fields -----
 group PIDtoPatientFields(source pid : PIDSegment, target patient : Patient) {
   // Identifier (PID-3)
   pid -> patient.identifier = create('Identifier') as id then {
@@ -114,7 +144,7 @@ group PIDtoPatientFields(source pid : PIDSegment, target patient : Patient) {
     -> patient.gender = translate(sex, 'http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70001-to-administrative-gender', 'code') "PID_8_1";
 }
 
-// ----- DG1 → Condition Fields -----
+// ----- DG1 -> Condition Fields -----
 group DG1toConditionFields(source dg1 : DG1Segment, target condition : Condition, target patient : Patient) {
   // Code (DG1-3)
   dg1 -> condition.code as cc then {
@@ -132,6 +162,74 @@ group DG1toConditionFields(source dg1 : DG1Segment, target condition : Condition
         ref.reference = ('urn:uuid:' + %patient.id) "subject";
 }
 
+
+group PV1toEncounterFields(source pv1 : PV1Segment, target encounter : Encounter, target patient : Patient, target condition : Condition) {
+  // Subject (Patient)
+  pv1 -> encounter.subject = create('Reference') as ref,
+        ref.reference = ('urn:uuid:' + %patient.id) "subject";
+
+  // Diagnosis (Condition)
+  pv1 -> encounter.diagnosis = create('BackboneElement') as diag then {
+    pv1 -> diag.condition = create('Reference') as refCond,
+           refCond.reference = ('urn:uuid:' + %condition.id) "diagnosis";
+  } "diagnosis";
+
+  // class
+  pv1 -> encounter.class as cl then {
+    pv1.PV1_2_1 as c1 -> cl.code = translate(c1, 'http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70004-to-v3-actcode', 'code') "PV1_2_1";
+    pv1.PV1_2_2 as c2 -> cl.system = c2 "PV1_2_2";
+    pv1.PV1_2_3 as c3 -> cl.display = c3 "PV1_2_3";
+    pv1.PV1_2_7 as c7 -> cl.version = c7 "PV1_2_7";
+  } "class";
+  
+
+  // status
+  pv1.PV1_2_1 as s1 -> encounter.status = translate(s1, 'http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70004-to-encounter-status', 'code') "status";
+
+  // type
+  pv1 -> encounter.type = create('CodeableConcept') as type then {
+    pv1.PV1_4_1 as c -> type.coding = create('Coding') as cd then {
+      pv1 -> cd.code = translate(c, 'http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70007-to-v2-0007', 'code') "PV1_4_1";
+      pv1.PV1_4_2 as d -> cd.display = d "PV1_4_2";
+      pv1.PV1_4_3 as s -> cd.system = s "PV1_4_3";
+      pv1.PV1_4_7 as v -> cd.version = v "PV1_4_7";
+    };
+    pv1.PV1_4_9 as txt -> type.text = txt "PV1_4_9";
+  } "type";
+
+  // serviceType
+  pv1 -> encounter.serviceType = create('CodeableConcept') as st then {
+    pv1.PV1_10_1 as c -> st.coding = create('Coding') as cd then {
+      pv1 -> cd.code = translate(c, 'http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70069-to-service-type', 'code') "PV1_10_1";
+      pv1.PV1_10_2 as d -> cd.display = d "PV1_10_2";
+      pv1.PV1_10_3 as s -> cd.system = s "PV1_10_3";
+      pv1.PV1_10_7 as v -> cd.version = v "PV1_10_7";
+    };
+    pv1.PV1_10_9 as txt -> st.text = txt "PV1_10_9";
+  } "serviceType";
+
+  // identifier
+  pv1 -> encounter.identifier = create('Identifier') as id then {
+    pv1.PV1_19_1 as vn -> id.value = vn "PV1_19_1";
+    pv1.PV1_19_4_1 as sys -> id.system = sys "PV1_19_4_1";
+    pv1.PV1_19_5 as tcode -> id.type = create('CodeableConcept') as type then {
+      pv1 -> type.coding = create('Coding') as cd then {
+        pv1 -> cd.code = translate(tcode, 'http://hl7.org/fhir/uv/v2mappings/ConceptMap/table-hl70203-to-v2-0203', 'code') "translate";
+        pv1 -> cd.system = 'http://terminology.hl7.org/CodeSystem/v2-0203' "CodeSystem";
+      } "coding";
+      pv1 -> type.text = 'visit number' "visitnumber";
+    } "CodeableConcept";
+  } "identifier";
+
+  // period
+  pv1 -> encounter.period = create('Period') as per then {
+    pv1.PV1_44 as start -> per.start = start "PV1_44";
+    pv1.PV1_45 as end -> per.end = end "PV1_45";
+  } "period";
+}
+
+
+
 // ----- ServiceRequest Fields -----
 group ServiceRequestFields(source src : InfoWashSource, target sr : ServiceRequest, target patient : Patient, target condition : Condition) {
   // Subject = Patient
@@ -142,6 +240,10 @@ group ServiceRequestFields(source src : InfoWashSource, target sr : ServiceReque
   src -> sr.reasonReference = create('Reference') as refReason,
        refReason.reference = ('urn:uuid:' + %condition.id) "refReason";
 
+  // Encounter = Encounter
+  src -> sr.encounter = create('Reference') as refEnc,
+      refEnc.reference = ('urn:uuid:' + %encounter.id) "refEncounter";
+
   // Untergruppen laufen nur, wenn das jeweilige Segment existiert
   src.ORCSegment as orc then ORCtoServiceRequest(orc, sr) "orc";
   src.OBRSegment as obr then OBRtoServiceRequest(obr, sr) "obr";
@@ -149,7 +251,7 @@ group ServiceRequestFields(source src : InfoWashSource, target sr : ServiceReque
 }
 
 // ----- Provenance Fields -----
-group ProvenanceFields(source src : InfoWashSource, target prov : Provenance, target patient : Patient, target condition : Condition, target sr : ServiceRequest) {
+group ProvenanceFields(source src : InfoWashSource, target prov : Provenance, target patient : Patient, target condition : Condition, target encounter : Encounter, target sr : ServiceRequest) {
   // Target = All resources (Patient, Condition, ServiceRequest)
   src.CTXSegment as ctx -> prov.target = create('Reference') as ref1,
         ref1.reference = ('urn:uuid:' + %patient.id) "targetPatient";
@@ -159,6 +261,10 @@ group ProvenanceFields(source src : InfoWashSource, target prov : Provenance, ta
   
   src.CTXSegment as ctx -> prov.target = create('Reference') as ref3,
         ref3.reference = ('urn:uuid:' + %sr.id) "targetServiceRequest";
+
+  src.CTXSegment as ctx -> prov.target = create('Reference') as ref4,
+      ref4.reference = ('urn:uuid:' + %encounter.id) "targetEncounter";
+      
 
   // Agent with device ID
   src.CTXSegment as ctx -> prov.agent as ag then {
@@ -171,23 +277,29 @@ group ProvenanceFields(source src : InfoWashSource, target prov : Provenance, ta
     ctx.CTX_role as role -> ent.role = role "role";
   } "entityWithRawMessage";
 
+  // Recorded timestamp - use ORC_9
+  src.ORCSegment as orc then {
+    orc.ORC_9 as dt -> prov.recorded = dt "ORC_9";
+  } "orc-timestamp";
+
 }
 
 // ========================== Segment-spezifische Gruppen ==========================
 
-// ----- ORC → ServiceRequest (Intent/Status/AuthoredOn) -----
+// ----- ORC -> ServiceRequest (Intent/Status/AuthoredOn) -----
 group ORCtoServiceRequest(source orc : ORCSegment, target sr : ServiceRequest) {
   // Intent immer "order" (gemäß Vorgabe)
   orc -> sr.intent = 'order' "intent-order";
 
   // Status
-  orc.ORC_5 as st -> sr.status = st "ORC_5";
+  //orc.ORC_5 as st -> sr.status = st "ORC_5";
+  orc -> sr.status = 'draft' "status-order";
 
   // AuthoredOn nur wenn ORC_1 == "NW"
   orc.ORC_9 as dt where (%orc.ORC_1 = 'NW') -> sr.authoredOn = dt "ORC_9_when_ORC_1_NW";
 }
 
-// ----- OBR → ServiceRequest (Codes, Reason, Priority) -----
+// ----- OBR -> ServiceRequest (Codes, Reason, Priority) -----
 group OBRtoServiceRequest(source obr : OBRSegment, target sr : ServiceRequest) {
   // ServiceRequest.code (OBR-4)
   obr -> sr.code as cc then {
@@ -217,7 +329,7 @@ group OBRtoServiceRequest(source obr : OBRSegment, target sr : ServiceRequest) {
   } "reasonCode";
 }
 
-// ----- TQ1 → ServiceRequest (Occurrence boundsPeriod) -----
+// ----- TQ1 -> ServiceRequest (Occurrence boundsPeriod) -----
 group TQ1toServiceRequest(source tq1 : TQ1Segment, target sr : ServiceRequest) {
   tq1 -> sr.occurrencePeriod as op then {
   tq1.TQ1_7 as TQ1_7 -> op.start = TQ1_7;

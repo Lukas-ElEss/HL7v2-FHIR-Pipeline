@@ -11,6 +11,9 @@ import logging
 from typing import Dict, Any
 from matchbox_client import MatchboxClient
 from hl7_parser import HL7Parser
+from fhir_client import FHIRClient
+from fhir_deduplicator import FHIRDeduplicationClient
+from config import get_config
 
 # Global configuration
 STRUCTURE_MAP = "InfoWashSource-to-Bundle"
@@ -24,10 +27,24 @@ class FHIRMapper:
         self.matchbox_client = MatchboxClient()
         self.hl7_parser = HL7Parser()
         self.logger = logging.getLogger(__name__)
+        
+        # Initialize FHIR clients
+        self.config = get_config()
+        self.fhir_client = FHIRClient(self.config)
+        
+        # Initialize deduplication client with credentials and SSL settings
+        credentials = self.config.get_linuxforhealth_credentials()
+        self.deduplication_client = FHIRDeduplicationClient(
+            base_url=self.config.get_linuxforhealth_url(),
+            device_identifier=f"Device/{self.config.get_device_default_name()}",
+            username=credentials.get('username'),
+            password=credentials.get('password'),
+            ssl_verify=self.config.get_linuxforhealth_ssl_verify()
+        )
     
     def complete_transformation_pipeline(self, hl7_message: str):
         """
-        Complete transformation pipeline: HL7 → InfoWashSource → FHIR Bundle
+        Complete transformation pipeline: HL7 → InfoWashSource → FHIR Bundle → Deduplication → Send to Server
         
         Args:
             hl7_message: Raw HL7 message string
@@ -64,20 +81,38 @@ class FHIRMapper:
                     "error": f"Transformation failed: {bundle_result.get('error', 'Unknown error')}"
                 }
             
-            # Step 4: Save bundle to local folder
-            self.logger.info("Step 4: Saving bundle to local folder")
-            save_result = self.save_bundle_to_folder(bundle_result["bundle"])
+            # Step 4: Perform deduplication
+            self.logger.info("Step 4: Performing deduplication")
+            deduplication_result = self.perform_deduplication(bundle_result["bundle"])
+            
+            if not deduplication_result["success"]:
+                self.logger.warning(f"Deduplication failed: {deduplication_result.get('error', 'Unknown error')}")
+                # Continue with pipeline even if deduplication fails
+            
+            # Step 5: Send bundle to LFH FHIR Server
+            self.logger.info("Step 5: Sending bundle to LFH FHIR Server")
+            send_result = self.send_bundle_to_server(bundle_result["bundle"])
+            
+            if not send_result["success"]:
+                return {
+                    "success": False,
+                    "error": f"Failed to send bundle to server: {send_result.get('error_message', 'Unknown error')}",
+                    "infowash_source": fhir_source,
+                    "bundle": bundle_result["bundle"],
+                    "deduplication_result": deduplication_result
+                }
             
             return {
                 "success": True,
                 "infowash_source": fhir_source,
                 "bundle": bundle_result["bundle"],
-                "save_result": save_result,
-                "message": "Complete pipeline successful"
+                "deduplication_result": deduplication_result,
+                "send_result": send_result,
+                "message": "Complete pipeline successful - Bundle sent to LFH FHIR Server"
             }
             
         except Exception as e:
-            error_msg = f"Pipeline failed at transformation step: {e}"
+            error_msg = f"Pipeline failed: {e}"
             self.logger.error(error_msg)
             return {
                 "success": False,
@@ -125,44 +160,115 @@ class FHIRMapper:
                 "message": error_msg
             }
 
-    def save_bundle_to_folder(self, bundle_data: Dict[str, Any], folder_path: str = "output/bundles") -> Dict[str, Any]:
+    def perform_deduplication(self, bundle_data: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Save the transformed FHIR Bundle to a local folder
+        Perform deduplication on the FHIR Bundle before sending to server
         
         Args:
-            bundle_data: The FHIR Bundle data to save
-            folder_path: Path to the folder where bundles should be saved
+            bundle_data: The FHIR Bundle data
             
         Returns:
-            Dict with save result
+            Dict with deduplication result
         """
         try:
-            import os
-            from datetime import datetime
+            # Extract Patient and Encounter IDs from bundle
+            patient_id = None
+            encounter_id = None
             
-            # Create output directory if it doesn't exist
-            os.makedirs(folder_path, exist_ok=True)
+            entries = bundle_data.get('entry', [])
+            for entry in entries:
+                resource = entry.get('resource', {})
+                resource_type = resource.get('resourceType')
+                
+                if resource_type == 'Patient' and not patient_id:
+                    patient_id = resource.get('id')
+                elif resource_type == 'Encounter' and not encounter_id:
+                    encounter_id = resource.get('id')
+                
+                # Stop if we have both IDs
+                if patient_id and encounter_id:
+                    break
             
-            # Generate filename with timestamp
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename = f"bundle_{timestamp}.json"
-            file_path = os.path.join(folder_path, filename)
+            if not patient_id or not encounter_id:
+                return {
+                    "success": True,
+                    "message": "No Patient/Encounter IDs found in bundle, skipping deduplication",
+                    "patient_id": patient_id,
+                    "encounter_id": encounter_id
+                }
             
-            # Save bundle to file
-            with open(file_path, 'w', encoding='utf-8') as f:
-                json.dump(bundle_data, f, indent=2, ensure_ascii=False)
+            self.logger.info(f"Performing deduplication for Patient: {patient_id}, Encounter: {encounter_id}")
             
-            self.logger.info(f"Bundle saved to: {file_path}")
+            # Search for existing provenance entries
+            provenance_entries = self.deduplication_client.search_existing_provenance(patient_id, encounter_id)
             
-            return {
-                "success": True,
-                "file_path": file_path,
-                "filename": filename,
-                "message": f"Bundle saved successfully to {file_path}"
-            }
-            
+            if provenance_entries:
+                self.logger.info(f"Found {len(provenance_entries)} existing provenance entries, deleting old resources")
+                
+                # Delete old resources
+                self.deduplication_client.delete_resources_from_provenance(provenance_entries)
+                
+                return {
+                    "success": True,
+                    "message": f"Successfully deleted {len(provenance_entries)} existing provenance entries and their resources",
+                    "patient_id": patient_id,
+                    "encounter_id": encounter_id,
+                    "deleted_provenance_count": len(provenance_entries)
+                }
+            else:
+                return {
+                    "success": True,
+                    "message": "No existing resources found, no deduplication needed",
+                    "patient_id": patient_id,
+                    "encounter_id": encounter_id,
+                    "deleted_provenance_count": 0
+                }
+                
         except Exception as e:
-            error_msg = f"Failed to save bundle to folder: {e}"
+            error_msg = f"Deduplication failed: {e}"
+            self.logger.error(error_msg)
+            return {
+                "success": False,
+                "error": str(e),
+                "message": error_msg
+            }
+    
+    def send_bundle_to_server(self, bundle_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Send the FHIR Bundle to the LFH FHIR Server
+        
+        Args:
+            bundle_data: The FHIR Bundle data
+            
+        Returns:
+            Dict with send result
+        """
+        try:
+            self.logger.info("Sending bundle to LFH FHIR Server")
+            
+            # Send bundle using FHIR client
+            response = self.fhir_client.send_bundle_to_server(bundle_data)
+            
+            if response.success:
+                self.logger.info("Bundle sent successfully to LFH FHIR Server")
+                return {
+                    "success": True,
+                    "status_code": response.status_code,
+                    "message": "Bundle sent successfully to LFH FHIR Server",
+                    "response_data": response.data
+                }
+            else:
+                error_msg = f"Failed to send bundle: {response.error_message}"
+                self.logger.error(error_msg)
+                return {
+                    "success": False,
+                    "status_code": response.status_code,
+                    "error": response.error_message,
+                    "message": error_msg
+                }
+                
+        except Exception as e:
+            error_msg = f"Failed to send bundle to server: {e}"
             self.logger.error(error_msg)
             return {
                 "success": False,

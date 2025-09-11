@@ -1,6 +1,9 @@
 @host = http://localhost:8080/matchboxv3/fhir
 ### @host = https://test.ahdis.ch/matchbox/fhir
 
+GET http://localhost:5555/fhir/metadata
+
+
 ### Check if server is available
 GET {{host}}/metadata HTTP/1.1
 Accept: application/fhir+xml;fhirVersion=4.0
@@ -114,7 +117,7 @@ Content-Type: text/fhir-mapping
 < ./StructureMap/InfoWashSource-to-Bundle.map
 
 ### transform the provided source file 
-POST {{host}}/StructureMap/$transform?source=http://hsrt-kkrt.org/fhir/StructureMap/InfoWashSource-to-Bundle2 HTTP/1.1
+POST {{host}}/StructureMap/$transform?source=http://hsrt-kkrt.org/fhir/StructureMap/InfoWashSource-to-Bundle HTTP/1.1
 Accept: application/fhir+json
 Content-Type: application/fhir+json
 

@@ -278,6 +278,46 @@
         ]
       },
       {
+        "id": "InfoWashSource.PV1Segment",
+        "path": "InfoWashSource.PV1Segment",
+        "short": "PV1Segment Segment",
+        "min": 0,
+        "max": "1",
+        "type": [{ "code": "BackboneElement" }]
+      },
+
+      { 
+        "id": "InfoWashSource.PV1Segment.PV1_2_1",
+        "path": "InfoWashSource.PV1Segment.PV1_2_1",
+        "short": "PV1_2_1",
+        "min": 0,
+        "max": "1",
+        "type": [{ "code": "string" }] 
+      },
+      { "id": "InfoWashSource.PV1Segment.PV1_2_2", "path": "InfoWashSource.PV1Segment.PV1_2_2", "short": "PV1_2_2", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_2_3", "path": "InfoWashSource.PV1Segment.PV1_2_3", "short": "PV1_2_3", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_2_7", "path": "InfoWashSource.PV1Segment.PV1_2_7", "short": "PV1_2_7", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+
+      { "id": "InfoWashSource.PV1Segment.PV1_4_1", "path": "InfoWashSource.PV1Segment.PV1_4_1", "short": "PV1_4_1", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_4_2", "path": "InfoWashSource.PV1Segment.PV1_4_2", "short": "PV1_4_2", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_4_3", "path": "InfoWashSource.PV1Segment.PV1_4_3", "short": "PV1_4_3", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_4_7", "path": "InfoWashSource.PV1Segment.PV1_4_7", "short": "PV1_4_7", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_4_9", "path": "InfoWashSource.PV1Segment.PV1_4_9", "short": "PV1_4_9", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+
+      { "id": "InfoWashSource.PV1Segment.PV1_10_1", "path": "InfoWashSource.PV1Segment.PV1_10_1", "short": "PV1_10_1", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_10_2", "path": "InfoWashSource.PV1Segment.PV1_10_2", "short": "PV1_10_2", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_10_3", "path": "InfoWashSource.PV1Segment.PV1_10_3", "short": "PV1_10_3", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_10_7", "path": "InfoWashSource.PV1Segment.PV1_10_7", "short": "PV1_10_7", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_10_9", "path": "InfoWashSource.PV1Segment.PV1_10_9", "short": "PV1_10_9", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+
+      { "id": "InfoWashSource.PV1Segment.PV1_19", "path": "InfoWashSource.PV1Segment.PV1_19", "short": "PV1_19", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_19_1", "path": "InfoWashSource.PV1Segment.PV1_19_1", "short": "PV1_19_1", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_19_4_1", "path": "InfoWashSource.PV1Segment.PV1_19_4_1", "short": "PV1_19_4_1", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_19_5", "path": "InfoWashSource.PV1Segment.PV1_19_5", "short": "PV1_19_5", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+
+      { "id": "InfoWashSource.PV1Segment.PV1_44", "path": "InfoWashSource.PV1Segment.PV1_44", "short": "PV1_44", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_45", "path": "InfoWashSource.PV1Segment.PV1_45", "short": "PV1_45", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      {
         "id": "InfoWashSource.CTXSegment",
         "path": "InfoWashSource.CTXSegment",
         "short": "CTXSegment Segment",
@@ -593,6 +633,39 @@
           }
         ]
       },
+      {
+        "id": "InfoWashSource.PV1Segment",
+        "path": "InfoWashSource.PV1Segment",
+        "short": "PV1Segment Segment",
+        "min": 0,
+        "max": "1",
+        "type": [{ "code": "BackboneElement" }]
+      },
+
+      { "id": "InfoWashSource.PV1Segment.PV1_2_1", "path": "InfoWashSource.PV1Segment.PV1_2_1", "short": "PV1_2_1", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_2_2", "path": "InfoWashSource.PV1Segment.PV1_2_2", "short": "PV1_2_2", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_2_3", "path": "InfoWashSource.PV1Segment.PV1_2_3", "short": "PV1_2_3", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_2_7", "path": "InfoWashSource.PV1Segment.PV1_2_7", "short": "PV1_2_7", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+
+      { "id": "InfoWashSource.PV1Segment.PV1_4_1", "path": "InfoWashSource.PV1Segment.PV1_4_1", "short": "PV1_4_1", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_4_2", "path": "InfoWashSource.PV1Segment.PV1_4_2", "short": "PV1_4_2", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_4_3", "path": "InfoWashSource.PV1Segment.PV1_4_3", "short": "PV1_4_3", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_4_7", "path": "InfoWashSource.PV1Segment.PV1_4_7", "short": "PV1_4_7", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_4_9", "path": "InfoWashSource.PV1Segment.PV1_4_9", "short": "PV1_4_9", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+
+      { "id": "InfoWashSource.PV1Segment.PV1_10_1", "path": "InfoWashSource.PV1Segment.PV1_10_1", "short": "PV1_10_1", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_10_2", "path": "InfoWashSource.PV1Segment.PV1_10_2", "short": "PV1_10_2", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_10_3", "path": "InfoWashSource.PV1Segment.PV1_10_3", "short": "PV1_10_3", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_10_7", "path": "InfoWashSource.PV1Segment.PV1_10_7", "short": "PV1_10_7", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_10_9", "path": "InfoWashSource.PV1Segment.PV1_10_9", "short": "PV1_10_9", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+
+      { "id": "InfoWashSource.PV1Segment.PV1_19", "path": "InfoWashSource.PV1Segment.PV1_19", "short": "PV1_19", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_19_1", "path": "InfoWashSource.PV1Segment.PV1_19_1", "short": "PV1_19_1", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_19_4_1", "path": "InfoWashSource.PV1Segment.PV1_19_4_1", "short": "PV1_19_4_1", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_19_5", "path": "InfoWashSource.PV1Segment.PV1_19_5", "short": "PV1_19_5", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+
+      { "id": "InfoWashSource.PV1Segment.PV1_44", "path": "InfoWashSource.PV1Segment.PV1_44", "short": "PV1_44", "min": 0, "max": "1", "type": [{ "code": "string" }] },
+      { "id": "InfoWashSource.PV1Segment.PV1_45", "path": "InfoWashSource.PV1Segment.PV1_45", "short": "PV1_45", "min": 0, "max": "1", "type": [{ "code": "string" }] },
       {
         "id": "InfoWashSource.CTXSegment",
         "path": "InfoWashSource.CTXSegment",

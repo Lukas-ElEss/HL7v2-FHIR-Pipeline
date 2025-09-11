@@ -305,6 +305,32 @@ class FHIRClient:
         """
         self.logger.info(f"Getting {resource_type} resource: {resource_id}")
         return self._make_request('GET', f'/{resource_type}/{resource_id}')
+    
+    def send_bundle_to_server(self, bundle_data: Dict[str, Any]) -> FHIRResponse:
+        """
+        Send a FHIR Bundle to the server using transaction
+        
+        Args:
+            bundle_data: FHIR Bundle data
+            
+        Returns:
+            FHIRResponse with transaction result
+        """
+        self.logger.info("Sending FHIR Bundle to server via transaction")
+        
+        # Ensure bundle type is set to transaction
+        if 'type' not in bundle_data:
+            bundle_data['type'] = 'transaction'
+        elif bundle_data.get('type') != 'transaction':
+            self.logger.warning(f"Bundle type is '{bundle_data.get('type')}', setting to 'transaction'")
+            bundle_data['type'] = 'transaction'
+        
+        # Log bundle details
+        entry_count = len(bundle_data.get('entry', []))
+        self.logger.info(f"Bundle contains {entry_count} entries")
+        
+        # Use root endpoint for transaction bundles (not /Bundle)
+        return self._make_request('POST', '/', bundle_data)
 
 
 # Convenience function to get a default FHIR client

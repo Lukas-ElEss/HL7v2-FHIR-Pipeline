@@ -32,6 +32,29 @@ class InfoWashSourceData:
     ORC_1: Optional[str] = None                       # ORC-1 Order Control - code
     ORC_5: Optional[str] = None                       # ORC-5 Order Status - code
     ORC_9: Optional[str] = None                       # ORC-9 DTM - dateTime
+    
+    # PV1 segment fields
+    PV1_2_1: Optional[str] = None                     # PV1-2.1 Patient Class - string
+    PV1_2_2: Optional[str] = None                     # PV1-2.2 Patient Class - string
+    PV1_2_3: Optional[str] = None                     # PV1-2.3 Patient Class - string
+    PV1_2_7: Optional[str] = None                     # PV1-2.7 Patient Class - string
+    PV1_4_1: Optional[str] = None                     # PV1-4.1 Assigned Patient Location - string
+    PV1_4_2: Optional[str] = None                     # PV1-4.2 Assigned Patient Location - string
+    PV1_4_3: Optional[str] = None                     # PV1-4.3 Assigned Patient Location - string
+    PV1_4_7: Optional[str] = None                     # PV1-4.7 Assigned Patient Location - string
+    PV1_4_9: Optional[str] = None                     # PV1-4.9 Assigned Patient Location - string
+    PV1_10_1: Optional[str] = None                    # PV1-10.1 Admitting Doctor - string
+    PV1_10_2: Optional[str] = None                    # PV1-10.2 Admitting Doctor - string
+    PV1_10_3: Optional[str] = None                    # PV1-10.3 Admitting Doctor - string
+    PV1_10_7: Optional[str] = None                    # PV1-10.7 Admitting Doctor - string
+    PV1_10_9: Optional[str] = None                    # PV1-10.9 Admitting Doctor - string
+    PV1_19: Optional[str] = None                      # PV1-19 Visit Number - string
+    PV1_19_1: Optional[str] = None                    # PV1-19.1 Visit Number - string
+    PV1_19_4_1: Optional[str] = None                  # PV1-19.4.1 Visit Number - string
+    PV1_19_5: Optional[str] = None                    # PV1-19.5 Visit Number - string
+    PV1_44: Optional[str] = None                      # PV1-44 Admit Date/Time - string
+    PV1_45: Optional[str] = None                      # PV1-45 Discharge Date/Time - string
+    
     RAW_message: Optional[str] = None                  # RAW HL7 v2 message - string
     DEVICE_id: Optional[str] = None                   # Device id - uri
     
@@ -82,6 +105,30 @@ class InfoWashSourceData:
                 "ORC_9": self.ORC_9
             },
             
+            # PV1 segment - flat structure
+            "PV1Segment": {
+                "PV1_2_1": self.PV1_2_1,
+                "PV1_2_2": self.PV1_2_2,
+                "PV1_2_3": self.PV1_2_3,
+                "PV1_2_7": self.PV1_2_7,
+                "PV1_4_1": self.PV1_4_1,
+                "PV1_4_2": self.PV1_4_2,
+                "PV1_4_3": self.PV1_4_3,
+                "PV1_4_7": self.PV1_4_7,
+                "PV1_4_9": self.PV1_4_9,
+                "PV1_10_1": self.PV1_10_1,
+                "PV1_10_2": self.PV1_10_2,
+                "PV1_10_3": self.PV1_10_3,
+                "PV1_10_7": self.PV1_10_7,
+                "PV1_10_9": self.PV1_10_9,
+                "PV1_19": self.PV1_19,
+                "PV1_19_1": self.PV1_19_1,
+                "PV1_19_4_1": self.PV1_19_4_1,
+                "PV1_19_5": self.PV1_19_5,
+                "PV1_44": self.PV1_44,
+                "PV1_45": self.PV1_45
+            },
+            
             # CTX segment - flat structure (matching InfoWashSource.json format)
             "CTXSegment": {
                 "CTX_DEVICE_id": self.DEVICE_id,
@@ -125,6 +172,7 @@ class HL7Parser:
             self._extract_obr_data(data)
             self._extract_tq1_data(data)
             self._extract_orc_data(data)
+            self._extract_pv1_data(data)
             self._extract_device_data(data)
             
             return data
@@ -166,51 +214,36 @@ class HL7Parser:
         try:
             for segment in self.message:
                 if segment[0][0] == 'PID':
-                    # PID-3: Patient Identifier
-                    if len(segment) > 3 and segment[3]:
-                        if len(segment[3]) > 0:
-                            if len(segment[3][0]) > 0:
-                                data.PID_3_1 = str(segment[3][0][0])
-                            
-                            # Assigning Authority
-                            if len(segment[3][0]) > 3:
-                                hd_comp = segment[3][0][3]
-                                if hd_comp:
-                                    if len(hd_comp) > 0:
-                                        data.PID_3_4_1 = str(hd_comp[0])
-                                    if len(hd_comp) > 1:
-                                        data.PID_3_4_2 = str(hd_comp[1])
-                                    if len(hd_comp) > 2:
-                                        data.PID_3_4_3 = str(hd_comp[2])
-                            
-                            # Assigning Facility
-                            if len(segment[3][0]) > 5:
-                                hd_comp = segment[3][0][5]
-                                if hd_comp:
-                                    if len(hd_comp) > 0:
-                                        data.PID_3_6_1 = str(hd_comp[0])
-                                    if len(hd_comp) > 1:
-                                        data.PID_3_6_2 = str(hd_comp[1])
-                                    if len(hd_comp) > 2:
-                                        data.PID_3_6_3 = str(hd_comp[2])
+                    # PID-3: Patient Identifier (CX) - already parsed by python-hl7
+                    if len(segment) > 3 and segment[3] and len(segment[3]) > 0:
+                        cx_field = segment[3][0]  # Get the first repetition
+                        if len(cx_field) > 0 and cx_field[0]:
+                            data.PID_3_1 = cx_field[0][0] if cx_field[0] else None  # ID
+                        if len(cx_field) > 3 and cx_field[3]:
+                            data.PID_3_4_1 = cx_field[3][0] if cx_field[3] else None  # Assigning Authority
+                            data.PID_3_4_2 = cx_field[3][0] if cx_field[3] else None  # Using assigningAuthority as universalId
+                            data.PID_3_4_3 = 'ISO'  # Default universalIdType
+                        if len(cx_field) > 5 and cx_field[5]:
+                            data.PID_3_6_1 = cx_field[5][0] if cx_field[5] else None  # Assigning Facility
+                            data.PID_3_6_2 = cx_field[5][0] if cx_field[5] else None  # Using assigningFacility as universalId
+                            data.PID_3_6_3 = 'ISO'  # Default universalIdType
                     
-                    # PID-5: Patient Name
-                    if len(segment) > 5 and segment[5]:
-                        if len(segment[5]) > 0:
-                            if len(segment[5][0]) > 0:
-                                data.PID_5_1_1 = str(segment[5][0][0])
-                            if len(segment[5][0]) > 1:
-                                data.PID_5_2 = str(segment[5][0][1])
+                    # PID-5: Patient Name (XCN) - already parsed by python-hl7
+                    if len(segment) > 5 and segment[5] and len(segment[5]) > 0:
+                        xcn_field = segment[5][0]  # Get the first repetition
+                        if len(xcn_field) > 1 and xcn_field[1]:
+                            data.PID_5_1_1 = xcn_field[1][0] if xcn_field[1] else None  # Family Name
+                        if len(xcn_field) > 2 and xcn_field[2]:
+                            data.PID_5_2 = xcn_field[2][0] if xcn_field[2] else None  # Given Name
                     
                     # PID-7: Birth Date
                     if len(segment) > 7 and segment[7]:
-                        birth_value = str(segment[7])
-                        data.PID_7 = self._format_date(birth_value)
+                        birth_value = segment[7][0] if segment[7] else None
+                        data.PID_7 = self._format_date(birth_value) if birth_value else None
                     
                     # PID-8: Gender
                     if len(segment) > 8 and segment[8]:
-                        sex_value = str(segment[8])
-                        data.PID_8_1 = sex_value if sex_value else None
+                        data.PID_8_1 = segment[8][0] if segment[8] else None
                     break
         except Exception as e:
             print(f"Warning: Error extracting PID data: {e}")
@@ -220,14 +253,15 @@ class HL7Parser:
         try:
             for segment in self.message:
                 if segment[0][0] == 'DG1':
-                    if len(segment) > 3 and segment[3]:
-                        if len(segment[3]) > 0:
-                            if len(segment[3][0]) > 0:
-                                data.DG1_3_1 = str(segment[3][0][0])
-                            if len(segment[3][0]) > 1:
-                                data.DG1_3_2 = str(segment[3][0][1])
-                            if len(segment[3][0]) > 2:
-                                data.DG1_3_3 = str(segment[3][0][2])
+                    # DG1-3: Diagnosis (CWE) - already parsed by python-hl7
+                    if len(segment) > 3 and segment[3] and len(segment[3]) > 0:
+                        cwe_field = segment[3][0]  # Get the first repetition
+                        if len(cwe_field) > 0 and cwe_field[0]:
+                            data.DG1_3_1 = cwe_field[0][0] if cwe_field[0] else None  # Identifier
+                        if len(cwe_field) > 1 and cwe_field[1]:
+                            data.DG1_3_2 = cwe_field[1][0] if cwe_field[1] else None  # Text
+                        if len(cwe_field) > 2 and cwe_field[2]:
+                            data.DG1_3_3 = cwe_field[2][0] if cwe_field[2] else None  # Coding System
                     break
         except Exception as e:
             print(f"Warning: Error extracting DG1 data: {e}")
@@ -237,14 +271,15 @@ class HL7Parser:
         try:
             for segment in self.message:
                 if segment[0][0] == 'OBR':
-                    if len(segment) > 4 and segment[4]:
-                        if len(segment[4]) > 0:
-                            if len(segment[4][0]) > 0:
-                                data.OBR_4_1 = str(segment[4][0][0])
-                            if len(segment[4][0]) > 1:
-                                data.OBR_4_2 = str(segment[4][0][1])
-                            if len(segment[4][0]) > 2:
-                                data.OBR_4_3 = str(segment[4][0][2])
+                    # OBR-4: Universal Service Identifier (CWE) - already parsed by python-hl7
+                    if len(segment) > 4 and segment[4] and len(segment[4]) > 0:
+                        cwe_field = segment[4][0]  # Get the first repetition
+                        if len(cwe_field) > 0 and cwe_field[0]:
+                            data.OBR_4_1 = cwe_field[0][0] if cwe_field[0] else None  # Identifier
+                        if len(cwe_field) > 1 and cwe_field[1]:
+                            data.OBR_4_2 = cwe_field[1][0] if cwe_field[1] else None  # Text
+                        if len(cwe_field) > 2 and cwe_field[2]:
+                            data.OBR_4_3 = cwe_field[2][0] if cwe_field[2] else None  # Coding System
                     break
         except Exception as e:
             print(f"Warning: Error extracting OBR data: {e}")
@@ -254,12 +289,14 @@ class HL7Parser:
         try:
             for segment in self.message:
                 if segment[0][0] == 'TQ1':
-                    if len(segment) > 7 and segment[7]:
-                        start_value = str(segment[7])
+                    # TQ1-5: Start Date/Time (TQ1_7)
+                    if len(segment) > 5 and segment[5]:
+                        start_value = str(segment[5])
                         data.TQ1_7 = self._format_datetime(start_value)
                     
-                    if len(segment) > 8 and segment[8]:
-                        end_value = str(segment[8])
+                    # TQ1-6: End Date/Time (TQ1_8)
+                    if len(segment) > 6 and segment[6]:
+                        end_value = str(segment[6])
                         data.TQ1_8 = self._format_datetime(end_value)
                     
                     break
@@ -271,24 +308,92 @@ class HL7Parser:
         try:
             for segment in self.message:
                 if segment[0][0] == 'ORC':
+                    # ORC-1: Order Control
                     if len(segment) > 1 and segment[1]:
                         control_value = str(segment[1])
                         data.ORC_1 = control_value if control_value else None
                     
+                    # ORC-5: Order Status
                     if len(segment) > 5 and segment[5]:
                         status_value = str(segment[5])
                         data.ORC_5 = status_value if status_value else None
                     
-                    if len(segment) > 8 and segment[8]:
-                        time_value = str(segment[8])
-                        data.ORC_9 = self._format_datetime(time_value)
-                    elif len(segment) > 7 and segment[7]:
-                        time_value = str(segment[7])
+                    # ORC-9: Date/Time of Transaction
+                    if len(segment) > 9 and segment[9]:
+                        time_value = str(segment[9])
                         data.ORC_9 = self._format_datetime(time_value)
                     
                     break
         except Exception as e:
             print(f"Warning: Error extracting ORC data: {e}")
+    
+    def _extract_pv1_data(self, data: InfoWashSourceData):
+        """Extract PV1 segment fields"""
+        try:
+            for segment in self.message:
+                if segment[0][0] == 'PV1':
+                    # PV1-2: Patient Class (CWE) - already parsed by python-hl7
+                    if len(segment) > 2 and segment[2] and len(segment[2]) > 0:
+                        cwe_field = segment[2][0]  # Get the first repetition
+                        if len(cwe_field) > 0 and cwe_field[0]:
+                            data.PV1_2_1 = cwe_field[0][0] if cwe_field[0] else None  # Identifier
+                        if len(cwe_field) > 1 and cwe_field[1]:
+                            data.PV1_2_3 = cwe_field[1][0] if cwe_field[1] else None  # Text
+                        if len(cwe_field) > 2 and cwe_field[2]:
+                            data.PV1_2_2 = cwe_field[2][0] if cwe_field[2] else None  # Coding System
+                        if len(cwe_field) > 3 and cwe_field[3]:
+                            data.PV1_2_7 = cwe_field[3][0] if cwe_field[3] else None  # Version
+                    
+                    # PV1-4: Admission Type (CWE) - already parsed by python-hl7
+                    if len(segment) > 4 and segment[4] and len(segment[4]) > 0:
+                        cwe_field = segment[4][0]  # Get the first repetition
+                        if len(cwe_field) > 0 and cwe_field[0]:
+                            data.PV1_4_1 = cwe_field[0][0] if cwe_field[0] else None  # Identifier
+                        if len(cwe_field) > 1 and cwe_field[1]:
+                            data.PV1_4_2 = cwe_field[1][0] if cwe_field[1] else None  # Text
+                        if len(cwe_field) > 2 and cwe_field[2]:
+                            data.PV1_4_3 = cwe_field[2][0] if cwe_field[2] else None  # Coding System
+                        if len(cwe_field) > 3 and cwe_field[3]:
+                            data.PV1_4_7 = cwe_field[3][0] if cwe_field[3] else None  # Version
+                        if len(cwe_field) > 4 and cwe_field[4]:
+                            data.PV1_4_9 = cwe_field[4][0] if cwe_field[4] else None  # Original Text
+                    
+                    # PV1-10: Hospital Service (CWE) - already parsed by python-hl7
+                    if len(segment) > 10 and segment[10] and len(segment[10]) > 0:
+                        cwe_field = segment[10][0]  # Get the first repetition
+                        if len(cwe_field) > 0 and cwe_field[0]:
+                            data.PV1_10_1 = cwe_field[0][0] if cwe_field[0] else None  # Identifier
+                        if len(cwe_field) > 1 and cwe_field[1]:
+                            data.PV1_10_2 = cwe_field[1][0] if cwe_field[1] else None  # Text
+                        if len(cwe_field) > 2 and cwe_field[2]:
+                            data.PV1_10_3 = cwe_field[2][0] if cwe_field[2] else None  # Coding System
+                        if len(cwe_field) > 3 and cwe_field[3]:
+                            data.PV1_10_7 = cwe_field[3][0] if cwe_field[3] else None  # Version
+                        if len(cwe_field) > 4 and cwe_field[4]:
+                            data.PV1_10_9 = cwe_field[4][0] if cwe_field[4] else None  # Original Text
+                    
+                    # PV1-19: Visit Number (CX) - already parsed by python-hl7
+                    if len(segment) > 19 and segment[19] and len(segment[19]) > 0:
+                        cx_field = segment[19][0]  # Get the first repetition
+                        if len(cx_field) > 0 and cx_field[0]:
+                            data.PV1_19 = cx_field[0][0] if cx_field[0] else None  # ID
+                            data.PV1_19_1 = cx_field[0][0] if cx_field[0] else None  # ID (same as above)
+                        if len(cx_field) > 3 and cx_field[3]:
+                            data.PV1_19_4_1 = cx_field[3][0] if cx_field[3] else None  # Assigning Authority
+                        if len(cx_field) > 4 and cx_field[4]:
+                            data.PV1_19_5 = cx_field[4][0] if cx_field[4] else None  # ID Type
+                    
+                    # PV1-44: Admit Date/Time
+                    if len(segment) > 44 and segment[44]:
+                        data.PV1_44 = self._format_datetime(segment[44][0]) if segment[44] else None
+                    
+                    # PV1-45: Discharge Date/Time
+                    if len(segment) > 45 and segment[45]:
+                        data.PV1_45 = self._format_datetime(segment[45][0]) if segment[45] else None
+                    
+                    break
+        except Exception as e:
+            print(f"Warning: Error extracting PV1 data: {e}")
     
     def _extract_device_data(self, data: InfoWashSourceData):
         """Extract device information and set DEVICE_id"""
@@ -330,39 +435,41 @@ class HL7Parser:
         if not datetime_str or datetime_str == '':
             return None
         
-        # If already in ISO format, return as is
+        # If already in ISO format without timezone, add timezone
         if re.match(r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$', datetime_str):
-            return datetime_str
+            return datetime_str + '+00:00'
         
         # Handle HL7 format (YYYYMMDDHHMMSS or YYYYMMDDHHMM)
         datetime_str = re.sub(r'[^0-9]', '', datetime_str)
         
         if len(datetime_str) >= 14:
-            # YYYYMMDDHHMMSS -> YYYY-MM-DDTHH:MM:SS
+            # YYYYMMDDHHMMSS -> YYYY-MM-DDTHH:MM:SS+00:00
             year = datetime_str[0:4]
             month = datetime_str[4:6]
             day = datetime_str[6:8]
             hour = datetime_str[8:10]
             minute = datetime_str[10:12]
             second = datetime_str[12:14]
-            return f"{year}-{month}-{day}T{hour}:{minute}:{second}"
+            return f"{year}-{month}-{day}T{hour}:{minute}:{second}+00:00"
         elif len(datetime_str) >= 12:
-            # YYYYMMDDHHMM -> YYYY-MM-DDTHH:MM:00
+            # YYYYMMDDHHMM -> YYYY-MM-DDTHH:MM:00+00:00
             year = datetime_str[0:4]
             month = datetime_str[4:6]
             day = datetime_str[6:8]
             hour = datetime_str[8:10]
             minute = datetime_str[10:12]
-            return f"{year}-{month}-{day}T{hour}:{minute}:00"
+            return f"{year}-{month}-{day}T{hour}:{minute}:00+00:00"
         elif len(datetime_str) >= 8:
-            # YYYYMMDD -> YYYY-MM-DD
+            # YYYYMMDD -> YYYY-MM-DDTHH:MM:00+00:00
             year = datetime_str[0:4]
             month = datetime_str[4:6]
             day = datetime_str[6:8]
-            return f"{year}-{month}-{day}T00:00:00"
+            return f"{year}-{month}-{day}T00:00:00+00:00"
         
         return None
-
+    
+ 
+ 
 
 def parse_hl7_file(file_path: str) -> InfoWashSourceData:
     """Parse HL7 message from file"""

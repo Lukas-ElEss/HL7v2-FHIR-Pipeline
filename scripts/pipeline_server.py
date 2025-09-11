@@ -52,8 +52,12 @@ class PipelineServer:
     
     def _signal_handler(self, signum, frame):
         """Handle shutdown signals gracefully"""
-        self.logger.info(f"Received signal {signum}, shutting down gracefully...")
-        self.running = False
+        if self.running:  # Only handle signal once
+            self.logger.info(f"Received signal {signum}, shutting down gracefully...")
+            self.running = False
+            # Cancel the server task to break out of serve_forever()
+            if hasattr(self, 'server_task') and self.server_task and not self.server_task.done():
+                self.server_task.cancel()
     
     async def process_hl7_message(self, hl7_message: str) -> Dict[str, Any]:
         """
@@ -80,13 +84,21 @@ class PipelineServer:
                 self.processed_count += 1
                 self.logger.info(f"✅ Pipeline successful (processed: {self.processed_count})")
                 
-                # Log bundle save result if available
-                if "save_result" in result:
-                    save_result = result["save_result"]
-                    if save_result.get("success"):
-                        self.logger.info(f"✅ Bundle saved to: {save_result.get('file_path', 'unknown')}")
+                # Log deduplication result if available
+                if "deduplication_result" in result:
+                    dedup_result = result["deduplication_result"]
+                    if dedup_result.get("success"):
+                        self.logger.info(f"✅ Deduplication: {dedup_result.get('message', 'unknown')}")
                     else:
-                        self.logger.warning(f"⚠️ Bundle save warning: {save_result.get('message', 'unknown')}")
+                        self.logger.warning(f"⚠️ Deduplication warning: {dedup_result.get('message', 'unknown')}")
+                
+                # Log send result if available
+                if "send_result" in result:
+                    send_result = result["send_result"]
+                    if send_result.get("success"):
+                        self.logger.info(f"✅ Bundle sent to server: {send_result.get('message', 'unknown')}")
+                    else:
+                        self.logger.error(f"❌ Send failed: {send_result.get('message', 'unknown')}")
                 
                 # Return successful result
                 return {
@@ -246,9 +258,13 @@ class PipelineServer:
             self.logger.info(f"MLLP server started successfully on {host}:{port}")
             self.logger.info("Press Ctrl+C to stop the server")
             
-            # Keep server running
-            async with self.server:
-                await self.server.serve_forever()
+            # Keep server running until shutdown signal
+            try:
+                async with self.server:
+                    await self.server.serve_forever()
+            except asyncio.CancelledError:
+                self.logger.info("Server task cancelled, shutting down...")
+                raise
                 
         except Exception as e:
             self.logger.error(f"Failed to start server: {e}")
@@ -292,6 +308,9 @@ async def main():
     print("Starting v2-to-fhir Pipeline Server")
     print("=" * 50)
     
+    server = None
+    server_task = None
+    
     try:
         # Load configuration
         config = get_config()
@@ -304,23 +323,39 @@ async def main():
             server.start_server(port=2100)  # Standard MLLP port
         )
         
+        # Store server_task reference for signal handler
+        server.server_task = server_task
+        
         # Print statistics periodically
         while server.running:
-            await asyncio.sleep(30)  # Every 30 seconds
-            server.print_statistics()
+            try:
+                await asyncio.sleep(5)  # Every 5 seconds for testing
+                if server.running:  # Check if still running after sleep
+                    server.print_statistics()
+            except asyncio.CancelledError:
+                break
         
         # Wait for server to finish
         await server_task
         
     except KeyboardInterrupt:
-        print("\nShutdown requested by user")
-        if 'server' in locals():
+        print("\nShutdown requested by user (Ctrl+C)")
+        if server:
+            server.running = False
+            if server_task:
+                server_task.cancel()
+            await server.stop_server()
+    except asyncio.CancelledError:
+        print("\nServer task cancelled")
+        if server:
             await server.stop_server()
     except Exception as e:
         print(f"Server error: {e}")
-        if 'server' in locals():
+        if server:
             await server.stop_server()
         sys.exit(1)
+    finally:
+        print("Pipeline Server stopped")
 
 
 if __name__ == "__main__":

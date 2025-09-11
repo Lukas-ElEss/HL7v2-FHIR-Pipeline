@@ -1,36 +1,61 @@
 {
-    "resourceType": "InfoWashSource",
-    "PIDSegment": {
+  "resourceType": "InfoWashSource",
+  "PIDSegment": {
     "PID_3_1": "4661805977",
     "PID_3_4_1": "HOSPITAL",
     "PID_5_1_1": "Rogner",
     "PID_5_2": "Sibylla",
     "PID_7": "1955-05-15",
     "PID_8_1": "F"
-    },
-    "DG1Segment": {
+  },
+  "DG1Segment": {
     "DG1_3_1": "M17.9",
     "DG1_3_2": "Gonarthrose",
     "DG1_3_3": "ICD-10-GM",
     "DG1_3_9": "Gonarthrose"
-    },
-    "OBRSegment": {
+  },
+  "PV1Segment": {
+    "PV1_2_1": "I",                         
+    "PV1_2_2": "http://terminology.hl7.org/CodeSystem/v2-0004",
+    "PV1_2_3": "Stationär",
+    "PV1_2_7": "1",
+    
+    "PV1_4_1": "EL",
+    "PV1_4_2": "Elektivaufnahme",
+    "PV1_4_3": "http://terminology.hl7.org/CodeSystem/v2-0007",
+    "PV1_4_7": "2.5",
+    "PV1_4_9": "Geplante Aufnahme",
+
+    "PV1_10_1": "SURG",
+    "PV1_10_2": "Chirurgie",
+    "PV1_10_3": "http://example.org/custom/codesystem/service-type",
+    "PV1_10_7": "2024",
+    "PV1_10_9": "Chirurgische Behandlung",
+
+    "PV1_19_1": "VN123456",
+    "PV1_19_4_1": "http://hospital.example.org/visit-ids",
+    "PV1_19_5": "VN",
+
+    "PV1_44": "2025-09-08T07:45:00",
+    "PV1_45": "2025-09-08T13:30:00"
+  },
+  "OBRSegment": {
     "OBR_4_1": "5-987",
     "OBR_4_2": "Appendektomie",
     "OBR_4_3": "OPS"
-    },
-    "ORCSegment": {
+  },
+  "ORCSegment": {
     "ORC_1": "NW",
     "ORC_5": "SC",
     "ORC_9": "2025-08-25T20:59:00"
-    },
-    "TQ1Segment": {
+  },
+  "TQ1Segment": {
     "TQ1_7": "2025-09-08T08:00:00",
     "TQ1_8": "2025-09-08T12:00:00"
-    },
-    "CTXSegment": {
+  },
+  "CTXSegment": {
     "CTX_DEVICE_id": "Device/v2-to-fhir-pipeline",
     "CTX_RAW_message": "MSH|^~\\&|...",
     "CTX_role": "source"
-    }
   }
+}
