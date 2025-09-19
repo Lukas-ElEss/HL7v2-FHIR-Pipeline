@@ -47,7 +47,7 @@ def search_provenances_for_date_range(start_date: str, end_date: str) -> None:
         response = client._make_request('GET', search_url)
         
         if response.success and response.data:
-            print("✅ Suche erfolgreich!")
+            print("Suche erfolgreich!")
             
             if 'entry' in response.data:
                 provenances = response.data['entry']
@@ -72,7 +72,7 @@ def search_provenances_for_date_range(start_date: str, end_date: str) -> None:
                 print("Keine Einträge in der Antwort gefunden")
                 print(f"Response: {response.data}")
         else:
-            print("❌ Suche fehlgeschlagen!")
+            print("Suche fehlgeschlagen!")
             print(f"Status: {response.status_code}")
             print(f"Response: {response.data}")
             

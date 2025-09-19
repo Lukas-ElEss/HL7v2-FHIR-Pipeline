@@ -28,9 +28,9 @@ def main():
         print("=" * 60)
         
         if result.get('success', False):
-            print("✅ All files uploaded successfully!")
+            print("All files uploaded successfully!")
         else:
-            print(f"❌ Upload failed")
+            print(f"Upload failed")
         
         # Show individual file results if available
         if 'upload_results' in result:
@@ -42,7 +42,7 @@ def main():
             
             print("\nIndividual file results:")
             for file_result in result['upload_results']:
-                status = "✅" if file_result['result']['success'] else "❌"
+                status = "SUCCESS" if file_result['result']['success'] else "FAILED"
                 print(f"{status} {file_result['type']}: {file_result['file']}")
                 
                 if not file_result['result']['success']:

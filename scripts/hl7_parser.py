@@ -196,17 +196,17 @@ class HL7Parser:
                 device_url = device_url.strip().replace('\n', '').replace('\r', '').strip()
                 
                 if device_url:
-                    print(f"✅ Device URL loaded: {device_url}")
+                    print(f"Device URL loaded: {device_url}")
                     return device_url
                 else:
-                    print("⚠️ Device URL file is empty")
+                    print("Device URL file is empty")
                     return None
             else:
-                print(f"⚠️ Device URL file not found at: {file_path}")
+                print(f"Device URL file not found at: {file_path}")
                 return None
                 
         except Exception as e:
-            print(f"⚠️ Error loading device URL: {e}")
+            print(f"Error loading device URL: {e}")
             return None
     
     def _extract_pid_data(self, data: InfoWashSourceData):

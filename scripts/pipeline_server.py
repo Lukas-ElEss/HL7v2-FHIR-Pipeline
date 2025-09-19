@@ -82,23 +82,23 @@ class PipelineServer:
             
             if result["success"]:
                 self.processed_count += 1
-                self.logger.info(f"✅ Pipeline successful (processed: {self.processed_count})")
+                self.logger.info(f"Pipeline successful (processed: {self.processed_count})")
                 
                 # Log deduplication result if available
                 if "deduplication_result" in result:
                     dedup_result = result["deduplication_result"]
                     if dedup_result.get("success"):
-                        self.logger.info(f"✅ Deduplication: {dedup_result.get('message', 'unknown')}")
+                        self.logger.info(f"Deduplication: {dedup_result.get('message', 'unknown')}")
                     else:
-                        self.logger.warning(f"⚠️ Deduplication warning: {dedup_result.get('message', 'unknown')}")
+                        self.logger.warning(f"Deduplication warning: {dedup_result.get('message', 'unknown')}")
                 
                 # Log send result if available
                 if "send_result" in result:
                     send_result = result["send_result"]
                     if send_result.get("success"):
-                        self.logger.info(f"✅ Bundle sent to server: {send_result.get('message', 'unknown')}")
+                        self.logger.info(f"Bundle sent to server: {send_result.get('message', 'unknown')}")
                     else:
-                        self.logger.error(f"❌ Send failed: {send_result.get('message', 'unknown')}")
+                        self.logger.error(f"Send failed: {send_result.get('message', 'unknown')}")
                 
                 # Return successful result
                 return {
@@ -108,7 +108,7 @@ class PipelineServer:
                 }
             else:
                 self.error_count += 1
-                self.logger.error(f"❌ Pipeline failed: {result['error']}")
+                self.logger.error(f"Pipeline failed: {result['error']}")
                 return result
                 
         except Exception as e:
