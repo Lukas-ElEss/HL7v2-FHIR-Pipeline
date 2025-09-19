@@ -198,17 +198,6 @@ if result["success"]:
     print(f"Resources: {result['resource_count']}")
 ```
 
-## InfoWash FHIR-Suche
-
-Die Pipeline unterstützt spezialisierte FHIR-Suchen für InfoWash-Anwendungen:
-
-```bash
-# Suche nach Provenances mit ServiceRequest an einem bestimmten Datum
-GET /Provenance?target:ServiceRequest.occurrence=2025-09-24&_include=Provenance:target&_count=200
-
-# Suche mit Datumsbereich
-GET /Provenance?target:ServiceRequest.occurrence=ge2025-09-24&target:ServiceRequest.occurrence=lt2025-09-25&_include=Provenance:target&_count=200
-```
 
 ## Transformation Pipeline
 
@@ -316,19 +305,3 @@ python delete_all_resources.py
 ### MLLP Server
 - **Port**: 2100
 - **Protokoll**: MLLP/TCP
-- **Integration**: Orchestra-kompatibel
-
-## Entwicklung
-
-### Neue Mapping-Regeln
-1. Structure Map in `input/StructureMap/InfoWashSource-to-Bundle.map` erweitern
-2. InfoWashSource-Struktur in `input/StructureDefiniton/source/InfoWashSource.json` anpassen
-3. Parser-Felder in `hl7_parser.py` hinzufügen
-4. Tests in `testapp.py` erweitern
-
-### Debugging
-- Logs: `DEBUG` Level in `config/fhir_config.yaml`
-- Bundle-Validierung: `check_bundles.py`
-- Server-Status: `infowash_search.py`
-- MLLP-Tests: `testapp.py`
-
