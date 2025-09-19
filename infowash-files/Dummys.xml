@@ -1,0 +1,237 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<surgeries>
+   <surgery id="OP1-1">
+      <general>
+		<type>Cholezystektomie</type>
+		<surgeon>Prof. Dr. Klett</surgeon>
+		<begin>12:00 Uhr</begin>
+		<duration>120</duration>
+		<operatingArea>./Bilder/hueftarthrose.jpg</operatingArea>
+	  </general>
+	  <topics>
+		<topic name="OP Details">
+			<subtopic name="Informationen zum Eingriff">
+				<method name="Operationsmethode">Minimalinvasiv</method>
+				<patientPositioning name="Patientenlagerung">Seitenlage, links</patientPositioning>
+				<robotSupport name="Roboterunterstützung">Ja, Da-Vinci-Operationssystem</robotSupport>
+			</subtopic>
+			<subtopic name="Vorgehen">
+				<plannedProcedure name="Geplantes Vorgehen">Der Patient wird in Seitenlage fixiert. Ein spezielles Lagerungskissen, das der Beinform angepasst ist, stützt das zu operierende Bein. Nachdem die Lagerung und die Desinfektion abgeschlossen sind, wird das Operationsgebiet steril abgedeckt. Der Hautschnitt ist maximal 10 cm lang. Er liegt hinter dem seitlichen Hüftknochen, dem sog. Trochantor major. Er steigt leicht nach hinten oben an. Der Verlauf des Hautschnittes entspricht exakt dem der Gesäßmuskulatur. Diese kann so wie ein Vorhang stumpf längs auseinander gedrängt werden. Man passiert so den Schleimbeutel und erreicht die kleinen Hüftmuskeln im hinteren Hüft-Schenkelhalsbereich. Die Hüftpfanne kann nach Entfernen des geschädigten Hüftkopfes präpariert und positioniert werden. Die Schaftpräparation kann nach spezieller Positionierung des Beines ebenfalls über die kurze Hautinzision durchgeführt werden. Nachdem der Hüftprothesen-Schaft ebenfalls eingesetzt ist, kann die Kapsel über der Prothese verschlossen werden und der M. piriformis wieder befestigt werden. Der Muskelbauch des Gesäßmuskels verschließt sich nach Entfernen des Hacken wieder von alleine. Die Muskelhülle wird wieder adaptierend genäht. Nachdem Unterhautfettgewebe und Haut genäht sind, wird der Patient wieder auf den Rücken umgelagert. Am Ende der Operation wird ein Röntgenbild gemacht, um das Operationsergebnis zu kontrollieren und für die Nachbehandlung zu beurteilen.
+				</plannedProcedure>
+			</subtopic>
+		</topic>
+		<topic name="Patienteninformationen">
+			<subtopic name="Basisinformationen">
+				<firstname name="Vorname">Cynthia</firstname>
+				<lastname name="Nachname">Keudel</lastname>
+				<age name="Alter">54</age>
+				<gender name="Geschlecht">Männlich</gender>
+				<bodyHeight name="Körpergröße">170 cm</bodyHeight>
+				<bodyWeight name="Gewicht">82,6 kg</bodyWeight>
+			</subtopic>
+			<subtopic name="Krankenblatt">
+				<allergies name="Allergien">Medikament: Bezeichnung: Penicilllin, Urtikaria, Anaphylaktischer Schock. 
+					Pollen: Bezeichnung: Gräser, Roggen, Rhinitis, Konjunktivitis.
+				</allergies>
+				<infections name="Infektionen">keine</infections>
+				<intolerances name="Intoleranzen">keine</intolerances>
+				<implants name="Implantate">Ungekoppelte Oberflächenersatzprothese, Knie</implants>
+			</subtopic>
+			<subtopic name="Krankengeschichte">
+				<preexistingConditions name="Historie">Vor 1946: Übliche Kinderkrankheiten ohne Besonderheiten (Masern, Windpocken, Mumps)
+					1946: Erste Mittelohrentzündung, in den folgenden Jahren wiederholt
+					1950: Jahren Nasenpolypen entfernt
+					1951: Mandeloperation
+					1954: 1. Periode, Beginn des Heuschnupfens
+					1959: Blinddarm-Operation
+					1962: Beginn des Asthma
+					1966: Erste Geburt mit Kaiserschnitt
+					1969: Zweite Geburt, wieder Kaiserschnitt
+					1992: Arthrose des Kniegelenks
+					1993: Knie-Operation: Ungekoppelte Oberflächenersatzprothese
+					2010: Arthrose des Hüftgelenks
+					2010: Horizontaltherapie, Schmerzlinderung und Beweglichkeitsverbesserung
+					2016: Horizontaltherapie, keine signifikante Verbesserung erlangt. Hüft-Operation unumgänglich.
+				</preexistingConditions>
+			</subtopic>
+			<subtopic name="Medikation">
+				<drugs name="Medikamente">Blutdruck: Ramipril-ratiopharm; 5 mg; 1-0-0-0
+					Blutfette: Simva-Aristo; 40 mg; 0-0-1-0
+					Schmerzen: Fentanyl AbZ 75 µg/h Matrixpflaster; 2,375mg;  alle drei Tage 1 Stück
+				</drugs>
+			</subtopic>
+		</topic>
+		<topic name="Untersuchungsergebnisse">
+			<subtopic name="Diagnose">
+				<longVersion name="Akute Appendizitis">Akute Appendizitis</longVersion>
+			</subtopic>
+			<subtopic name="Blutbild">
+				<laboratoryValues name="Blutbild vom 07.07.2017">./Bilder/Blutbild.jpg</laboratoryValues>
+				</subtopic>
+			<subtopic name="Röntgenbild">
+				<radiograph name="Röntgenbild vom 08.07.2017">./Bilder/ArthroseHueftgelenk.jpg</radiograph>
+			</subtopic>
+			<subtopic name="Messwerte">
+				<measurements name="Messwerte vom 06.07.2017">Systolischer Blutdruck: 130 mmHg
+					Diastolischer Blutdruck: 80 mmHg
+					Puls: 78 bpm
+				</measurements>
+			</subtopic>
+		</topic>
+	  </topics>
+   </surgery>
+      <surgery id="OP2-1">
+      <general>
+		<type>Aortokoronare Bypass-Operation</type>
+		<surgeon>Prof. Dr. Biedermann</surgeon>
+		<begin>9:40 Uhr</begin>
+		<duration>120</duration>
+		<operatingArea>./Bilder/herz.jpg</operatingArea>
+	  </general>
+	  <topics>
+		<topic name="OP Details">
+			<subtopic name="Informationen zum Eingriff">
+				<method name="Operationsmethode">Minimalinvasiv</method>
+				<patientPositioning name="Patientenlagerung">Rückenlage</patientPositioning>
+				<robotSupport name="Roboterunterstützung">Nein</robotSupport>
+			</subtopic>
+			<subtopic name="Vorgehen">
+				<plannedProcedure name="Geplantes Vorgehen">Ein 3 bis 4 cm großer Schnitt wird über dem Herzen in den 4. Zwischenrippenraum gemacht. Nun wird unter direkter Sicht oder nachdem ein Endoskop (metallener Lichtleiter) mit Kamera eingeführt wurde, die linke innere Brustarterie aufgesucht und freigelegt.
+					Der Herzbeutel wird eröffnet und der sehr häufig verengte vordere Gefäßast dargestellt. Ein Stabilisator ermöglicht es, das Operationsgebiet im Bereich des Gefäßanschlusses ruhig zu stellen.
+					Das verstopfte Gefäß wird mit einer Schlinge umlegt und für eine kurze Zeit zugebunden, nachdem ein Medikament zum Flüssigbleiben des Blutes gespritzt wurde. Bis zu 20 Minuten einer solchen Gefäßunterbrechung werden vom Herzmuskel ohne Sauerstoffmangel-Zeichen in der Regel gut vertragen.
+					Dann verbindet der Chirurg das verengte abgebundene Herzkranzgefäß mit der inneren Brustarterie. Anschließend werden alle Gefäßunterbindungen wieder gelöst. Eine Wundableitung leitet das sich bildende Wundsekret im Brustkorb nach außen ab.
+				</plannedProcedure>
+			</subtopic>
+		</topic>
+		<topic name="Patienteninformationen">
+			<subtopic name="Basisinformationen">
+				<firstname name="Vorname">Felix</firstname>
+				<lastname name="Nachname">Baumann</lastname>
+				<age name="Alter">65</age>
+				<gender name="Geschlecht">Männlich</gender>
+				<bodyHeight name="Körpergröße">180 cm</bodyHeight>
+				<bodyWeight name="Gewicht">78,9 kg</bodyWeight>
+			</subtopic>
+			<subtopic name="Krankenblatt">
+				<allergies name="Allergien">Inhalationsallergie: Bezeichnung: Beifuß-, Korbblütlerpollen z. B. Chrysanthemen, Margeriten, Gerbera, Löwenzahn.
+					Nahrungsmittelunverträglichkeit: Bezeichnung: Sellerie, Petersilie, Kamille, Karotte, Anis, Dill, Lauch, Koriander, Fenchel, Kümmel, Sonnenblumenkerne.
+				</allergies>
+				<infections name="Infektionen">keine</infections>
+				<intolerances name="Intoleranzen">keine</intolerances>
+				<implants name="Implantate">keine</implants>
+			</subtopic>
+			<subtopic name="Krankengeschichte">
+				<preexistingConditions name="Historie">1960: Masern
+					1987: Arterielle Hypertonie
+					1995: Lungenembolie
+					1995: Hirnblutung unter Antikoagulation
+					2010: Herzinfarkt
+					2012: Lungenentzündung
+					2015: Schwere Angina, Folge: Herzmuskelentzündung
+					2017: Horizontaltherapie, Schmerzlinderung und Beweglichkeitsverbesserung
+					2017: Koronare Herzkrankheit, Bypassoperation nötig
+				</preexistingConditions>
+			</subtopic>
+			<subtopic name="Medikation">
+				<drugs name="Medikamente">Blutdruck: Metropol; 50 mg; 1-0-1-0
+				</drugs>
+			</subtopic>
+		</topic>
+		<topic name="Untersuchungsergebnisse">
+			<subtopic name="Diagnose">
+				<longVersion name="Koronare Herzkrankheit">Der Patient hat in letzter Zeit vermehrt ein Druckgefühl auf der Brust verspürt.
+					Außerdem beklagt sich der Patient wegen Müdigkeit, Druck- und Engegefühle in der Brust und ein heftiger Schmerz in der Herzgegend.
+					Zum Teil ist der Schmerz atemabhängig, zum Teil verstärkt bei Anstrengung. Manchmal tritt er aber auch aus der Ruhe auf. 
+				</longVersion>
+			</subtopic>
+			<subtopic name="Blutbild">
+				<laboratoryValues name="Blutbild vom 02.07.2017">./Bilder/Blutbild.jpg</laboratoryValues>
+			</subtopic>
+			<subtopic name="Röntgenbild">
+				<radiograph name="Röntgenbild vom 10.06.2017">./Bilder/VerengteGefaeße_Herz.png</radiograph>
+			</subtopic>
+			<subtopic name="Messwerte">
+				<measurements name="Messwerte vom 10.07.2017">Systolischer Blutdruck: 140 mmHg
+					Diastolischer Blutdruck: 90 mmHg
+					Puls: 87 bpm
+				</measurements>
+			</subtopic>
+		</topic>
+	  </topics>
+   </surgery>
+      <surgery id="OP1-2">
+      <general>
+		<type>Appendektomie</type>
+		<surgeon>Prof. Dr. Schmitt</surgeon>
+		<begin>11:30 Uhr</begin>
+		<duration>40</duration>
+		<operatingArea>./Bilder/blinddarmentzuendung.jpg</operatingArea>
+	  </general>
+	  <topics>
+		<topic name="OP Details">
+			<subtopic name="Informationen zum Eingriff">
+				<method name="Operationsmethode">Minimalinvasiv</method>
+				<patientPositioning name="Patientenlagerung">Rückenlage</patientPositioning>
+				<robotSupport name="Roboterunterstützung">Ja, Da-Vinci-Operationssystem</robotSupport>
+			</subtopic>
+			<subtopic name="Vorgehen">
+				<plannedProcedure name="Geplantes Vorgehen">Die Appendix an ihrer Spitze fassen und hochhalten. Dabei wird die Wurzel der Appendix gestreckt und schön dargestellt. Die Appendix-Wurzel wird mit einer bipolaren Koagulationszange verödet und mit der Endo-Schere durchtrennt.
+					Sobald die Basis der Appendix schön frei liegt, kann sie mit einem linearen Klammernahtgerät abgetrennt werden. Alternativ können auch zwei Fadenschlingen verwendet werden. Der Verschluss des Appendix-Stumpfes mit dem Klammernahtgerät ist aber viel sicherer und effizienter.
+					Nach Präparation der Wurzel wird die Appendix-Basis mit einem linearen Klammernahtgerät verschlossen und durchtrennt. Bei nicht stark entzündeter Appendix kann diese direkt durch einen Trokar geborgen werden.
+					Für die Bergung einer stark entzündeten Appendix wird häufig ein Plastikbeutel verwendet, sodass keine Kontamination der Bauchdecke entsteht, was sonst Wundinfekte zur Folge haben kann. Falls bei der Laparoskopie eine schwere Entzündung oder eine Perforation festgestellt wird, kann es notwendig sein, auf die offene Technik mit Bauchdeckenschnitt (Laparotomie) umzusteigen. In diesen Fällen kommen nach der Operation häufig auch Antibiotika zur Behandlung der Infektion zur Anwendung.
+				</plannedProcedure>
+			</subtopic>
+		</topic>
+		<topic name="Patienteninformationen">
+			<subtopic name="Basisinformationen">
+				<firstname name="Vorname">Hans</firstname>
+				<lastname name="Nachname">Peterson</lastname>
+				<age name="Alter">45</age>
+				<gender name="Geschlecht">Männlich</gender>
+				<bodyHeight name="Körpergröße">175 cm</bodyHeight>
+				<bodyWeight name="Gewicht">90 kg</bodyWeight>
+			</subtopic>
+			<subtopic name="Krankenblatt">
+				<allergies name="Allergien">keine</allergies>
+				<infections name="Infektionen">keine</infections>
+				<intolerances name="Intoleranzen">keine</intolerances>
+				<implants name="Implantate">keine</implants>
+			</subtopic>
+			<subtopic name="Krankengeschichte">
+				<preexistingConditions name="Historie">1975: Windpocken
+					1993: Mandelnentfernung
+					2007: Diabetes Typ 1, Behandlung mit Tabletten
+					2012: Diabetes Typ 3, Behandlung mit Insulin
+				</preexistingConditions>
+			</subtopic>
+			<subtopic name="Medikation">
+				<drugs name="Medikamente">Diabetes: NovoRapid Penfill; 100 E/ml; 20-0-20-0
+					Blutfette: Simva-Aristo; 40 mg; 1-0-1-0
+				</drugs>
+			</subtopic>
+		</topic>
+		<topic name="Untersuchungsergebnisse">
+			<subtopic name="Diagnose">
+				<longVersion name="Akute Appendizitis">Der Patient beklagte sich über Übelkeit, Erbrechen und kolikartige Bauchschmerzen. 
+					Die Beschwerden begangen in der Magengegend und verlagerten sich im weiteren Verlauf in den rechten Unterbauch. Vor Ort entwickelte der Patient Appetitlosigkeit und Fieber, gefolgt vom verändertem Stuhlverhalt. Nach einer gründlichen Untersuchung konnte eine akute Appendizitis sichergestellt werden. Blinddarmentfernung muss schnellstmöglich durchgeführt werden.
+				</longVersion>
+			</subtopic>
+			<subtopic name="Blutbild">
+				<laboratoryValues name="Blutbild vom 23.05.2017">./Bilder/Blutbild.jpg</laboratoryValues>
+			</subtopic>
+			<subtopic name="Ultraschallbild">
+				<ultrasoundImage name="Ultraschallbild vom 4.02.2017">./Bilder/Blinddarmentzundung_Ultraschall.jpg</ultrasoundImage>
+			</subtopic>
+			<subtopic name="Computertomographiebild">
+				<computertomographyImage name="Computertomographiebild vom 4.05.2017">./Bilder/Blinddarmentzundung_CT.jpg</computertomographyImage>
+			</subtopic>
+			<subtopic name="Messwerte">
+				<measurements name="Messwerte vom 24.05.2017">Systolischer Blutdruck: 120 mmHg
+					Diastolischer Blutdruck: 80 mmHg
+					Puls: 65 bpm
+				</measurements>
+			</subtopic>
+		</topic>
+	  </topics>
+   </surgery>
+</surgeries>
